@@ -1,0 +1,96 @@
+PV621465	Fasta files must be opened in text mode.
+PV621467	Fasta files must be opened in text mode.
+PV621468	Fasta files must be opened in text mode.
+PV621469	Fasta files must be opened in text mode.
+PV621466	Fasta files must be opened in text mode.
+PV621470	Fasta files must be opened in text mode.
+PV621474	Fasta files must be opened in text mode.
+PV621472	Fasta files must be opened in text mode.
+PV621473	Fasta files must be opened in text mode.
+PV621471	Fasta files must be opened in text mode.
+PV621475	Fasta files must be opened in text mode.
+PV621476	Fasta files must be opened in text mode.
+PV621477	Fasta files must be opened in text mode.
+PV621479	Fasta files must be opened in text mode.
+PV621478	Fasta files must be opened in text mode.
+PV621480	Fasta files must be opened in text mode.
+PV621481	Fasta files must be opened in text mode.
+PV621484	Fasta files must be opened in text mode.
+PV621483	Fasta files must be opened in text mode.
+PV621485	Fasta files must be opened in text mode.
+PV621486	Fasta files must be opened in text mode.
+PV621487	Fasta files must be opened in text mode.
+PV621488	Fasta files must be opened in text mode.
+PV621489	Fasta files must be opened in text mode.
+PV621490	Fasta files must be opened in text mode.
+PV621491	Fasta files must be opened in text mode.
+PV621492	Fasta files must be opened in text mode.
+PV621493	Fasta files must be opened in text mode.
+PV621494	Fasta files must be opened in text mode.
+PV621495	Fasta files must be opened in text mode.
+PV621496	Fasta files must be opened in text mode.
+PV621497	Fasta files must be opened in text mode.
+PV621498	Fasta files must be opened in text mode.
+PV621499	Fasta files must be opened in text mode.
+PV621500	Fasta files must be opened in text mode.
+PV621501	Fasta files must be opened in text mode.
+PV621502	Fasta files must be opened in text mode.
+PV621503	Fasta files must be opened in text mode.
+PV621504	Fasta files must be opened in text mode.
+PV621505	Fasta files must be opened in text mode.
+PV621506	Fasta files must be opened in text mode.
+PV621507	Fasta files must be opened in text mode.
+PV621508	Fasta files must be opened in text mode.
+PV621509	Fasta files must be opened in text mode.
+PV621510	Fasta files must be opened in text mode.
+PV621511	Fasta files must be opened in text mode.
+PV621512	Fasta files must be opened in text mode.
+PV621513	Fasta files must be opened in text mode.
+PV621515	Fasta files must be opened in text mode.
+PV621514	Fasta files must be opened in text mode.
+PV621516	Fasta files must be opened in text mode.
+PV621517	Fasta files must be opened in text mode.
+PV621519	Fasta files must be opened in text mode.
+PV621518	Fasta files must be opened in text mode.
+PV621520	Fasta files must be opened in text mode.
+PV621482	Fasta files must be opened in text mode.
+PV621521	Fasta files must be opened in text mode.
+PV621522	Fasta files must be opened in text mode.
+PV621523	Fasta files must be opened in text mode.
+PV621524	Fasta files must be opened in text mode.
+PV621465	No records found in handle
+PV621468	No records found in handle
+PV621469	No records found in handle
+PV621466	No records found in handle
+PV621467	No records found in handle
+PV621474	No records found in handle
+PV621472	No records found in handle
+PV621471	No records found in handle
+PV621473	No records found in handle
+PV621470	No records found in handle
+PV621465	No FASTA record found
+PV621467	No FASTA record found
+PV621466	No FASTA record found
+PV621468	No FASTA record found
+PV621469	No FASTA record found
+PV621470	No FASTA record found
+PV621471	No FASTA record found
+PV621472	No FASTA record found
+PV621473	No FASTA record found
+PV621474	No FASTA record found
+PV621475	No FASTA record found
+PV621476	No FASTA record found
+PV621478	No FASTA record found
+PV621477	No FASTA record found
+PV621479	No FASTA record found
+PV621480	No FASTA record found
+PV621481	No FASTA record found
+PV621483	No FASTA record found
+PV621484	No FASTA record found
+PV621482	No FASTA record found
+PV621485	No FASTA record found
+PV621486	No FASTA record found
+PV621487	No FASTA record found
+PV621488	No FASTA record found
+PV621489	No FASTA record found
+PV621490	No FASTA record found
