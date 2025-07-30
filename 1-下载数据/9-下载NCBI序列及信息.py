@@ -1,5 +1,4 @@
 import os
-import io
 from Bio import Entrez, SeqIO
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
@@ -20,10 +19,8 @@ def download_and_process_sequence(seq_id):
                                   id=seq_id,
                                   rettype="fasta",
                                   retmode="text")
-        txt_fasta = io.TextIOWrapper(raw_fasta, encoding="utf-8")
         # 用 fasta-pearson 格式，允许前置注释
-        fasta_records = list(SeqIO.parse(txt_fasta, "fasta-pearson"))
-        txt_fasta.close()
+        fasta_records = list(SeqIO.parse(raw_fasta, "fasta-pearson"))
         raw_fasta.close()
 
         if not fasta_records:
@@ -40,9 +37,7 @@ def download_and_process_sequence(seq_id):
                                id=seq_id,
                                rettype="gb",
                                retmode="text")
-        txt_gb = io.TextIOWrapper(raw_gb, encoding="utf-8")
-        gb_records = list(SeqIO.parse(txt_gb, "genbank"))
-        txt_gb.close()
+        gb_records = list(SeqIO.parse(raw_gb, "genbank"))
         raw_gb.close()
 
         if not gb_records:
