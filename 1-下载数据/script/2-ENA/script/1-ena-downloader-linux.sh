@@ -17,8 +17,8 @@ OUTPUT_DIR='/mnt/c/Users/Administrator/Desktop'
 
 #TODO 4. 定义下载格式（可选：READS_FASTQ, READS_SUBMITTED, READS_BAM 等）
 #TODO 具体格式请查看`1-下载数据/script/2-ENA/markdown/0-阅读我.md`
-FORMAT='READS_FASTQ'
-# FORMAT='READS_BAM'
+# FORMAT='READS_FASTQ'
+FORMAT='READS_BAM'
 # 5. 定义下载协议（FTP 或 ASPERA）
 PROTOCOL='FTP'
 
