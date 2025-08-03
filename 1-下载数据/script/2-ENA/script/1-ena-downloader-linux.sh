@@ -10,7 +10,7 @@ set -euo pipefail
 #TODO 2. 定义 accession 列表文件（每行一个 accession）
 BASE_DIR='/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/2-ENA/'
 JAVA_SOFT_PATH="${BASE_DIR}/func/ena-file-downloader.jar"
-ACC_FILE="${BASE_DIR}/conf/1.list.txt"
+ACC_FILE="/mnt/c/Users/Administrator/Desktop/aDNA.txt"
 
 #TODO 3. 定义下载输出目录（根据需要修改）
 OUTPUT_DIR='/mnt/c/Users/Administrator/Desktop'
