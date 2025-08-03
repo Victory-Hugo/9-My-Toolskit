@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # 输入输出（路径里有空格/特殊字符，注意用引号）
-INPUT="/mnt/f/OneDrive/文档（共享）/4_古代DNA/SAMEA_aDNA.txt"
+INPUT="/mnt/f/OneDrive/文档（共享）/4_古代DNA/SAMEA_aDNA.txt" #todo 每行一个样本的编号,例如：SAMEA5662571
 OUTPUT="/mnt/f/OneDrive/文档（共享）/4_古代DNA/SAMEA_aDNA_MD5.txt"
 
 # 要的字段：包含 fastq_md5 和对应的 fastq_ftp
