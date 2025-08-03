@@ -12,12 +12,12 @@
 #TODO : 修改以下参数以适应你的环境
 #* SRA 列表文件路径
 #* 格式：每行一个 accession 号
-SRA_LIST="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/1-NCBI/conf/SraAccList.csv"
+SRA_LIST="/mnt/f/OneDrive/文档（共享）/4_古代DNA/SRR_aDNA.txt"
 #* prefetch 可执行文件路径
 #! 不知道如何配置的请查看`1-下载数据/script/1-NCBI/markdown/1-NCBI-SRA-代码使用说明.md`
 PREFETCH="/mnt/e/Scientifc_software/sratoolkit.3.1.1-ubuntu64/bin/prefetch"
 #* 下载输出目录
-OUTDIR="/mnt/c/Users/Administrator/Desktop/"
+OUTDIR="/mnt/d/迅雷下载/NCBI/"
 
 #* 下载配置
 JOBS=4               # 并行任务数
