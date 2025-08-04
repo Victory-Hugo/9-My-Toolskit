@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 本代码的功能：
-将ENA数据库下载的`tsv`文件中的sample_accession列提取出来
+将ENA数据库下载的`tsv`文件中的run_accession列提取出来
 形成一个新的txt文档。
 本代码通过shell传入2个参数：
     1.输入文件路径
@@ -18,10 +18,10 @@ def extract_accession(input_file, output_file):
     :param output_file: 输出的txt文件路径
     """
     # 读取tsv文件
-    df = pd.read_csv(input_file, sep='\t', usecols=['sample_accession'])
+    df = pd.read_csv(input_file, sep='\t', usecols=['run_accession'])
     
-    # 提取sample_accession列
-    accession_list = df['sample_accession'].tolist()
+    # 提取run_accession列
+    accession_list = df['run_accession'].tolist()
     
     # 将结果写入输出文件
     with open(output_file, 'w') as f:

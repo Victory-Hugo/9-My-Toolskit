@@ -1,4 +1,0 @@
-2025-08-04 15:06:08.800  INFO 13386 --- [main] u.a.e.ena.EnaFileDownloaderApplication   : Starting EnaFileDownloaderApplication using Java 21.0.2-internal on Giantwhite-Biglin with PID 13386 (/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/2-ENA/func/ena-file-downloader.jar started by luolintao in /mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit)
-2025-08-04 15:06:08.804 DEBUG 13386 --- [main] u.a.e.ena.EnaFileDownloaderApplication   : Running with Spring Boot v2.4.5, Spring v5.3.6
-2025-08-04 15:06:08.804  INFO 13386 --- [main] u.a.e.ena.EnaFileDownloaderApplication   : No active profile set, falling back to default profiles: default
-2025-08-04 15:06:10.491  INFO 13386 --- [main] u.a.e.ena.EnaFileDownloaderApplication   : Started EnaFileDownloaderApplication in 3.429 seconds (JVM running for 6.545)

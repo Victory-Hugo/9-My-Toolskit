@@ -1,0 +1,10 @@
+2025-08-04 16:19:35.538  INFO 43851 --- [main] u.a.e.ena.EnaFileDownloaderApplication   : Starting EnaFileDownloaderApplication using Java 21.0.2-internal on Giantwhite-Biglin with PID 43851 (/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/2-ENA/func/ena-file-downloader.jar started by luolintao in /mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit)
+2025-08-04 16:19:35.625 DEBUG 43851 --- [main] u.a.e.ena.EnaFileDownloaderApplication   : Running with Spring Boot v2.4.5, Spring v5.3.6
+2025-08-04 16:19:35.625  INFO 43851 --- [main] u.a.e.ena.EnaFileDownloaderApplication   : No active profile set, falling back to default profiles: default
+2025-08-04 16:19:38.909  INFO 43851 --- [main] u.a.e.ena.EnaFileDownloaderApplication   : Started EnaFileDownloaderApplication in 5.204 seconds (JVM running for 6.534)
+2025-08-04 16:19:38.917  INFO 43851 --- [main] console                                  : Starting download for format:READS_FASTQ at download location:/mnt/d/迅雷下载/ENA,protocol:ASPERA, asperaLoc:/home/luolintao/miniconda3/pkgs/aspera-cli-3.9.6-h5e1937b_0, emailId:None, data hub:null
+2025-08-04 16:19:38.934  INFO 43851 --- [main] console                                  : Total 1 run_accession READS_FASTQ records found
+2025-08-04 16:19:39.070  INFO 43851 --- [main] u.a.e.e.b.service.EnaPortalService       : portalAPIEndpoint: https://www.ebi.ac.uk/ena/portal/api/search?result=read_run&includeAccessionType=run&fields=run_accession,fastq_bytes,fastq_md5,fastq_aspera&format=json&limit=0&client=ena_file_downloader
+2025-08-04 16:19:39.072 DEBUG 43851 --- [main] u.a.e.e.b.service.EnaPortalService       : url:https://www.ebi.ac.uk/ena/portal/api/search?result=read_run&includeAccessionType=run&fields=run_accession,fastq_bytes,fastq_md5,fastq_aspera&format=json&limit=0&client=ena_file_downloader, body:includeAccessions=ERR3354482
+2025-08-04 16:19:40.618  INFO 43851 --- [main] console                                  : Downloading 1 files in total
+2025-08-04 16:19:40.671 DEBUG 43851 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderClient   : Downloading file fasp.sra.ebi.ac.uk:/vol1/fastq/ERR335/002/ERR3354482/ERR3354482.fastq.gz
