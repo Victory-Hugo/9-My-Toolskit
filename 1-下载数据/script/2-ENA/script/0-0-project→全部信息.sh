@@ -3,14 +3,25 @@ set -uo pipefail
 
 #TODO 修改下列
 PROJECT="PRJEB32764" #todo 需要查询的项目编号
-OUTPUT="/mnt/c/Users/Administrator/Desktop/aDNA.tsv" #todo 输出文件路径
+BASE_DIR="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/2-ENA" #todo 脚本所在目录
+OUTPUT="${BASE_DIR}/conf/aDNA.tsv" #todo 中间文件输出文件路径
+# 写死的路径
+PYTHON="/home/luolintao/miniconda3/envs/pyg/bin/python3" # todo Python 解释器路径
+SCRIPT="${BASE_DIR}/python/0-tsv→txt.py" #todo Python 脚本路径
+OUTPUT_TXT="${BASE_DIR}/conf/aDNA.txt" #todo 最终输出文件路径
 
+
+
+
+#*============无需修改系列的内容=====================
 # ENA API 字段
 FIELDS="run_accession,sample_accession,experiment_accession,study_accession,tax_id,scientific_name,base_count,fastq_ftp,fastq_md5"
 ENA_API="https://www.ebi.ac.uk/ena/portal/api/filereport"
 LOG="/tmp/get_${PROJECT}_$(date '+%Y%m%d_%H%M%S').log"
 RETRY=3
 
+# 输入输出文件路径
+INPUT="${OUTPUT}"
 # 写表头（制表符分隔）
 echo -e "run_accession\tsample_accession\texperiment_accession\tstudy_accession\ttax_id\tscientific_name\tbase_count\tfastq_ftp\tfastq_md5" > "$OUTPUT"
 
@@ -84,3 +95,8 @@ if command -v awk >/dev/null 2>&1; then
 fi
 
 log "完成。结果保存在：${OUTPUT}"
+
+# 运行 Python 脚本
+"$PYTHON" "$SCRIPT" "$INPUT" "$OUTPUT_TXT"
+
+echo "输出文件：$OUTPUT_TXT"
