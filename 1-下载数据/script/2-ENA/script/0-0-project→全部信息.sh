@@ -3,11 +3,11 @@ set -uo pipefail
 
 #TODO 修改下列
 PROJECT="PRJEB32764" #todo 需要查询的项目编号
-BASE_DIR="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/2-ENA" #todo 脚本所在目录
-OUTPUT="${BASE_DIR}/conf/aDNA.tsv" #todo 中间文件输出文件路径
-# 写死的路径
 PYTHON="/home/luolintao/miniconda3/envs/pyg/bin/python3" # todo Python 解释器路径
+BASE_DIR="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/2-ENA" #todo 脚本所在目录
+# 写死的路径
 SCRIPT="${BASE_DIR}/python/0-tsv→txt.py" #todo Python 脚本路径
+OUTPUT="${BASE_DIR}/conf/aDNA.tsv" #todo 中间文件输出文件路径
 OUTPUT_TXT="${BASE_DIR}/conf/aDNA.txt" #todo 最终输出文件路径
 
 

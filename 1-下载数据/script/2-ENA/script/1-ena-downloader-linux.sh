@@ -6,7 +6,7 @@ set -uo pipefail  # 不用 -e，内部手动控制失败逻辑以支持重试/�
 #TODO 2. 定义 accession 列表文件（每行一个 accession）
 BASE_DIR='/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/2-ENA'
 JAVA_SOFT_PATH="${BASE_DIR}/func/ena-file-downloader.jar"
-ACC_FILE='/mnt/f/OneDrive/文档（共享）/4_古代DNA/SAMEA_aDNA.txt'
+ACC_FILE='/mnt/f/OneDrive/文档（共享）/4_古代DNA/aDNA.txt'
 
 #TODO 3. 定义 Aspera CLI 的安装路径
 #TODO 具体路径请根据实际安装位置修改
