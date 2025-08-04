@@ -1,0 +1,12 @@
+2025-08-04 13:28:47.288  INFO 9217 --- [main] u.a.e.ena.EnaFileDownloaderApplication   : Starting EnaFileDownloaderApplication using Java 21.0.2-internal on Giantwhite-Biglin with PID 9217 (/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/2-ENA/func/ena-file-downloader.jar started by luolintao in /mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit)
+2025-08-04 13:28:47.292 DEBUG 9217 --- [main] u.a.e.ena.EnaFileDownloaderApplication   : Running with Spring Boot v2.4.5, Spring v5.3.6
+2025-08-04 13:28:47.293  INFO 9217 --- [main] u.a.e.ena.EnaFileDownloaderApplication   : No active profile set, falling back to default profiles: default
+2025-08-04 13:28:48.903  INFO 9217 --- [main] u.a.e.ena.EnaFileDownloaderApplication   : Started EnaFileDownloaderApplication in 2.345 seconds (JVM running for 3.294)
+2025-08-04 13:28:48.911  INFO 9217 --- [main] console                                  : Starting download for format:READS_FASTQ at download location:/mnt/d/迅雷下载/ENA//temp/SAMEA5662571_1,protocol:FTP, asperaLoc:null, emailId:null, data hub:null
+2025-08-04 13:28:48.925  INFO 9217 --- [main] console                                  : Total 1 sample_accession READS_FASTQ records found
+2025-08-04 13:28:49.027  INFO 9217 --- [main] u.a.e.e.b.service.EnaPortalService       : portalAPIEndpoint: https://www.ebi.ac.uk/ena/portal/api/search?result=read_run&includeAccessionType=sample&fields=sample_accession,fastq_bytes,fastq_md5,fastq_ftp&format=json&limit=0&client=ena_file_downloader
+2025-08-04 13:28:49.028 DEBUG 9217 --- [main] u.a.e.e.b.service.EnaPortalService       : url:https://www.ebi.ac.uk/ena/portal/api/search?result=read_run&includeAccessionType=sample&fields=sample_accession,fastq_bytes,fastq_md5,fastq_ftp&format=json&limit=0&client=ena_file_downloader, body:includeAccessions=SAMEA5662571
+2025-08-04 13:28:50.106  INFO 9217 --- [main] console                                  : Downloading 1 files in total
+2025-08-04 13:28:50.131 DEBUG 9217 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Starting 1 files starting with ftp.sra.ebi.ac.uk/vol1/fastq/ERR335/007/ERR3354487/ERR3354487.fastq.gz
+2025-08-04 13:28:50.135  INFO 9217 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR335/007/ERR3354487/ERR3354487.fastq.gz
+2025-08-04 13:28:50.138 DEBUG 9217 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR3354487.fastq.gz, parentId:SAMEA5662571

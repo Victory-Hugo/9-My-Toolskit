@@ -1,78 +1,1019 @@
-2025-08-03 22:15:23.163  INFO 2876 --- [main] u.a.e.ena.EnaFileDownloaderApplication   : Starting EnaFileDownloaderApplication using Java 21.0.2-internal on Giantwhite-Biglin with PID 2876 (/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/2-ENA/func/ena-file-downloader.jar started by luolintao in /mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit)
-2025-08-03 22:15:23.167 DEBUG 2876 --- [main] u.a.e.ena.EnaFileDownloaderApplication   : Running with Spring Boot v2.4.5, Spring v5.3.6
-2025-08-03 22:15:23.167  INFO 2876 --- [main] u.a.e.ena.EnaFileDownloaderApplication   : No active profile set, falling back to default profiles: default
-2025-08-03 22:15:24.791  INFO 2876 --- [main] u.a.e.ena.EnaFileDownloaderApplication   : Started EnaFileDownloaderApplication in 2.351 seconds (JVM running for 3.449)
-2025-08-03 22:15:24.811  INFO 2876 --- [main] console                                  : Starting download for format:READS_FASTQ at download location:/mnt/d/迅雷下载/ENA/,protocol:FTP, asperaLoc:null, emailId:null, data hub:null
-2025-08-03 22:15:24.827  INFO 2876 --- [main] console                                  : Total 269 sample_accession READS_FASTQ records found
-2025-08-03 22:15:24.951  INFO 2876 --- [main] u.a.e.e.b.service.EnaPortalService       : portalAPIEndpoint: https://www.ebi.ac.uk/ena/portal/api/search?result=read_run&includeAccessionType=sample&fields=sample_accession,fastq_bytes,fastq_md5,fastq_ftp&format=json&limit=0&client=ena_file_downloader
-2025-08-03 22:15:24.954 DEBUG 2876 --- [main] u.a.e.e.b.service.EnaPortalService       : url:https://www.ebi.ac.uk/ena/portal/api/search?result=read_run&includeAccessionType=sample&fields=sample_accession,fastq_bytes,fastq_md5,fastq_ftp&format=json&limit=0&client=ena_file_downloader, body:includeAccessions=SAMEA5662571,SAMEA5662577,SAMEA5662585,SAMEA5662581,SAMEA5662590,SAMEA5662583,SAMEA5662561,SAMEA5662563,SAMEA5662565,SAMEA5662580,SAMEA5662567,SAMEA5662573,SAMEA5662569,SAMEA5662578,SAMEA5662564,SAMEA5662566,SAMEA5662568,SAMEA5662570,SAMEA5662576,SAMEA5662587,SAMEA5662589,SAMEA5662572,SAMEA5662582,SAMEA5662562,SAMEA5662574,SAMEA5662579,SAMEA5662586,SAMEA5662584,SAMEA5662575,SAMEA5662588,SAMEA5662591,SAMEA4720739,SAMEA4720740,SAMEA4720741,SAMEA4720742,SAMEA4720743,SAMEA4720744,SAMEA4720745,SAMEA4720746,SAMEA4720747,SAMEA4720748,SAMEA4720749,SAMEA4720750,SAMEA4720751,SAMEA4720752,SAMEA4720753,SAMEA4720754,SAMEA4720755,SAMEA4720756,SAMEA4720757,SAMEA4720758,SAMEA4720759,SAMEA4720760,SAMEA4720761
-2025-08-03 22:15:26.222  INFO 2876 --- [main] u.a.e.e.b.service.EnaPortalService       : portalAPIEndpoint: https://www.ebi.ac.uk/ena/portal/api/search?result=read_run&includeAccessionType=sample&fields=sample_accession,fastq_bytes,fastq_md5,fastq_ftp&format=json&limit=0&client=ena_file_downloader
-2025-08-03 22:15:26.223 DEBUG 2876 --- [main] u.a.e.e.b.service.EnaPortalService       : url:https://www.ebi.ac.uk/ena/portal/api/search?result=read_run&includeAccessionType=sample&fields=sample_accession,fastq_bytes,fastq_md5,fastq_ftp&format=json&limit=0&client=ena_file_downloader, body:includeAccessions=SAMEA104600819,SAMEA104600823,SAMEA104600825,SAMEA104600826,SAMEA104600828,SAMEA104600830,SAMEA104600811,SAMEA104600831,SAMEA104600818,SAMEA104600812,SAMEA104600813,SAMEA104600827,SAMEA104600817,SAMEA104600820,SAMEA104600829,SAMEA104600824,SAMEA104600816,SAMEA104600814,SAMEA104600815,SAMEA104600821,SAMEA104600822,SAMEA7422992,SAMEA7422998,SAMEA7423000,SAMEA7422991,SAMEA7422993,SAMEA7422996,SAMEA7422989,SAMEA7422994,SAMEA7422997,SAMEA7422995,SAMEA7422990,SAMEA7422999,SAMEA104281218,SAMEA104281221,SAMEA104281224,SAMEA104281219,SAMEA104281225,SAMEA104281223,SAMEA104281226,SAMEA104281217,SAMEA104281220,SAMEA104281222,SAMEA104281227,SAMEA5538264,SAMEA5538288,SAMEA5538289,SAMEA5538290,SAMEA5538287,SAMEA5538265,SAMEA5538266,SAMEA5538262,SAMEA5538240,SAMEA5538281
-2025-08-03 22:15:27.297  INFO 2876 --- [main] u.a.e.e.b.service.EnaPortalService       : portalAPIEndpoint: https://www.ebi.ac.uk/ena/portal/api/search?result=read_run&includeAccessionType=sample&fields=sample_accession,fastq_bytes,fastq_md5,fastq_ftp&format=json&limit=0&client=ena_file_downloader
-2025-08-03 22:15:27.298 DEBUG 2876 --- [main] u.a.e.e.b.service.EnaPortalService       : url:https://www.ebi.ac.uk/ena/portal/api/search?result=read_run&includeAccessionType=sample&fields=sample_accession,fastq_bytes,fastq_md5,fastq_ftp&format=json&limit=0&client=ena_file_downloader, body:includeAccessions=SAMEA5538236,SAMEA5538249,SAMEA5538253,SAMEA5538255,SAMEA5538286,SAMEA5538260,SAMEA5538239,SAMEA5538285,SAMEA5538291,SAMEA5538267,SAMEA5538252,SAMEA5538277,SAMEA5538270,SAMEA5538279,SAMEA5538280,SAMEA5538275,SAMEA5538237,SAMEA5538238,SAMEA5538242,SAMEA5538243,SAMEA5538244,SAMEA5538246,SAMEA5538247,SAMEA5538248,SAMEA5538254,SAMEA5538257,SAMEA5538259,SAMEA5538261,SAMEA5538241,SAMEA5538271,SAMEA5538263,SAMEA5538273,SAMEA5538269,SAMEA5538272,SAMEA5538282,SAMEA5538283,SAMEA5538284,SAMEA5538278,SAMEA5538274,SAMEA5538276,SAMEA5538268,SAMEA5538245,SAMEA5538250,SAMEA5538251,SAMEA5538258,SAMEA5538256,SAMEA8702089,SAMEA8702090,SAMEA8702091,SAMEA8702094,SAMEA8702106,SAMEA8702110,SAMEA8702113,SAMEA8702115
-2025-08-03 22:15:27.624  INFO 2876 --- [main] u.a.e.e.b.service.EnaPortalService       : portalAPIEndpoint: https://www.ebi.ac.uk/ena/portal/api/search?result=read_run&includeAccessionType=sample&fields=sample_accession,fastq_bytes,fastq_md5,fastq_ftp&format=json&limit=0&client=ena_file_downloader
-2025-08-03 22:15:27.624 DEBUG 2876 --- [main] u.a.e.e.b.service.EnaPortalService       : url:https://www.ebi.ac.uk/ena/portal/api/search?result=read_run&includeAccessionType=sample&fields=sample_accession,fastq_bytes,fastq_md5,fastq_ftp&format=json&limit=0&client=ena_file_downloader, body:includeAccessions=SAMEA8702120,SAMEA8702121,SAMEA8702096,SAMEA8702097,SAMEA8702099,SAMEA8702100,SAMEA8702103,SAMEA8702109,SAMEA8702117,SAMEA8702118,SAMEA8702119,SAMEA8702092,SAMEA8702093,SAMEA8702095,SAMEA8702098,SAMEA8702101,SAMEA8702102,SAMEA8702104,SAMEA8702105,SAMEA8702107,SAMEA8702108,SAMEA8702111,SAMEA8702112,SAMEA8702114,SAMEA8702116,SAMEA8702122,SAMEA8702123,SAMEA7600818,SAMEA7600819,SAMEA7600820,SAMEA7600821,SAMEA7600822,SAMEA7600824,SAMEA7600825,SAMEA7600826,SAMEA7600827,SAMEA7600830,SAMEA7600831,SAMEA7600833,SAMEA7600832,SAMEA7600829,SAMEA7600834,SAMEA7600835,SAMEA7600836,SAMEA7600837,SAMEA7600838,SAMEA7600839,SAMEA7600840,SAMEA7600841,SAMEA7600817,SAMEA7600823,SAMEA7600828,SAMEA8779609,SAMEA5277533
-2025-08-03 22:15:29.115  INFO 2876 --- [main] u.a.e.e.b.service.EnaPortalService       : portalAPIEndpoint: https://www.ebi.ac.uk/ena/portal/api/search?result=read_run&includeAccessionType=sample&fields=sample_accession,fastq_bytes,fastq_md5,fastq_ftp&format=json&limit=0&client=ena_file_downloader
-2025-08-03 22:15:29.115 DEBUG 2876 --- [main] u.a.e.e.b.service.EnaPortalService       : url:https://www.ebi.ac.uk/ena/portal/api/search?result=read_run&includeAccessionType=sample&fields=sample_accession,fastq_bytes,fastq_md5,fastq_ftp&format=json&limit=0&client=ena_file_downloader, body:includeAccessions=SAMEA5277538,SAMEA5277543,SAMEA5277534,SAMEA5277539,SAMEA5277540,SAMEA5277536,SAMEA5277535,SAMEA5277537,SAMEA5277541,SAMEA5277542,SAMEA7190256,SAMEA7190257,SAMEA7190259,SAMEA7190260,SAMEA7190275,SAMEA7190264,SAMEA7190266,SAMEA7190267,SAMEA7190273,SAMEA7190258,SAMEA7190261,SAMEA7190262,SAMEA7190263,SAMEA7190265,SAMEA7190272,SAMEA7190276,SAMEA7190268,SAMEA7190269,SAMEA7190270,SAMEA7190274,SAMEA7190271,SAMEA7050456,SAMEA7050454,SAMEA7050455,SAMEA7050465,SAMEA7050457,SAMEA7050468,SAMEA7050458,SAMEA7050471,SAMEA7050461,SAMEA7050462,SAMEA7050464,SAMEA7050473,SAMEA7050466,SAMEA7050472,SAMEA7050404,SAMEA7050460,SAMEA7050459,SAMEA7050474,SAMEA7050463,SAMEA7050467,SAMEA7050469,SAMEA7050470
-2025-08-03 22:15:29.743  INFO 2876 --- [main] console                                  : Downloading 1266 files in total
-2025-08-03 22:15:29.771 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Starting 54 files starting with ftp.sra.ebi.ac.uk/vol1/fastq/ERR335/002/ERR3354482/ERR3354482.fastq.gz
-2025-08-03 22:15:29.772 DEBUG 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderService  : Starting 112 files starting with ftp.sra.ebi.ac.uk/vol1/fastq/ERR211/001/ERR2111941/ERR2111941.fastq.gz
-2025-08-03 22:15:29.772  INFO 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR211/001/ERR2111941/ERR2111941.fastq.gz
-2025-08-03 22:15:29.772  INFO 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR335/002/ERR3354482/ERR3354482.fastq.gz
-2025-08-03 22:15:29.772 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Starting 54 files starting with ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/009/ERR3262749/ERR3262749.fastq.gz
-2025-08-03 22:15:29.773  INFO 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/009/ERR3262749/ERR3262749.fastq.gz
-2025-08-03 22:15:29.777 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR3262749.fastq.gz, parentId:SAMEA5538236
-2025-08-03 22:15:29.777 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR3354482.fastq.gz, parentId:SAMEA5662583
-2025-08-03 22:15:29.790 DEBUG 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR2111941.fastq.gz, parentId:SAMEA104281218
-2025-08-03 22:15:39.951 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR3262749.fastq.gz, parentId:SAMEA5538236, bytesCopied:2290941
-2025-08-03 22:15:39.997 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : MD5 validation successful for file:ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/009/ERR3262749/ERR3262749.fastq.gz
-2025-08-03 22:15:39.997 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : /mnt/d/迅雷下载/ENA//reads_fastq/SAMEA5538236/ERR3262749/ERR3262749.fastq.gz completed.
-2025-08-03 22:15:39.997  INFO 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/000/ERR3262760/ERR3262760.fastq.gz
-2025-08-03 22:15:39.998 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR3262760.fastq.gz, parentId:SAMEA5538249
-2025-08-03 22:16:14.188 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR3262760.fastq.gz, parentId:SAMEA5538249, bytesCopied:51893393
-2025-08-03 22:16:15.140 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : MD5 validation successful for file:ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/000/ERR3262760/ERR3262760.fastq.gz
-2025-08-03 22:16:15.140 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : /mnt/d/迅雷下载/ENA//reads_fastq/SAMEA5538249/ERR3262760/ERR3262760.fastq.gz completed.
-2025-08-03 22:16:15.141  INFO 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/004/ERR3262764/ERR3262764.fastq.gz
-2025-08-03 22:16:15.153 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR3262764.fastq.gz, parentId:SAMEA5538253
-2025-08-03 22:16:30.062 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR3262764.fastq.gz, parentId:SAMEA5538253, bytesCopied:41362432
-2025-08-03 22:16:30.769 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : MD5 validation successful for file:ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/004/ERR3262764/ERR3262764.fastq.gz
-2025-08-03 22:16:30.770 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : /mnt/d/迅雷下载/ENA//reads_fastq/SAMEA5538253/ERR3262764/ERR3262764.fastq.gz completed.
-2025-08-03 22:16:30.770  INFO 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/006/ERR3262766/ERR3262766.fastq.gz
-2025-08-03 22:16:30.772 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : File ERR3262766.fastq.gz already exists and size matches 4023653. Skipping.
-2025-08-03 22:16:30.772  INFO 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR589/009/ERR5897769/ERR5897769.fastq.gz
-2025-08-03 22:16:30.773  WARN 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : File ERR5897769.fastq.gz exists but size mismatch 425770794. Redownloading
-2025-08-03 22:16:30.774 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR5897769.fastq.gz, parentId:SAMEA8702089
-2025-08-03 22:24:25.372 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR5897769.fastq.gz, parentId:SAMEA8702089, bytesCopied:425770794
-2025-08-03 22:24:25.377 ERROR 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : IOException encountered while calculating MD5
+2025-08-04 00:01:06.178 ERROR 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderClient   : /mnt/d/迅雷下载/ENA/reads_fastq/SAMEA5662580/ERR3354503/ERR3354503.fastq.gz failed to download
 
-java.io.FileNotFoundException: /mnt/d/迅雷下载/ENA/reads_fastq/SAMEA8702089/ERR5897769/ERR5897769.fastq.gz (No such file or directory)
-	at java.base/java.io.FileInputStream.open0(Native Method)
-	at java.base/java.io.FileInputStream.open(FileInputStream.java:213)
-	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:152)
-	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:106)
-	at uk.ac.ebi.ena.backend.service.FileDownloaderService.isDownloadSuccessful(FileDownloaderService.java:69)
-	at uk.ac.ebi.ena.backend.service.FileDownloaderService.lambda$startDownload$0(FileDownloaderService.java:233)
+java.net.SocketTimeoutException: Read timed out
+	at java.base/sun.nio.ch.NioSocketImpl.timedRead(NioSocketImpl.java:278)
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:304)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:346)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:796)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:1099)
+	at java.base/java.io.BufferedInputStream.fill(BufferedInputStream.java:291)
+	at java.base/java.io.BufferedInputStream.implRead(BufferedInputStream.java:325)
+	at java.base/java.io.BufferedInputStream.read(BufferedInputStream.java:312)
+	at java.base/sun.net.ftp.impl.FtpClient.readServerResponse(FtpClient.java:434)
+	at java.base/sun.net.ftp.impl.FtpClient.readReply(FtpClient.java:511)
+	at java.base/sun.net.ftp.impl.FtpClient.completePending(FtpClient.java:1678)
+	at java.base/sun.net.ftp.impl.FtpClient.issueCommand(FtpClient.java:541)
+	at java.base/sun.net.ftp.impl.FtpClient.close(FtpClient.java:1214)
+	at java.base/sun.net.www.protocol.ftp.FtpURLConnection$FtpInputStream.close(FtpURLConnection.java:132)
+	at java.base/sun.net.www.MeteredStream.close(MeteredStream.java:165)
+	at java.base/sun.net.www.MeteredStream.justRead(MeteredStream.java:85)
+	at java.base/sun.net.www.MeteredStream.read(MeteredStream.java:132)
+	at java.base/java.io.FilterInputStream.read(FilterInputStream.java:95)
+	at me.tongfei.progressbar.wrapped.ProgressBarWrappedInputStream.read(ProgressBarWrappedInputStream.java:37)
+	at org.apache.commons.io.IOUtils.copyLarge(IOUtils.java:1127)
+	at org.apache.commons.io.IOUtils.copy(IOUtils.java:849)
+	at org.apache.commons.io.IOUtils.copyLarge(IOUtils.java:1104)
+	at uk.ac.ebi.ena.backend.service.FileDownloaderClient.downloadFTPUrlConnection(FileDownloaderClient.java:181)
+	at uk.ac.ebi.ena.backend.service.FileDownloaderService.lambda$startDownload$0(FileDownloaderService.java:228)
 	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
 	at java.base/java.lang.Thread.run(Thread.java:1583)
 
-2025-08-03 22:24:25.377 ERROR 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Exception occurred while downloading file:ERR5897769.fastq.gz, experimentId:SAMEA8702089 
+2025-08-04 00:01:06.188 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR3354503.fastq.gz, parentId:SAMEA5662580, bytesCopied:0
+2025-08-04 00:01:06.188  WARN 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Unsuccessful Validation for remoteFile:ftp.sra.ebi.ac.uk/vol1/fastq/ERR335/003/ERR3354503/ERR3354503.fastq.gz. Bytes downloaded does not match with given bytes
+2025-08-04 00:01:06.189 ERROR 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Failed to download file:ERR3354503.fastq.gz, experimentId:SAMEA5662580
+2025-08-04 00:01:06.190  INFO 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR262/000/ERR2620020/ERR2620020.fastq.gz
+2025-08-04 00:01:06.191  WARN 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : File ERR2620020.fastq.gz exists but size mismatch 6847296231. Redownloading
+2025-08-04 00:01:06.191 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR2620020.fastq.gz, parentId:SAMEA4720740
+2025-08-04 00:03:52.977 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR5897790.fastq.gz, parentId:SAMEA8702110, bytesCopied:304344633
+2025-08-04 00:04:10.557 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : MD5 validation successful for file:ftp.sra.ebi.ac.uk/vol1/fastq/ERR589/000/ERR5897790/ERR5897790.fastq.gz
+2025-08-04 00:04:10.558 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : /mnt/d/迅雷下载/ENA//reads_fastq/SAMEA8702110/ERR5897790/ERR5897790.fastq.gz completed.
+2025-08-04 00:04:10.558  INFO 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR589/003/ERR5897793/ERR5897793.fastq.gz
+2025-08-04 00:04:10.631 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR5897793.fastq.gz, parentId:SAMEA8702113
+2025-08-04 00:04:22.242 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR5897793.fastq.gz, parentId:SAMEA8702113, bytesCopied:593365
+2025-08-04 00:04:22.253 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : MD5 validation successful for file:ftp.sra.ebi.ac.uk/vol1/fastq/ERR589/003/ERR5897793/ERR5897793.fastq.gz
+2025-08-04 00:04:22.254 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : /mnt/d/迅雷下载/ENA//reads_fastq/SAMEA8702113/ERR5897793/ERR5897793.fastq.gz completed.
+2025-08-04 00:04:22.254  INFO 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR589/005/ERR5897795/ERR5897795.fastq.gz
+2025-08-04 00:04:22.255 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR5897795.fastq.gz, parentId:SAMEA8702115
+2025-08-04 00:04:27.352 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR5897795.fastq.gz, parentId:SAMEA8702115, bytesCopied:280883
+2025-08-04 00:04:27.361 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : MD5 validation successful for file:ftp.sra.ebi.ac.uk/vol1/fastq/ERR589/005/ERR5897795/ERR5897795.fastq.gz
+2025-08-04 00:04:27.362 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : /mnt/d/迅雷下载/ENA//reads_fastq/SAMEA8702115/ERR5897795/ERR5897795.fastq.gz completed.
+2025-08-04 00:04:27.362  INFO 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/003/ERR3262713/ERR3262713.fastq.gz
+2025-08-04 00:04:27.363 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR3262713.fastq.gz, parentId:SAMEA5538286
+2025-08-04 00:08:38.433 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR3262713.fastq.gz, parentId:SAMEA5538286, bytesCopied:150841197
+2025-08-04 00:08:46.331 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : MD5 validation successful for file:ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/003/ERR3262713/ERR3262713.fastq.gz
+2025-08-04 00:08:46.331 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : /mnt/d/迅雷下载/ENA//reads_fastq/SAMEA5538286/ERR3262713/ERR3262713.fastq.gz completed.
+2025-08-04 00:08:46.332  INFO 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/005/ERR3262715/ERR3262715.fastq.gz
+2025-08-04 00:08:46.333 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR3262715.fastq.gz, parentId:SAMEA5538260
+2025-08-04 00:08:59.168 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR3262715.fastq.gz, parentId:SAMEA5538260, bytesCopied:4553999
+2025-08-04 00:08:59.522 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : MD5 validation successful for file:ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/005/ERR3262715/ERR3262715.fastq.gz
+2025-08-04 00:08:59.523 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : /mnt/d/迅雷下载/ENA//reads_fastq/SAMEA5538260/ERR3262715/ERR3262715.fastq.gz completed.
+2025-08-04 00:08:59.523  INFO 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/008/ERR3262718/ERR3262718.fastq.gz
+2025-08-04 00:08:59.540 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR3262718.fastq.gz, parentId:SAMEA5538239
+2025-08-04 00:23:17.494 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR3262718.fastq.gz, parentId:SAMEA5538239, bytesCopied:458130180
+2025-08-04 00:23:48.601 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : MD5 validation successful for file:ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/008/ERR3262718/ERR3262718.fastq.gz
+2025-08-04 00:23:48.601 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : /mnt/d/迅雷下载/ENA//reads_fastq/SAMEA5538239/ERR3262718/ERR3262718.fastq.gz completed.
+2025-08-04 00:23:48.601  INFO 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/009/ERR3262719/ERR3262719.fastq.gz
+2025-08-04 00:23:48.603 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR3262719.fastq.gz, parentId:SAMEA5538285
+2025-08-04 01:02:42.671 ERROR 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderClient   : /mnt/d/迅雷下载/ENA/reads_fastq/SAMEA5538285/ERR3262719/ERR3262719.fastq.gz failed to download
 
-java.lang.IllegalStateException: IOException encountered while calculating MD5
-	at uk.ac.ebi.ena.backend.service.FileDownloaderService.isDownloadSuccessful(FileDownloaderService.java:82)
-	at uk.ac.ebi.ena.backend.service.FileDownloaderService.lambda$startDownload$0(FileDownloaderService.java:233)
+java.net.SocketTimeoutException: Read timed out
+	at java.base/sun.nio.ch.NioSocketImpl.timedRead(NioSocketImpl.java:278)
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:304)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:346)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:796)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:1099)
+	at java.base/java.io.BufferedInputStream.fill(BufferedInputStream.java:291)
+	at java.base/java.io.BufferedInputStream.implRead(BufferedInputStream.java:325)
+	at java.base/java.io.BufferedInputStream.read(BufferedInputStream.java:312)
+	at java.base/sun.net.ftp.impl.FtpClient.readServerResponse(FtpClient.java:434)
+	at java.base/sun.net.ftp.impl.FtpClient.readReply(FtpClient.java:511)
+	at java.base/sun.net.ftp.impl.FtpClient.completePending(FtpClient.java:1678)
+	at java.base/sun.net.ftp.impl.FtpClient.issueCommand(FtpClient.java:541)
+	at java.base/sun.net.ftp.impl.FtpClient.close(FtpClient.java:1214)
+	at java.base/sun.net.www.protocol.ftp.FtpURLConnection$FtpInputStream.close(FtpURLConnection.java:132)
+	at java.base/sun.net.www.MeteredStream.close(MeteredStream.java:165)
+	at java.base/sun.net.www.MeteredStream.justRead(MeteredStream.java:85)
+	at java.base/sun.net.www.MeteredStream.read(MeteredStream.java:132)
+	at java.base/java.io.FilterInputStream.read(FilterInputStream.java:95)
+	at me.tongfei.progressbar.wrapped.ProgressBarWrappedInputStream.read(ProgressBarWrappedInputStream.java:37)
+	at org.apache.commons.io.IOUtils.copyLarge(IOUtils.java:1127)
+	at org.apache.commons.io.IOUtils.copy(IOUtils.java:849)
+	at org.apache.commons.io.IOUtils.copyLarge(IOUtils.java:1104)
+	at uk.ac.ebi.ena.backend.service.FileDownloaderClient.downloadFTPUrlConnection(FileDownloaderClient.java:181)
+	at uk.ac.ebi.ena.backend.service.FileDownloaderService.lambda$startDownload$0(FileDownloaderService.java:228)
 	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
 	at java.base/java.lang.Thread.run(Thread.java:1583)
-Caused by: java.io.FileNotFoundException: /mnt/d/迅雷下载/ENA/reads_fastq/SAMEA8702089/ERR5897769/ERR5897769.fastq.gz (No such file or directory)
-	at java.base/java.io.FileInputStream.open0(Native Method)
-	at java.base/java.io.FileInputStream.open(FileInputStream.java:213)
-	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:152)
-	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:106)
-	at uk.ac.ebi.ena.backend.service.FileDownloaderService.isDownloadSuccessful(FileDownloaderService.java:69)
-	... 5 common frames omitted
 
-2025-08-03 22:24:25.377  INFO 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR589/000/ERR5897770/ERR5897770.fastq.gz
-2025-08-03 22:24:25.379 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR5897770.fastq.gz, parentId:SAMEA8702090
+2025-08-04 01:02:42.671 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR3262719.fastq.gz, parentId:SAMEA5538285, bytesCopied:0
+2025-08-04 01:02:42.673  WARN 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Unsuccessful Validation for remoteFile:ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/009/ERR3262719/ERR3262719.fastq.gz. Bytes downloaded does not match with given bytes
+2025-08-04 01:02:42.673 ERROR 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Failed to download file:ERR3262719.fastq.gz, experimentId:SAMEA5538285
+2025-08-04 01:02:42.674  INFO 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/004/ERR3262714/ERR3262714.fastq.gz
+2025-08-04 01:02:42.700 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : File ERR3262714.fastq.gz already exists and size matches 2364611. Skipping.
+2025-08-04 01:02:42.702  INFO 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/003/ERR3262723/ERR3262723.fastq.gz
+2025-08-04 01:02:42.723 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR3262723.fastq.gz, parentId:SAMEA5538291
+2025-08-04 01:08:22.781 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR3262723.fastq.gz, parentId:SAMEA5538291, bytesCopied:187764778
+2025-08-04 01:08:40.041  WARN 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : MD5 failed for file:ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/003/ERR3262723/ERR3262723.fastq.gz
+2025-08-04 01:08:40.041 ERROR 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Failed to download file:ERR3262723.fastq.gz, experimentId:SAMEA5538291
+2025-08-04 01:08:40.041  INFO 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/007/ERR3262727/ERR3262727.fastq.gz
+2025-08-04 01:08:40.043 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR3262727.fastq.gz, parentId:SAMEA5538267
+2025-08-04 01:27:27.621 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR3262727.fastq.gz, parentId:SAMEA5538267, bytesCopied:532230979
+2025-08-04 01:27:36.908  WARN 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : MD5 failed for file:ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/007/ERR3262727/ERR3262727.fastq.gz
+2025-08-04 01:27:36.909 ERROR 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Failed to download file:ERR3262727.fastq.gz, experimentId:SAMEA5538267
+2025-08-04 01:27:36.909  INFO 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/006/ERR3262716/ERR3262716.fastq.gz
+2025-08-04 01:27:36.910 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : File ERR3262716.fastq.gz already exists and size matches 27739734. Skipping.
+2025-08-04 01:27:36.910  INFO 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/000/ERR3262730/ERR3262730.fastq.gz
+2025-08-04 01:27:36.912 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR3262730.fastq.gz, parentId:SAMEA5538252
+2025-08-04 01:46:22.231 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR3262730.fastq.gz, parentId:SAMEA5538252, bytesCopied:466305396
+2025-08-04 01:46:38.037 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : MD5 validation successful for file:ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/000/ERR3262730/ERR3262730.fastq.gz
+2025-08-04 01:46:38.038 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : /mnt/d/迅雷下载/ENA//reads_fastq/SAMEA5538252/ERR3262730/ERR3262730.fastq.gz completed.
+2025-08-04 01:46:38.038  INFO 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/004/ERR3262734/ERR3262734.fastq.gz
+2025-08-04 01:46:38.039 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR3262734.fastq.gz, parentId:SAMEA5538277
+2025-08-04 01:46:43.322 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR3262734.fastq.gz, parentId:SAMEA5538277, bytesCopied:308274
+2025-08-04 01:46:43.336 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : MD5 validation successful for file:ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/004/ERR3262734/ERR3262734.fastq.gz
+2025-08-04 01:46:43.336 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : /mnt/d/迅雷下载/ENA//reads_fastq/SAMEA5538277/ERR3262734/ERR3262734.fastq.gz completed.
+2025-08-04 01:46:43.336  INFO 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/008/ERR3262728/ERR3262728.fastq.gz
+2025-08-04 01:46:43.338 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : File ERR3262728.fastq.gz already exists and size matches 938619841. Skipping.
+2025-08-04 01:46:43.338  INFO 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/008/ERR3262738/ERR3262738.fastq.gz
+2025-08-04 01:46:43.339 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR3262738.fastq.gz, parentId:SAMEA5538270
+2025-08-04 01:46:57.420 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR3262738.fastq.gz, parentId:SAMEA5538270, bytesCopied:22198903
+2025-08-04 01:46:57.802 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : MD5 validation successful for file:ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/008/ERR3262738/ERR3262738.fastq.gz
+2025-08-04 01:46:57.803 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : /mnt/d/迅雷下载/ENA//reads_fastq/SAMEA5538270/ERR3262738/ERR3262738.fastq.gz completed.
+2025-08-04 01:46:57.803  INFO 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/009/ERR3262729/ERR3262729.fastq.gz
+2025-08-04 01:46:57.804 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : File ERR3262729.fastq.gz already exists and size matches 1377861. Skipping.
+2025-08-04 01:46:57.805  INFO 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/004/ERR3262744/ERR3262744.fastq.gz
+2025-08-04 01:46:57.806 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR3262744.fastq.gz, parentId:SAMEA5538279
+2025-08-04 01:52:07.332 ERROR 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderClient   : /mnt/d/迅雷下载/ENA/reads_fastq/SAMEA104281218/ERR2111938/ERR2111938.fastq.gz failed to download
+
+java.net.SocketTimeoutException: Read timed out
+	at java.base/sun.nio.ch.NioSocketImpl.timedRead(NioSocketImpl.java:278)
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:304)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:346)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:796)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:1099)
+	at java.base/java.io.BufferedInputStream.fill(BufferedInputStream.java:291)
+	at java.base/java.io.BufferedInputStream.implRead(BufferedInputStream.java:325)
+	at java.base/java.io.BufferedInputStream.read(BufferedInputStream.java:312)
+	at java.base/sun.net.ftp.impl.FtpClient.readServerResponse(FtpClient.java:434)
+	at java.base/sun.net.ftp.impl.FtpClient.readReply(FtpClient.java:511)
+	at java.base/sun.net.ftp.impl.FtpClient.completePending(FtpClient.java:1678)
+	at java.base/sun.net.ftp.impl.FtpClient.issueCommand(FtpClient.java:541)
+	at java.base/sun.net.ftp.impl.FtpClient.close(FtpClient.java:1214)
+	at java.base/sun.net.www.protocol.ftp.FtpURLConnection$FtpInputStream.close(FtpURLConnection.java:132)
+	at java.base/sun.net.www.MeteredStream.close(MeteredStream.java:165)
+	at java.base/sun.net.www.MeteredStream.justRead(MeteredStream.java:85)
+	at java.base/sun.net.www.MeteredStream.read(MeteredStream.java:132)
+	at java.base/java.io.FilterInputStream.read(FilterInputStream.java:95)
+	at me.tongfei.progressbar.wrapped.ProgressBarWrappedInputStream.read(ProgressBarWrappedInputStream.java:37)
+	at org.apache.commons.io.IOUtils.copyLarge(IOUtils.java:1127)
+	at org.apache.commons.io.IOUtils.copy(IOUtils.java:849)
+	at org.apache.commons.io.IOUtils.copyLarge(IOUtils.java:1104)
+	at uk.ac.ebi.ena.backend.service.FileDownloaderClient.downloadFTPUrlConnection(FileDownloaderClient.java:181)
+	at uk.ac.ebi.ena.backend.service.FileDownloaderService.lambda$startDownload$0(FileDownloaderService.java:228)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+2025-08-04 01:52:07.334 DEBUG 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR2111938.fastq.gz, parentId:SAMEA104281218, bytesCopied:0
+2025-08-04 01:52:07.335  WARN 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderService  : Unsuccessful Validation for remoteFile:ftp.sra.ebi.ac.uk/vol1/fastq/ERR211/008/ERR2111938/ERR2111938.fastq.gz. Bytes downloaded does not match with given bytes
+2025-08-04 01:52:07.335 ERROR 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderService  : Failed to download file:ERR2111938.fastq.gz, experimentId:SAMEA104281218
+2025-08-04 01:52:07.335  INFO 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR211/002/ERR2111942/ERR2111942.fastq.gz
+2025-08-04 01:52:07.339 DEBUG 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR2111942.fastq.gz, parentId:SAMEA104281218
+2025-08-04 02:08:52.444 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR3262744.fastq.gz, parentId:SAMEA5538279, bytesCopied:861083962
+2025-08-04 02:09:23.226  WARN 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : MD5 failed for file:ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/004/ERR3262744/ERR3262744.fastq.gz
+2025-08-04 02:09:23.227 ERROR 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Failed to download file:ERR3262744.fastq.gz, experimentId:SAMEA5538279
+2025-08-04 02:09:23.227  INFO 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/002/ERR3262732/ERR3262732.fastq.gz
+2025-08-04 02:09:23.229 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : File ERR3262732.fastq.gz already exists and size matches 20909105. Skipping.
+2025-08-04 02:09:23.229  INFO 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/005/ERR3262745/ERR3262745.fastq.gz
+2025-08-04 02:09:23.231 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : File ERR3262745.fastq.gz already exists and size matches 26032023. Skipping.
+2025-08-04 02:09:23.231  INFO 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/005/ERR3262735/ERR3262735.fastq.gz
+2025-08-04 02:09:23.233 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : File ERR3262735.fastq.gz already exists and size matches 518927405. Skipping.
+2025-08-04 02:09:23.233  INFO 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/007/ERR3262747/ERR3262747.fastq.gz
+2025-08-04 02:09:23.233  WARN 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : File ERR3262747.fastq.gz exists but size mismatch 115038498. Redownloading
+2025-08-04 02:09:23.233 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR3262747.fastq.gz, parentId:SAMEA5538275
+2025-08-04 02:10:24.260 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR3262747.fastq.gz, parentId:SAMEA5538275, bytesCopied:115038498
+2025-08-04 02:10:32.670 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : MD5 validation successful for file:ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/007/ERR3262747/ERR3262747.fastq.gz
+2025-08-04 02:10:32.670 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : /mnt/d/迅雷下载/ENA//reads_fastq/SAMEA5538275/ERR3262747/ERR3262747.fastq.gz completed.
+2025-08-04 02:10:32.670  INFO 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/000/ERR3262750/ERR3262750.fastq.gz
+2025-08-04 02:10:32.672 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR3262750.fastq.gz, parentId:SAMEA5538237
+2025-08-04 02:11:56.631 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR3262750.fastq.gz, parentId:SAMEA5538237, bytesCopied:72963627
+2025-08-04 02:12:03.222 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : MD5 validation successful for file:ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/000/ERR3262750/ERR3262750.fastq.gz
+2025-08-04 02:12:03.223 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : /mnt/d/迅雷下载/ENA//reads_fastq/SAMEA5538237/ERR3262750/ERR3262750.fastq.gz completed.
+2025-08-04 02:12:03.223  INFO 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/007/ERR3262737/ERR3262737.fastq.gz
+2025-08-04 02:12:03.225 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : File ERR3262737.fastq.gz already exists and size matches 5010623. Skipping.
+2025-08-04 02:12:03.229  INFO 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/001/ERR3262751/ERR3262751.fastq.gz
+2025-08-04 02:12:03.238 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : File ERR3262751.fastq.gz already exists and size matches 5023960. Skipping.
+2025-08-04 02:12:03.238  INFO 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/009/ERR3262739/ERR3262739.fastq.gz
+2025-08-04 02:12:03.240 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : File ERR3262739.fastq.gz already exists and size matches 728271247. Skipping.
+2025-08-04 02:12:03.240  INFO 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/003/ERR3262753/ERR3262753.fastq.gz
+2025-08-04 02:12:03.241  WARN 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : File ERR3262753.fastq.gz exists but size mismatch 66073769. Redownloading
+2025-08-04 02:12:03.241 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR3262753.fastq.gz, parentId:SAMEA5538242
+2025-08-04 02:13:33.712 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR3262753.fastq.gz, parentId:SAMEA5538242, bytesCopied:66073769
+2025-08-04 02:13:34.794 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : MD5 validation successful for file:ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/003/ERR3262753/ERR3262753.fastq.gz
+2025-08-04 02:13:34.794 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : /mnt/d/迅雷下载/ENA//reads_fastq/SAMEA5538242/ERR3262753/ERR3262753.fastq.gz completed.
+2025-08-04 02:13:34.794  INFO 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/000/ERR3262740/ERR3262740.fastq.gz
+2025-08-04 02:13:34.796 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : File ERR3262740.fastq.gz already exists and size matches 2385246. Skipping.
+2025-08-04 02:13:34.796  INFO 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/004/ERR3262754/ERR3262754.fastq.gz
+2025-08-04 02:13:34.798 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : File ERR3262754.fastq.gz already exists and size matches 11099998. Skipping.
+2025-08-04 02:13:34.798  INFO 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/005/ERR3262755/ERR3262755.fastq.gz
+2025-08-04 02:13:34.799 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : File ERR3262755.fastq.gz already exists and size matches 13600059. Skipping.
+2025-08-04 02:13:34.799  INFO 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/001/ERR3262741/ERR3262741.fastq.gz
+2025-08-04 02:13:34.801 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : File ERR3262741.fastq.gz already exists and size matches 5645942. Skipping.
+2025-08-04 02:13:34.801  INFO 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/007/ERR3262757/ERR3262757.fastq.gz
+2025-08-04 02:13:34.803 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : File ERR3262757.fastq.gz already exists and size matches 39452510. Skipping.
+2025-08-04 02:13:34.803  INFO 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/002/ERR3262742/ERR3262742.fastq.gz
+2025-08-04 02:13:34.804 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : File ERR3262742.fastq.gz already exists and size matches 3518238. Skipping.
+2025-08-04 02:13:34.804  INFO 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/003/ERR3262743/ERR3262743.fastq.gz
+2025-08-04 02:13:34.806 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : File ERR3262743.fastq.gz already exists and size matches 1901876. Skipping.
+2025-08-04 02:13:34.806  INFO 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/008/ERR3262758/ERR3262758.fastq.gz
+2025-08-04 02:13:34.806  WARN 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : File ERR3262758.fastq.gz exists but size mismatch 505481784. Redownloading
+2025-08-04 02:13:34.806 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR3262758.fastq.gz, parentId:SAMEA5538247
+2025-08-04 02:19:00.105 DEBUG 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR2111942.fastq.gz, parentId:SAMEA104281218, bytesCopied:1190987036
+2025-08-04 02:19:48.140 DEBUG 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderService  : MD5 validation successful for file:ftp.sra.ebi.ac.uk/vol1/fastq/ERR211/002/ERR2111942/ERR2111942.fastq.gz
+2025-08-04 02:19:48.141 DEBUG 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderService  : /mnt/d/迅雷下载/ENA//reads_fastq/SAMEA104281218/ERR2111942/ERR2111942.fastq.gz completed.
+2025-08-04 02:19:48.141  INFO 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR211/000/ERR2111940/ERR2111940.fastq.gz
+2025-08-04 02:19:48.141  WARN 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderService  : File ERR2111940.fastq.gz exists but size mismatch 3848777291. Redownloading
+2025-08-04 02:19:48.142 DEBUG 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR2111940.fastq.gz, parentId:SAMEA104281218
+2025-08-04 02:23:29.824 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR3262758.fastq.gz, parentId:SAMEA5538247, bytesCopied:505481784
+2025-08-04 02:23:38.470 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : MD5 validation successful for file:ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/008/ERR3262758/ERR3262758.fastq.gz
+2025-08-04 02:23:38.470 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : /mnt/d/迅雷下载/ENA//reads_fastq/SAMEA5538247/ERR3262758/ERR3262758.fastq.gz completed.
+2025-08-04 02:23:38.470  INFO 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/006/ERR3262746/ERR3262746.fastq.gz
+2025-08-04 02:23:38.472 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : File ERR3262746.fastq.gz already exists and size matches 144620925. Skipping.
+2025-08-04 02:23:38.472  INFO 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/009/ERR3262759/ERR3262759.fastq.gz
+2025-08-04 02:23:38.472  WARN 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : File ERR3262759.fastq.gz exists but size mismatch 523953070. Redownloading
+2025-08-04 02:23:38.472 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR3262759.fastq.gz, parentId:SAMEA5538248
+2025-08-04 02:35:28.403 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR3262759.fastq.gz, parentId:SAMEA5538248, bytesCopied:523953070
+2025-08-04 02:35:37.755 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : MD5 validation successful for file:ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/009/ERR3262759/ERR3262759.fastq.gz
+2025-08-04 02:35:37.755 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : /mnt/d/迅雷下载/ENA//reads_fastq/SAMEA5538248/ERR3262759/ERR3262759.fastq.gz completed.
+2025-08-04 02:35:37.755  INFO 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/005/ERR3262765/ERR3262765.fastq.gz
+2025-08-04 02:35:37.756  WARN 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : File ERR3262765.fastq.gz exists but size mismatch 837346259. Redownloading
+2025-08-04 02:35:37.756 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR3262765.fastq.gz, parentId:SAMEA5538254
+2025-08-04 02:56:49.875 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR3262765.fastq.gz, parentId:SAMEA5538254, bytesCopied:837346259
+2025-08-04 02:57:04.284 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : MD5 validation successful for file:ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/005/ERR3262765/ERR3262765.fastq.gz
+2025-08-04 02:57:04.285 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : /mnt/d/迅雷下载/ENA//reads_fastq/SAMEA5538254/ERR3262765/ERR3262765.fastq.gz completed.
+2025-08-04 02:57:04.285  INFO 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/008/ERR3262748/ERR3262748.fastq.gz
+2025-08-04 02:57:04.287 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : File ERR3262748.fastq.gz already exists and size matches 686801640. Skipping.
+2025-08-04 02:57:04.287  INFO 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/008/ERR3262768/ERR3262768.fastq.gz
+2025-08-04 02:57:04.287  WARN 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : File ERR3262768.fastq.gz exists but size mismatch 196797868. Redownloading
+2025-08-04 02:57:04.287 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR3262768.fastq.gz, parentId:SAMEA5538257
+2025-08-04 03:00:58.290 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR3262768.fastq.gz, parentId:SAMEA5538257, bytesCopied:196797868
+2025-08-04 03:01:01.548 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : MD5 validation successful for file:ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/008/ERR3262768/ERR3262768.fastq.gz
+2025-08-04 03:01:01.549 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : /mnt/d/迅雷下载/ENA//reads_fastq/SAMEA5538257/ERR3262768/ERR3262768.fastq.gz completed.
+2025-08-04 03:01:01.549  INFO 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/002/ERR3262752/ERR3262752.fastq.gz
+2025-08-04 03:01:01.551 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : File ERR3262752.fastq.gz already exists and size matches 602604045. Skipping.
+2025-08-04 03:01:01.551  INFO 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/006/ERR3262756/ERR3262756.fastq.gz
+2025-08-04 03:01:01.553 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : File ERR3262756.fastq.gz already exists and size matches 678918219. Skipping.
+2025-08-04 03:01:01.553  INFO 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/001/ERR3262761/ERR3262761.fastq.gz
+2025-08-04 03:01:01.554 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : File ERR3262761.fastq.gz already exists and size matches 34637751. Skipping.
+2025-08-04 03:01:01.554  INFO 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/002/ERR3262762/ERR3262762.fastq.gz
+2025-08-04 03:01:01.557 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : File ERR3262762.fastq.gz already exists and size matches 712156695. Skipping.
+2025-08-04 03:01:01.557  INFO 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/003/ERR3262763/ERR3262763.fastq.gz
+2025-08-04 03:01:01.559 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : File ERR3262763.fastq.gz already exists and size matches 781687187. Skipping.
+2025-08-04 03:01:01.559  INFO 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR326/007/ERR3262767/ERR3262767.fastq.gz
+2025-08-04 03:01:01.561 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : File ERR3262767.fastq.gz already exists and size matches 19181945. Skipping.
+2025-08-04 03:01:01.571 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Starting 387 files starting with ftp.sra.ebi.ac.uk/vol1/fastq/ERR309/005/ERR3097585/ERR3097585.fastq.gz
+2025-08-04 03:01:01.575  INFO 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR309/005/ERR3097585/ERR3097585.fastq.gz
+2025-08-04 03:01:01.577 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR3097585.fastq.gz, parentId:SAMEA5277533
+2025-08-04 03:03:51.174 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR3097585.fastq.gz, parentId:SAMEA5277533, bytesCopied:151873645
+2025-08-04 03:03:53.762 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : MD5 validation successful for file:ftp.sra.ebi.ac.uk/vol1/fastq/ERR309/005/ERR3097585/ERR3097585.fastq.gz
+2025-08-04 03:03:53.762 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : /mnt/d/迅雷下载/ENA//reads_fastq/SAMEA5277533/ERR3097585/ERR3097585.fastq.gz completed.
+2025-08-04 03:03:53.762  INFO 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR529/009/ERR5295749/ERR5295749.fastq.gz
+2025-08-04 03:03:53.764 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR5295749.fastq.gz, parentId:SAMEA7600821
+2025-08-04 03:05:02.766 ERROR 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderClient   : /mnt/d/迅雷下载/ENA/reads_fastq/SAMEA4720740/ERR2620020/ERR2620020.fastq.gz failed to download
+
+java.net.SocketTimeoutException: Read timed out
+	at java.base/sun.nio.ch.NioSocketImpl.timedRead(NioSocketImpl.java:278)
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:304)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:346)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:796)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:1099)
+	at java.base/java.io.BufferedInputStream.fill(BufferedInputStream.java:291)
+	at java.base/java.io.BufferedInputStream.implRead(BufferedInputStream.java:325)
+	at java.base/java.io.BufferedInputStream.read(BufferedInputStream.java:312)
+	at java.base/sun.net.ftp.impl.FtpClient.readServerResponse(FtpClient.java:434)
+	at java.base/sun.net.ftp.impl.FtpClient.readReply(FtpClient.java:511)
+	at java.base/sun.net.ftp.impl.FtpClient.completePending(FtpClient.java:1678)
+	at java.base/sun.net.ftp.impl.FtpClient.issueCommand(FtpClient.java:541)
+	at java.base/sun.net.ftp.impl.FtpClient.close(FtpClient.java:1214)
+	at java.base/sun.net.www.protocol.ftp.FtpURLConnection$FtpInputStream.close(FtpURLConnection.java:132)
+	at java.base/sun.net.www.MeteredStream.close(MeteredStream.java:165)
+	at java.base/sun.net.www.MeteredStream.justRead(MeteredStream.java:85)
+	at java.base/sun.net.www.MeteredStream.read(MeteredStream.java:132)
+	at java.base/java.io.FilterInputStream.read(FilterInputStream.java:95)
+	at me.tongfei.progressbar.wrapped.ProgressBarWrappedInputStream.read(ProgressBarWrappedInputStream.java:37)
+	at org.apache.commons.io.IOUtils.copyLarge(IOUtils.java:1127)
+	at org.apache.commons.io.IOUtils.copy(IOUtils.java:849)
+	at org.apache.commons.io.IOUtils.copyLarge(IOUtils.java:1104)
+	at uk.ac.ebi.ena.backend.service.FileDownloaderClient.downloadFTPUrlConnection(FileDownloaderClient.java:181)
+	at uk.ac.ebi.ena.backend.service.FileDownloaderService.lambda$startDownload$0(FileDownloaderService.java:228)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+2025-08-04 03:05:02.767 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR2620020.fastq.gz, parentId:SAMEA4720740, bytesCopied:0
+2025-08-04 03:05:02.768  WARN 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Unsuccessful Validation for remoteFile:ftp.sra.ebi.ac.uk/vol1/fastq/ERR262/000/ERR2620020/ERR2620020.fastq.gz. Bytes downloaded does not match with given bytes
+2025-08-04 03:05:02.771 ERROR 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Failed to download file:ERR2620020.fastq.gz, experimentId:SAMEA4720740
+2025-08-04 03:05:02.771  INFO 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR262/002/ERR2620022/ERR2620022.fastq.gz
+2025-08-04 03:05:02.774 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR2620022.fastq.gz, parentId:SAMEA4720742
+2025-08-04 03:14:46.737 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR2620022.fastq.gz, parentId:SAMEA4720742, bytesCopied:486933958
+2025-08-04 03:14:55.036 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : MD5 validation successful for file:ftp.sra.ebi.ac.uk/vol1/fastq/ERR262/002/ERR2620022/ERR2620022.fastq.gz
+2025-08-04 03:14:55.037 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : /mnt/d/迅雷下载/ENA//reads_fastq/SAMEA4720742/ERR2620022/ERR2620022.fastq.gz completed.
+2025-08-04 03:14:55.037  INFO 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR262/008/ERR2620028/ERR2620028.fastq.gz
+2025-08-04 03:14:55.038 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR2620028.fastq.gz, parentId:SAMEA4720748
+2025-08-04 03:22:11.900 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR2620028.fastq.gz, parentId:SAMEA4720748, bytesCopied:397476492
+2025-08-04 03:22:18.768 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : MD5 validation successful for file:ftp.sra.ebi.ac.uk/vol1/fastq/ERR262/008/ERR2620028/ERR2620028.fastq.gz
+2025-08-04 03:22:18.769 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : /mnt/d/迅雷下载/ENA//reads_fastq/SAMEA4720748/ERR2620028/ERR2620028.fastq.gz completed.
+2025-08-04 03:22:18.769  INFO 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR262/003/ERR2620033/ERR2620033.fastq.gz
+2025-08-04 03:22:18.770 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR2620033.fastq.gz, parentId:SAMEA4720753
+2025-08-04 03:24:43.841 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR2620033.fastq.gz, parentId:SAMEA4720753, bytesCopied:204433522
+2025-08-04 03:24:47.382 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : MD5 validation successful for file:ftp.sra.ebi.ac.uk/vol1/fastq/ERR262/003/ERR2620033/ERR2620033.fastq.gz
+2025-08-04 03:24:47.383 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : /mnt/d/迅雷下载/ENA//reads_fastq/SAMEA4720753/ERR2620033/ERR2620033.fastq.gz completed.
+2025-08-04 03:24:47.383  INFO 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR262/004/ERR2620034/ERR2620034.fastq.gz
+2025-08-04 03:24:47.384 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR2620034.fastq.gz, parentId:SAMEA4720754
+2025-08-04 03:39:35.332 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR5295749.fastq.gz, parentId:SAMEA7600821, bytesCopied:1802999457
+2025-08-04 03:40:06.334 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : MD5 validation successful for file:ftp.sra.ebi.ac.uk/vol1/fastq/ERR529/009/ERR5295749/ERR5295749.fastq.gz
+2025-08-04 03:40:06.335 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : /mnt/d/迅雷下载/ENA//reads_fastq/SAMEA7600821/ERR5295749/ERR5295749.fastq.gz completed.
+2025-08-04 03:40:06.335  INFO 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR529/001/ERR5295751/ERR5295751.fastq.gz
+2025-08-04 03:40:06.336 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR5295751.fastq.gz, parentId:SAMEA7600821
+2025-08-04 03:47:16.964 ERROR 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderClient   : /mnt/d/迅雷下载/ENA/reads_fastq/SAMEA104281218/ERR2111940/ERR2111940.fastq.gz failed to download
+
+java.net.SocketTimeoutException: Read timed out
+	at java.base/sun.nio.ch.NioSocketImpl.timedRead(NioSocketImpl.java:278)
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:304)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:346)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:796)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:1099)
+	at java.base/java.io.BufferedInputStream.fill(BufferedInputStream.java:291)
+	at java.base/java.io.BufferedInputStream.implRead(BufferedInputStream.java:325)
+	at java.base/java.io.BufferedInputStream.read(BufferedInputStream.java:312)
+	at java.base/sun.net.ftp.impl.FtpClient.readServerResponse(FtpClient.java:434)
+	at java.base/sun.net.ftp.impl.FtpClient.readReply(FtpClient.java:511)
+	at java.base/sun.net.ftp.impl.FtpClient.completePending(FtpClient.java:1678)
+	at java.base/sun.net.ftp.impl.FtpClient.issueCommand(FtpClient.java:541)
+	at java.base/sun.net.ftp.impl.FtpClient.close(FtpClient.java:1214)
+	at java.base/sun.net.www.protocol.ftp.FtpURLConnection$FtpInputStream.close(FtpURLConnection.java:132)
+	at java.base/sun.net.www.MeteredStream.close(MeteredStream.java:165)
+	at java.base/sun.net.www.MeteredStream.justRead(MeteredStream.java:85)
+	at java.base/sun.net.www.MeteredStream.read(MeteredStream.java:132)
+	at java.base/java.io.FilterInputStream.read(FilterInputStream.java:95)
+	at me.tongfei.progressbar.wrapped.ProgressBarWrappedInputStream.read(ProgressBarWrappedInputStream.java:37)
+	at org.apache.commons.io.IOUtils.copyLarge(IOUtils.java:1127)
+	at org.apache.commons.io.IOUtils.copy(IOUtils.java:849)
+	at org.apache.commons.io.IOUtils.copyLarge(IOUtils.java:1104)
+	at uk.ac.ebi.ena.backend.service.FileDownloaderClient.downloadFTPUrlConnection(FileDownloaderClient.java:181)
+	at uk.ac.ebi.ena.backend.service.FileDownloaderService.lambda$startDownload$0(FileDownloaderService.java:228)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+2025-08-04 03:47:16.965 DEBUG 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR2111940.fastq.gz, parentId:SAMEA104281218, bytesCopied:0
+2025-08-04 03:47:16.965  WARN 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderService  : Unsuccessful Validation for remoteFile:ftp.sra.ebi.ac.uk/vol1/fastq/ERR211/000/ERR2111940/ERR2111940.fastq.gz. Bytes downloaded does not match with given bytes
+2025-08-04 03:47:16.965 ERROR 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderService  : Failed to download file:ERR2111940.fastq.gz, experimentId:SAMEA104281218
+2025-08-04 03:47:16.966  INFO 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR211/005/ERR2111945/ERR2111945.fastq.gz
+2025-08-04 03:47:16.969 DEBUG 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR2111945.fastq.gz, parentId:SAMEA104281221
+2025-08-04 04:25:49.881 ERROR 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderClient   : /mnt/d/迅雷下载/ENA/reads_fastq/SAMEA104281221/ERR2111945/ERR2111945.fastq.gz failed to download
+
+java.net.SocketTimeoutException: Read timed out
+	at java.base/sun.nio.ch.NioSocketImpl.timedRead(NioSocketImpl.java:278)
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:304)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:346)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:796)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:1099)
+	at java.base/java.io.BufferedInputStream.fill(BufferedInputStream.java:291)
+	at java.base/java.io.BufferedInputStream.implRead(BufferedInputStream.java:325)
+	at java.base/java.io.BufferedInputStream.read(BufferedInputStream.java:312)
+	at java.base/sun.net.ftp.impl.FtpClient.readServerResponse(FtpClient.java:434)
+	at java.base/sun.net.ftp.impl.FtpClient.readReply(FtpClient.java:511)
+	at java.base/sun.net.ftp.impl.FtpClient.completePending(FtpClient.java:1678)
+	at java.base/sun.net.ftp.impl.FtpClient.issueCommand(FtpClient.java:541)
+	at java.base/sun.net.ftp.impl.FtpClient.close(FtpClient.java:1214)
+	at java.base/sun.net.www.protocol.ftp.FtpURLConnection$FtpInputStream.close(FtpURLConnection.java:132)
+	at java.base/sun.net.www.MeteredStream.close(MeteredStream.java:165)
+	at java.base/sun.net.www.MeteredStream.justRead(MeteredStream.java:85)
+	at java.base/sun.net.www.MeteredStream.read(MeteredStream.java:132)
+	at java.base/java.io.FilterInputStream.read(FilterInputStream.java:95)
+	at me.tongfei.progressbar.wrapped.ProgressBarWrappedInputStream.read(ProgressBarWrappedInputStream.java:37)
+	at org.apache.commons.io.IOUtils.copyLarge(IOUtils.java:1127)
+	at org.apache.commons.io.IOUtils.copy(IOUtils.java:849)
+	at org.apache.commons.io.IOUtils.copyLarge(IOUtils.java:1104)
+	at uk.ac.ebi.ena.backend.service.FileDownloaderClient.downloadFTPUrlConnection(FileDownloaderClient.java:181)
+	at uk.ac.ebi.ena.backend.service.FileDownloaderService.lambda$startDownload$0(FileDownloaderService.java:228)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+2025-08-04 04:25:49.881 DEBUG 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR2111945.fastq.gz, parentId:SAMEA104281221, bytesCopied:0
+2025-08-04 04:25:49.882  WARN 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderService  : Unsuccessful Validation for remoteFile:ftp.sra.ebi.ac.uk/vol1/fastq/ERR211/005/ERR2111945/ERR2111945.fastq.gz. Bytes downloaded does not match with given bytes
+2025-08-04 04:25:49.882 ERROR 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderService  : Failed to download file:ERR2111945.fastq.gz, experimentId:SAMEA104281221
+2025-08-04 04:25:49.883  INFO 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR211/003/ERR2111943/ERR2111943.fastq.gz
+2025-08-04 04:25:49.886 DEBUG 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderService  : File ERR2111943.fastq.gz already exists and size matches 1149058052. Skipping.
+2025-08-04 04:25:49.886  INFO 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR211/009/ERR2111949/ERR2111949.fastq.gz
+2025-08-04 04:25:49.887 DEBUG 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR2111949.fastq.gz, parentId:SAMEA104281221
+2025-08-04 04:30:46.332 ERROR 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderClient   : /mnt/d/迅雷下载/ENA/reads_fastq/SAMEA4720754/ERR2620034/ERR2620034.fastq.gz failed to download
+
+java.net.SocketTimeoutException: Read timed out
+	at java.base/sun.nio.ch.NioSocketImpl.timedRead(NioSocketImpl.java:278)
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:304)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:346)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:796)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:1099)
+	at java.base/java.io.BufferedInputStream.fill(BufferedInputStream.java:291)
+	at java.base/java.io.BufferedInputStream.implRead(BufferedInputStream.java:325)
+	at java.base/java.io.BufferedInputStream.read(BufferedInputStream.java:312)
+	at java.base/sun.net.ftp.impl.FtpClient.readServerResponse(FtpClient.java:434)
+	at java.base/sun.net.ftp.impl.FtpClient.readReply(FtpClient.java:511)
+	at java.base/sun.net.ftp.impl.FtpClient.completePending(FtpClient.java:1678)
+	at java.base/sun.net.ftp.impl.FtpClient.issueCommand(FtpClient.java:541)
+	at java.base/sun.net.ftp.impl.FtpClient.close(FtpClient.java:1214)
+	at java.base/sun.net.www.protocol.ftp.FtpURLConnection$FtpInputStream.close(FtpURLConnection.java:132)
+	at java.base/sun.net.www.MeteredStream.close(MeteredStream.java:165)
+	at java.base/sun.net.www.MeteredStream.justRead(MeteredStream.java:85)
+	at java.base/sun.net.www.MeteredStream.read(MeteredStream.java:132)
+	at java.base/java.io.FilterInputStream.read(FilterInputStream.java:95)
+	at me.tongfei.progressbar.wrapped.ProgressBarWrappedInputStream.read(ProgressBarWrappedInputStream.java:37)
+	at org.apache.commons.io.IOUtils.copyLarge(IOUtils.java:1127)
+	at org.apache.commons.io.IOUtils.copy(IOUtils.java:849)
+	at org.apache.commons.io.IOUtils.copyLarge(IOUtils.java:1104)
+	at uk.ac.ebi.ena.backend.service.FileDownloaderClient.downloadFTPUrlConnection(FileDownloaderClient.java:181)
+	at uk.ac.ebi.ena.backend.service.FileDownloaderService.lambda$startDownload$0(FileDownloaderService.java:228)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+2025-08-04 04:30:46.333 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR2620034.fastq.gz, parentId:SAMEA4720754, bytesCopied:0
+2025-08-04 04:30:46.333  WARN 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Unsuccessful Validation for remoteFile:ftp.sra.ebi.ac.uk/vol1/fastq/ERR262/004/ERR2620034/ERR2620034.fastq.gz. Bytes downloaded does not match with given bytes
+2025-08-04 04:30:46.333 ERROR 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Failed to download file:ERR2620034.fastq.gz, experimentId:SAMEA4720754
+2025-08-04 04:30:46.333  INFO 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR262/001/ERR2620041/ERR2620041.fastq.gz
+2025-08-04 04:30:46.335 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR2620041.fastq.gz, parentId:SAMEA4720761
+2025-08-04 04:32:16.358 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR2620041.fastq.gz, parentId:SAMEA4720761, bytesCopied:140842951
+2025-08-04 04:32:18.738 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : MD5 validation successful for file:ftp.sra.ebi.ac.uk/vol1/fastq/ERR262/001/ERR2620041/ERR2620041.fastq.gz
+2025-08-04 04:32:18.739 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : /mnt/d/迅雷下载/ENA//reads_fastq/SAMEA4720761/ERR2620041/ERR2620041.fastq.gz completed.
+2025-08-04 04:32:18.739  INFO 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR335/008/ERR3354488/ERR3354488.fastq.gz
+2025-08-04 04:32:18.740 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR3354488.fastq.gz, parentId:SAMEA5662567
+2025-08-04 04:33:02.001 ERROR 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderClient   : /mnt/d/迅雷下载/ENA/reads_fastq/SAMEA7600821/ERR5295751/ERR5295751.fastq.gz failed to download
+
+java.net.SocketTimeoutException: Read timed out
+	at java.base/sun.nio.ch.NioSocketImpl.timedRead(NioSocketImpl.java:278)
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:304)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:346)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:796)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:1099)
+	at java.base/java.io.BufferedInputStream.fill(BufferedInputStream.java:291)
+	at java.base/java.io.BufferedInputStream.implRead(BufferedInputStream.java:325)
+	at java.base/java.io.BufferedInputStream.read(BufferedInputStream.java:312)
+	at java.base/sun.net.ftp.impl.FtpClient.readServerResponse(FtpClient.java:434)
+	at java.base/sun.net.ftp.impl.FtpClient.readReply(FtpClient.java:511)
+	at java.base/sun.net.ftp.impl.FtpClient.completePending(FtpClient.java:1678)
+	at java.base/sun.net.ftp.impl.FtpClient.issueCommand(FtpClient.java:541)
+	at java.base/sun.net.ftp.impl.FtpClient.close(FtpClient.java:1214)
+	at java.base/sun.net.www.protocol.ftp.FtpURLConnection$FtpInputStream.close(FtpURLConnection.java:132)
+	at java.base/sun.net.www.MeteredStream.close(MeteredStream.java:165)
+	at java.base/sun.net.www.MeteredStream.justRead(MeteredStream.java:85)
+	at java.base/sun.net.www.MeteredStream.read(MeteredStream.java:132)
+	at java.base/java.io.FilterInputStream.read(FilterInputStream.java:95)
+	at me.tongfei.progressbar.wrapped.ProgressBarWrappedInputStream.read(ProgressBarWrappedInputStream.java:37)
+	at org.apache.commons.io.IOUtils.copyLarge(IOUtils.java:1127)
+	at org.apache.commons.io.IOUtils.copy(IOUtils.java:849)
+	at org.apache.commons.io.IOUtils.copyLarge(IOUtils.java:1104)
+	at uk.ac.ebi.ena.backend.service.FileDownloaderClient.downloadFTPUrlConnection(FileDownloaderClient.java:181)
+	at uk.ac.ebi.ena.backend.service.FileDownloaderService.lambda$startDownload$0(FileDownloaderService.java:228)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+2025-08-04 04:33:02.002 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR5295751.fastq.gz, parentId:SAMEA7600821, bytesCopied:0
+2025-08-04 04:33:02.002  WARN 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Unsuccessful Validation for remoteFile:ftp.sra.ebi.ac.uk/vol1/fastq/ERR529/001/ERR5295751/ERR5295751.fastq.gz. Bytes downloaded does not match with given bytes
+2025-08-04 04:33:02.002 ERROR 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Failed to download file:ERR5295751.fastq.gz, experimentId:SAMEA7600821
+2025-08-04 04:33:02.002  INFO 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR529/005/ERR5295755/ERR5295755.fastq.gz
+2025-08-04 04:33:02.004 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR5295755.fastq.gz, parentId:SAMEA7600824
+2025-08-04 04:33:10.355 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR5295755.fastq.gz, parentId:SAMEA7600824, bytesCopied:11608848
+2025-08-04 04:33:10.558 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : MD5 validation successful for file:ftp.sra.ebi.ac.uk/vol1/fastq/ERR529/005/ERR5295755/ERR5295755.fastq.gz
+2025-08-04 04:33:10.558 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : /mnt/d/迅雷下载/ENA//reads_fastq/SAMEA7600824/ERR5295755/ERR5295755.fastq.gz completed.
+2025-08-04 04:33:10.559  INFO 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR529/006/ERR5295756/ERR5295756.fastq.gz
+2025-08-04 04:33:10.560 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR5295756.fastq.gz, parentId:SAMEA7600824
+2025-08-04 04:38:44.932 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR3354488.fastq.gz, parentId:SAMEA5662567, bytesCopied:256594402
+2025-08-04 04:38:48.485  WARN 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : MD5 failed for file:ftp.sra.ebi.ac.uk/vol1/fastq/ERR335/008/ERR3354488/ERR3354488.fastq.gz
+2025-08-04 04:38:48.486 ERROR 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Failed to download file:ERR3354488.fastq.gz, experimentId:SAMEA5662567
+2025-08-04 04:38:48.486  INFO 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR335/009/ERR3354489/ERR3354489.fastq.gz
+2025-08-04 04:38:48.487 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR3354489.fastq.gz, parentId:SAMEA5662573
+2025-08-04 04:43:55.021 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR3354489.fastq.gz, parentId:SAMEA5662573, bytesCopied:361522331
+2025-08-04 04:44:00.502  WARN 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : MD5 failed for file:ftp.sra.ebi.ac.uk/vol1/fastq/ERR335/009/ERR3354489/ERR3354489.fastq.gz
+2025-08-04 04:44:00.502 ERROR 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Failed to download file:ERR3354489.fastq.gz, experimentId:SAMEA5662573
+2025-08-04 04:44:00.502  INFO 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR335/000/ERR3354490/ERR3354490.fastq.gz
+2025-08-04 04:44:00.504 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR3354490.fastq.gz, parentId:SAMEA5662569
+2025-08-04 04:54:27.308 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR3354490.fastq.gz, parentId:SAMEA5662569, bytesCopied:605297932
+2025-08-04 04:54:38.149 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : MD5 validation successful for file:ftp.sra.ebi.ac.uk/vol1/fastq/ERR335/000/ERR3354490/ERR3354490.fastq.gz
+2025-08-04 04:54:38.149 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : /mnt/d/迅雷下载/ENA//reads_fastq/SAMEA5662569/ERR3354490/ERR3354490.fastq.gz completed.
+2025-08-04 04:54:38.149  INFO 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR335/001/ERR3354491/ERR3354491.fastq.gz
+2025-08-04 04:54:38.150  WARN 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : File ERR3354491.fastq.gz exists but size mismatch 450712720. Redownloading
+2025-08-04 04:54:38.150 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR3354491.fastq.gz, parentId:SAMEA5662578
+2025-08-04 04:58:58.933 DEBUG 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR2111949.fastq.gz, parentId:SAMEA104281221, bytesCopied:2330733778
+2025-08-04 04:59:40.618 DEBUG 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderService  : MD5 validation successful for file:ftp.sra.ebi.ac.uk/vol1/fastq/ERR211/009/ERR2111949/ERR2111949.fastq.gz
+2025-08-04 04:59:40.619 DEBUG 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderService  : /mnt/d/迅雷下载/ENA//reads_fastq/SAMEA104281221/ERR2111949/ERR2111949.fastq.gz completed.
+2025-08-04 04:59:40.619  INFO 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR211/004/ERR2112074/ERR2112074.fastq.gz
+2025-08-04 04:59:40.621 DEBUG 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR2112074.fastq.gz, parentId:SAMEA104281224
+2025-08-04 05:01:44.180 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR3354491.fastq.gz, parentId:SAMEA5662578, bytesCopied:450712720
+2025-08-04 05:01:52.231 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : MD5 validation successful for file:ftp.sra.ebi.ac.uk/vol1/fastq/ERR335/001/ERR3354491/ERR3354491.fastq.gz
+2025-08-04 05:01:52.231 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : /mnt/d/迅雷下载/ENA//reads_fastq/SAMEA5662578/ERR3354491/ERR3354491.fastq.gz completed.
+2025-08-04 05:01:52.231  INFO 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR335/002/ERR3354492/ERR3354492.fastq.gz
+2025-08-04 05:01:52.232  WARN 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : File ERR3354492.fastq.gz exists but size mismatch 469742431. Redownloading
+2025-08-04 05:01:52.232 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR3354492.fastq.gz, parentId:SAMEA5662564
+2025-08-04 05:07:49.351 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR3354492.fastq.gz, parentId:SAMEA5662564, bytesCopied:469742431
+2025-08-04 05:08:09.040 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : MD5 validation successful for file:ftp.sra.ebi.ac.uk/vol1/fastq/ERR335/002/ERR3354492/ERR3354492.fastq.gz
+2025-08-04 05:08:09.041 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : /mnt/d/迅雷下载/ENA//reads_fastq/SAMEA5662564/ERR3354492/ERR3354492.fastq.gz completed.
+2025-08-04 05:08:09.041  INFO 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR335/003/ERR3354493/ERR3354493.fastq.gz
+2025-08-04 05:08:09.041  WARN 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : File ERR3354493.fastq.gz exists but size mismatch 639180610. Redownloading
+2025-08-04 05:08:09.041 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR3354493.fastq.gz, parentId:SAMEA5662566
+2025-08-04 05:19:34.856 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR3354493.fastq.gz, parentId:SAMEA5662566, bytesCopied:639180610
+2025-08-04 05:19:46.258 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : MD5 validation successful for file:ftp.sra.ebi.ac.uk/vol1/fastq/ERR335/003/ERR3354493/ERR3354493.fastq.gz
+2025-08-04 05:19:46.259 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : /mnt/d/迅雷下载/ENA//reads_fastq/SAMEA5662566/ERR3354493/ERR3354493.fastq.gz completed.
+2025-08-04 05:19:46.259  INFO 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR335/004/ERR3354494/ERR3354494.fastq.gz
+2025-08-04 05:19:46.261 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : File ERR3354494.fastq.gz already exists and size matches 170629574. Skipping.
+2025-08-04 05:19:46.261  INFO 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR335/006/ERR3354496/ERR3354496.fastq.gz
+2025-08-04 05:19:46.261  WARN 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : File ERR3354496.fastq.gz exists but size mismatch 321670784. Redownloading
+2025-08-04 05:19:46.261 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR3354496.fastq.gz, parentId:SAMEA5662570
+2025-08-04 05:25:56.315 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR3354496.fastq.gz, parentId:SAMEA5662570, bytesCopied:321670784
+2025-08-04 05:26:01.898 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : MD5 validation successful for file:ftp.sra.ebi.ac.uk/vol1/fastq/ERR335/006/ERR3354496/ERR3354496.fastq.gz
+2025-08-04 05:26:01.899 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : /mnt/d/迅雷下载/ENA//reads_fastq/SAMEA5662570/ERR3354496/ERR3354496.fastq.gz completed.
+2025-08-04 05:26:01.899  INFO 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR335/007/ERR3354497/ERR3354497.fastq.gz
+2025-08-04 05:26:01.901 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : File ERR3354497.fastq.gz already exists and size matches 45354875. Skipping.
+2025-08-04 05:26:01.901  INFO 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR335/005/ERR3354505/ERR3354505.fastq.gz
+2025-08-04 05:26:01.901  WARN 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : File ERR3354505.fastq.gz exists but size mismatch 1467035602. Redownloading
+2025-08-04 05:26:01.901 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR3354505.fastq.gz, parentId:SAMEA5662587
+2025-08-04 05:45:47.502 ERROR 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderClient   : /mnt/d/迅雷下载/ENA/reads_fastq/SAMEA104281224/ERR2112074/ERR2112074.fastq.gz failed to download
+
+java.net.SocketTimeoutException: Read timed out
+	at java.base/sun.nio.ch.NioSocketImpl.timedRead(NioSocketImpl.java:278)
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:304)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:346)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:796)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:1099)
+	at java.base/java.io.BufferedInputStream.fill(BufferedInputStream.java:291)
+	at java.base/java.io.BufferedInputStream.implRead(BufferedInputStream.java:325)
+	at java.base/java.io.BufferedInputStream.read(BufferedInputStream.java:312)
+	at java.base/sun.net.ftp.impl.FtpClient.readServerResponse(FtpClient.java:434)
+	at java.base/sun.net.ftp.impl.FtpClient.readReply(FtpClient.java:511)
+	at java.base/sun.net.ftp.impl.FtpClient.completePending(FtpClient.java:1678)
+	at java.base/sun.net.ftp.impl.FtpClient.issueCommand(FtpClient.java:541)
+	at java.base/sun.net.ftp.impl.FtpClient.close(FtpClient.java:1214)
+	at java.base/sun.net.www.protocol.ftp.FtpURLConnection$FtpInputStream.close(FtpURLConnection.java:132)
+	at java.base/sun.net.www.MeteredStream.close(MeteredStream.java:165)
+	at java.base/sun.net.www.MeteredStream.justRead(MeteredStream.java:85)
+	at java.base/sun.net.www.MeteredStream.read(MeteredStream.java:132)
+	at java.base/java.io.FilterInputStream.read(FilterInputStream.java:95)
+	at me.tongfei.progressbar.wrapped.ProgressBarWrappedInputStream.read(ProgressBarWrappedInputStream.java:37)
+	at org.apache.commons.io.IOUtils.copyLarge(IOUtils.java:1127)
+	at org.apache.commons.io.IOUtils.copy(IOUtils.java:849)
+	at org.apache.commons.io.IOUtils.copyLarge(IOUtils.java:1104)
+	at uk.ac.ebi.ena.backend.service.FileDownloaderClient.downloadFTPUrlConnection(FileDownloaderClient.java:181)
+	at uk.ac.ebi.ena.backend.service.FileDownloaderService.lambda$startDownload$0(FileDownloaderService.java:228)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+2025-08-04 05:45:47.502 DEBUG 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR2112074.fastq.gz, parentId:SAMEA104281224, bytesCopied:0
+2025-08-04 05:45:47.503  WARN 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderService  : Unsuccessful Validation for remoteFile:ftp.sra.ebi.ac.uk/vol1/fastq/ERR211/004/ERR2112074/ERR2112074.fastq.gz. Bytes downloaded does not match with given bytes
+2025-08-04 05:45:47.503 ERROR 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderService  : Failed to download file:ERR2112074.fastq.gz, experimentId:SAMEA104281224
+2025-08-04 05:45:47.503  INFO 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR211/004/ERR2111944/ERR2111944.fastq.gz
+2025-08-04 05:45:47.506 DEBUG 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderService  : File ERR2111944.fastq.gz already exists and size matches 1476338852. Skipping.
+2025-08-04 05:45:47.506  INFO 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR211/009/ERR2112079/ERR2112079.fastq.gz
+2025-08-04 05:45:47.506 DEBUG 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR2112079.fastq.gz, parentId:SAMEA104281224
+2025-08-04 05:48:56.157 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR3354505.fastq.gz, parentId:SAMEA5662587, bytesCopied:1467035602
+2025-08-04 05:49:21.335 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : MD5 validation successful for file:ftp.sra.ebi.ac.uk/vol1/fastq/ERR335/005/ERR3354505/ERR3354505.fastq.gz
+2025-08-04 05:49:21.335 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : /mnt/d/迅雷下载/ENA//reads_fastq/SAMEA5662587/ERR3354505/ERR3354505.fastq.gz completed.
+2025-08-04 05:49:21.335  INFO 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR335/008/ERR3354508/ERR3354508.fastq.gz
+2025-08-04 05:49:21.336  WARN 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : File ERR3354508.fastq.gz exists but size mismatch 185347725. Redownloading
+2025-08-04 05:49:21.336 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR3354508.fastq.gz, parentId:SAMEA5662589
+2025-08-04 05:51:17.725 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR3354508.fastq.gz, parentId:SAMEA5662589, bytesCopied:185347725
+2025-08-04 05:51:20.877 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : MD5 validation successful for file:ftp.sra.ebi.ac.uk/vol1/fastq/ERR335/008/ERR3354508/ERR3354508.fastq.gz
+2025-08-04 05:51:20.878 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : /mnt/d/迅雷下载/ENA//reads_fastq/SAMEA5662589/ERR3354508/ERR3354508.fastq.gz completed.
+2025-08-04 05:51:20.878  INFO 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR262/009/ERR2620019/ERR2620019.fastq.gz
+2025-08-04 05:51:20.879 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR2620019.fastq.gz, parentId:SAMEA4720739
+2025-08-04 05:51:31.413 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR2620019.fastq.gz, parentId:SAMEA4720739, bytesCopied:24493127
+2025-08-04 05:51:31.846 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : MD5 validation successful for file:ftp.sra.ebi.ac.uk/vol1/fastq/ERR262/009/ERR2620019/ERR2620019.fastq.gz
+2025-08-04 05:51:31.846 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : /mnt/d/迅雷下载/ENA//reads_fastq/SAMEA4720739/ERR2620019/ERR2620019.fastq.gz completed.
+2025-08-04 05:51:31.847  INFO 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR262/007/ERR2620027/ERR2620027.fastq.gz
+2025-08-04 05:51:31.848 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR2620027.fastq.gz, parentId:SAMEA4720747
+2025-08-04 06:22:08.016 ERROR 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderClient   : /mnt/d/迅雷下载/ENA/reads_fastq/SAMEA7600824/ERR5295756/ERR5295756.fastq.gz failed to download
+
+java.net.SocketTimeoutException: Read timed out
+	at java.base/sun.nio.ch.NioSocketImpl.timedRead(NioSocketImpl.java:278)
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:304)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:346)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:796)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:1099)
+	at java.base/java.io.BufferedInputStream.fill(BufferedInputStream.java:291)
+	at java.base/java.io.BufferedInputStream.implRead(BufferedInputStream.java:325)
+	at java.base/java.io.BufferedInputStream.read(BufferedInputStream.java:312)
+	at java.base/sun.net.ftp.impl.FtpClient.readServerResponse(FtpClient.java:434)
+	at java.base/sun.net.ftp.impl.FtpClient.readReply(FtpClient.java:511)
+	at java.base/sun.net.ftp.impl.FtpClient.completePending(FtpClient.java:1678)
+	at java.base/sun.net.ftp.impl.FtpClient.issueCommand(FtpClient.java:541)
+	at java.base/sun.net.ftp.impl.FtpClient.close(FtpClient.java:1214)
+	at java.base/sun.net.www.protocol.ftp.FtpURLConnection$FtpInputStream.close(FtpURLConnection.java:132)
+	at java.base/sun.net.www.MeteredStream.close(MeteredStream.java:165)
+	at java.base/sun.net.www.MeteredStream.justRead(MeteredStream.java:85)
+	at java.base/sun.net.www.MeteredStream.read(MeteredStream.java:132)
+	at java.base/java.io.FilterInputStream.read(FilterInputStream.java:95)
+	at me.tongfei.progressbar.wrapped.ProgressBarWrappedInputStream.read(ProgressBarWrappedInputStream.java:37)
+	at org.apache.commons.io.IOUtils.copyLarge(IOUtils.java:1127)
+	at org.apache.commons.io.IOUtils.copy(IOUtils.java:849)
+	at org.apache.commons.io.IOUtils.copyLarge(IOUtils.java:1104)
+	at uk.ac.ebi.ena.backend.service.FileDownloaderClient.downloadFTPUrlConnection(FileDownloaderClient.java:181)
+	at uk.ac.ebi.ena.backend.service.FileDownloaderService.lambda$startDownload$0(FileDownloaderService.java:228)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+2025-08-04 06:22:08.016 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR5295756.fastq.gz, parentId:SAMEA7600824, bytesCopied:0
+2025-08-04 06:22:08.016  WARN 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Unsuccessful Validation for remoteFile:ftp.sra.ebi.ac.uk/vol1/fastq/ERR529/006/ERR5295756/ERR5295756.fastq.gz. Bytes downloaded does not match with given bytes
+2025-08-04 06:22:08.017 ERROR 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Failed to download file:ERR5295756.fastq.gz, experimentId:SAMEA7600824
+2025-08-04 06:22:08.017  INFO 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR529/002/ERR5295762/ERR5295762.fastq.gz
+2025-08-04 06:22:08.017 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR5295762.fastq.gz, parentId:SAMEA7600824
+2025-08-04 06:40:05.465 ERROR 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderClient   : /mnt/d/迅雷下载/ENA/reads_fastq/SAMEA104281224/ERR2112079/ERR2112079.fastq.gz failed to download
+
+java.net.SocketTimeoutException: Read timed out
+	at java.base/sun.nio.ch.NioSocketImpl.timedRead(NioSocketImpl.java:278)
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:304)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:346)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:796)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:1099)
+	at java.base/java.io.BufferedInputStream.fill(BufferedInputStream.java:291)
+	at java.base/java.io.BufferedInputStream.implRead(BufferedInputStream.java:325)
+	at java.base/java.io.BufferedInputStream.read(BufferedInputStream.java:312)
+	at java.base/sun.net.ftp.impl.FtpClient.readServerResponse(FtpClient.java:434)
+	at java.base/sun.net.ftp.impl.FtpClient.readReply(FtpClient.java:511)
+	at java.base/sun.net.ftp.impl.FtpClient.completePending(FtpClient.java:1678)
+	at java.base/sun.net.ftp.impl.FtpClient.issueCommand(FtpClient.java:541)
+	at java.base/sun.net.ftp.impl.FtpClient.close(FtpClient.java:1214)
+	at java.base/sun.net.www.protocol.ftp.FtpURLConnection$FtpInputStream.close(FtpURLConnection.java:132)
+	at java.base/sun.net.www.MeteredStream.close(MeteredStream.java:165)
+	at java.base/sun.net.www.MeteredStream.justRead(MeteredStream.java:85)
+	at java.base/sun.net.www.MeteredStream.read(MeteredStream.java:132)
+	at java.base/java.io.FilterInputStream.read(FilterInputStream.java:95)
+	at me.tongfei.progressbar.wrapped.ProgressBarWrappedInputStream.read(ProgressBarWrappedInputStream.java:37)
+	at org.apache.commons.io.IOUtils.copyLarge(IOUtils.java:1127)
+	at org.apache.commons.io.IOUtils.copy(IOUtils.java:849)
+	at org.apache.commons.io.IOUtils.copyLarge(IOUtils.java:1104)
+	at uk.ac.ebi.ena.backend.service.FileDownloaderClient.downloadFTPUrlConnection(FileDownloaderClient.java:181)
+	at uk.ac.ebi.ena.backend.service.FileDownloaderService.lambda$startDownload$0(FileDownloaderService.java:228)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+2025-08-04 06:40:05.468 DEBUG 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR2112079.fastq.gz, parentId:SAMEA104281224, bytesCopied:0
+2025-08-04 06:40:05.468  WARN 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderService  : Unsuccessful Validation for remoteFile:ftp.sra.ebi.ac.uk/vol1/fastq/ERR211/009/ERR2112079/ERR2112079.fastq.gz. Bytes downloaded does not match with given bytes
+2025-08-04 06:40:05.468 ERROR 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderService  : Failed to download file:ERR2112079.fastq.gz, experimentId:SAMEA104281224
+2025-08-04 06:40:05.469  INFO 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR211/007/ERR2111947/ERR2111947.fastq.gz
+2025-08-04 06:40:05.470  WARN 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderService  : File ERR2111947.fastq.gz exists but size mismatch 4616384352. Redownloading
+2025-08-04 06:40:05.470 DEBUG 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR2111947.fastq.gz, parentId:SAMEA104281221
+2025-08-04 06:59:08.266 ERROR 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderClient   : /mnt/d/迅雷下载/ENA/reads_fastq/SAMEA4720747/ERR2620027/ERR2620027.fastq.gz failed to download
+
+java.net.SocketTimeoutException: Read timed out
+	at java.base/sun.nio.ch.NioSocketImpl.timedRead(NioSocketImpl.java:278)
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:304)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:346)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:796)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:1099)
+	at java.base/java.io.BufferedInputStream.fill(BufferedInputStream.java:291)
+	at java.base/java.io.BufferedInputStream.implRead(BufferedInputStream.java:325)
+	at java.base/java.io.BufferedInputStream.read(BufferedInputStream.java:312)
+	at java.base/sun.net.ftp.impl.FtpClient.readServerResponse(FtpClient.java:434)
+	at java.base/sun.net.ftp.impl.FtpClient.readReply(FtpClient.java:511)
+	at java.base/sun.net.ftp.impl.FtpClient.completePending(FtpClient.java:1678)
+	at java.base/sun.net.ftp.impl.FtpClient.issueCommand(FtpClient.java:541)
+	at java.base/sun.net.ftp.impl.FtpClient.close(FtpClient.java:1214)
+	at java.base/sun.net.www.protocol.ftp.FtpURLConnection$FtpInputStream.close(FtpURLConnection.java:132)
+	at java.base/sun.net.www.MeteredStream.close(MeteredStream.java:165)
+	at java.base/sun.net.www.MeteredStream.justRead(MeteredStream.java:85)
+	at java.base/sun.net.www.MeteredStream.read(MeteredStream.java:132)
+	at java.base/java.io.FilterInputStream.read(FilterInputStream.java:95)
+	at me.tongfei.progressbar.wrapped.ProgressBarWrappedInputStream.read(ProgressBarWrappedInputStream.java:37)
+	at org.apache.commons.io.IOUtils.copyLarge(IOUtils.java:1127)
+	at org.apache.commons.io.IOUtils.copy(IOUtils.java:849)
+	at org.apache.commons.io.IOUtils.copyLarge(IOUtils.java:1104)
+	at uk.ac.ebi.ena.backend.service.FileDownloaderClient.downloadFTPUrlConnection(FileDownloaderClient.java:181)
+	at uk.ac.ebi.ena.backend.service.FileDownloaderService.lambda$startDownload$0(FileDownloaderService.java:228)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+2025-08-04 06:59:08.266 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR2620027.fastq.gz, parentId:SAMEA4720747, bytesCopied:0
+2025-08-04 06:59:08.266  WARN 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Unsuccessful Validation for remoteFile:ftp.sra.ebi.ac.uk/vol1/fastq/ERR262/007/ERR2620027/ERR2620027.fastq.gz. Bytes downloaded does not match with given bytes
+2025-08-04 06:59:08.266 ERROR 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Failed to download file:ERR2620027.fastq.gz, experimentId:SAMEA4720747
+2025-08-04 06:59:08.267  INFO 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR262/009/ERR2620029/ERR2620029.fastq.gz
+2025-08-04 06:59:08.272 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR2620029.fastq.gz, parentId:SAMEA4720749
+2025-08-04 07:02:16.050 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR2620029.fastq.gz, parentId:SAMEA4720749, bytesCopied:398886920
+2025-08-04 07:02:23.300 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : MD5 validation successful for file:ftp.sra.ebi.ac.uk/vol1/fastq/ERR262/009/ERR2620029/ERR2620029.fastq.gz
+2025-08-04 07:02:23.301 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : /mnt/d/迅雷下载/ENA//reads_fastq/SAMEA4720749/ERR2620029/ERR2620029.fastq.gz completed.
+2025-08-04 07:02:23.301  INFO 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR262/000/ERR2620030/ERR2620030.fastq.gz
+2025-08-04 07:02:23.303 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR2620030.fastq.gz, parentId:SAMEA4720750
+2025-08-04 07:34:16.568 ERROR 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderClient   : /mnt/d/迅雷下载/ENA/reads_fastq/SAMEA7600824/ERR5295762/ERR5295762.fastq.gz failed to download
+
+java.net.SocketTimeoutException: Read timed out
+	at java.base/sun.nio.ch.NioSocketImpl.timedRead(NioSocketImpl.java:278)
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:304)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:346)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:796)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:1099)
+	at java.base/java.io.BufferedInputStream.fill(BufferedInputStream.java:291)
+	at java.base/java.io.BufferedInputStream.implRead(BufferedInputStream.java:325)
+	at java.base/java.io.BufferedInputStream.read(BufferedInputStream.java:312)
+	at java.base/sun.net.ftp.impl.FtpClient.readServerResponse(FtpClient.java:434)
+	at java.base/sun.net.ftp.impl.FtpClient.readReply(FtpClient.java:511)
+	at java.base/sun.net.ftp.impl.FtpClient.completePending(FtpClient.java:1678)
+	at java.base/sun.net.ftp.impl.FtpClient.issueCommand(FtpClient.java:541)
+	at java.base/sun.net.ftp.impl.FtpClient.close(FtpClient.java:1214)
+	at java.base/sun.net.www.protocol.ftp.FtpURLConnection$FtpInputStream.close(FtpURLConnection.java:132)
+	at java.base/sun.net.www.MeteredStream.close(MeteredStream.java:165)
+	at java.base/sun.net.www.MeteredStream.justRead(MeteredStream.java:85)
+	at java.base/sun.net.www.MeteredStream.read(MeteredStream.java:132)
+	at java.base/java.io.FilterInputStream.read(FilterInputStream.java:95)
+	at me.tongfei.progressbar.wrapped.ProgressBarWrappedInputStream.read(ProgressBarWrappedInputStream.java:37)
+	at org.apache.commons.io.IOUtils.copyLarge(IOUtils.java:1127)
+	at org.apache.commons.io.IOUtils.copy(IOUtils.java:849)
+	at org.apache.commons.io.IOUtils.copyLarge(IOUtils.java:1104)
+	at uk.ac.ebi.ena.backend.service.FileDownloaderClient.downloadFTPUrlConnection(FileDownloaderClient.java:181)
+	at uk.ac.ebi.ena.backend.service.FileDownloaderService.lambda$startDownload$0(FileDownloaderService.java:228)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+2025-08-04 07:34:16.568 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR5295762.fastq.gz, parentId:SAMEA7600824, bytesCopied:0
+2025-08-04 07:34:16.568  WARN 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Unsuccessful Validation for remoteFile:ftp.sra.ebi.ac.uk/vol1/fastq/ERR529/002/ERR5295762/ERR5295762.fastq.gz. Bytes downloaded does not match with given bytes
+2025-08-04 07:34:16.568 ERROR 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Failed to download file:ERR5295762.fastq.gz, experimentId:SAMEA7600824
+2025-08-04 07:34:16.568  INFO 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR529/009/ERR5295769/ERR5295769.fastq.gz
+2025-08-04 07:34:16.569 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR5295769.fastq.gz, parentId:SAMEA7600824
+2025-08-04 07:34:31.833 DEBUG 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR2111947.fastq.gz, parentId:SAMEA104281221, bytesCopied:4616384352
+2025-08-04 07:36:06.732 DEBUG 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderService  : MD5 validation successful for file:ftp.sra.ebi.ac.uk/vol1/fastq/ERR211/007/ERR2111947/ERR2111947.fastq.gz
+2025-08-04 07:36:06.733 DEBUG 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderService  : /mnt/d/迅雷下载/ENA//reads_fastq/SAMEA104281221/ERR2111947/ERR2111947.fastq.gz completed.
+2025-08-04 07:36:06.733  INFO 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR211/000/ERR2112080/ERR2112080.fastq.gz
+2025-08-04 07:36:06.734 DEBUG 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR2112080.fastq.gz, parentId:SAMEA104281224
+2025-08-04 08:24:22.635 ERROR 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderClient   : /mnt/d/迅雷下载/ENA/reads_fastq/SAMEA4720750/ERR2620030/ERR2620030.fastq.gz failed to download
+
+java.net.SocketTimeoutException: Read timed out
+	at java.base/sun.nio.ch.NioSocketImpl.timedRead(NioSocketImpl.java:278)
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:304)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:346)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:796)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:1099)
+	at java.base/java.io.BufferedInputStream.fill(BufferedInputStream.java:291)
+	at java.base/java.io.BufferedInputStream.implRead(BufferedInputStream.java:325)
+	at java.base/java.io.BufferedInputStream.read(BufferedInputStream.java:312)
+	at java.base/sun.net.ftp.impl.FtpClient.readServerResponse(FtpClient.java:434)
+	at java.base/sun.net.ftp.impl.FtpClient.readReply(FtpClient.java:511)
+	at java.base/sun.net.ftp.impl.FtpClient.completePending(FtpClient.java:1678)
+	at java.base/sun.net.ftp.impl.FtpClient.issueCommand(FtpClient.java:541)
+	at java.base/sun.net.ftp.impl.FtpClient.close(FtpClient.java:1214)
+	at java.base/sun.net.www.protocol.ftp.FtpURLConnection$FtpInputStream.close(FtpURLConnection.java:132)
+	at java.base/sun.net.www.MeteredStream.close(MeteredStream.java:165)
+	at java.base/sun.net.www.MeteredStream.justRead(MeteredStream.java:85)
+	at java.base/sun.net.www.MeteredStream.read(MeteredStream.java:132)
+	at java.base/java.io.FilterInputStream.read(FilterInputStream.java:95)
+	at me.tongfei.progressbar.wrapped.ProgressBarWrappedInputStream.read(ProgressBarWrappedInputStream.java:37)
+	at org.apache.commons.io.IOUtils.copyLarge(IOUtils.java:1127)
+	at org.apache.commons.io.IOUtils.copy(IOUtils.java:849)
+	at org.apache.commons.io.IOUtils.copyLarge(IOUtils.java:1104)
+	at uk.ac.ebi.ena.backend.service.FileDownloaderClient.downloadFTPUrlConnection(FileDownloaderClient.java:181)
+	at uk.ac.ebi.ena.backend.service.FileDownloaderService.lambda$startDownload$0(FileDownloaderService.java:228)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+2025-08-04 08:24:22.636 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR2620030.fastq.gz, parentId:SAMEA4720750, bytesCopied:0
+2025-08-04 08:24:22.636  WARN 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Unsuccessful Validation for remoteFile:ftp.sra.ebi.ac.uk/vol1/fastq/ERR262/000/ERR2620030/ERR2620030.fastq.gz. Bytes downloaded does not match with given bytes
+2025-08-04 08:24:22.636 ERROR 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Failed to download file:ERR2620030.fastq.gz, experimentId:SAMEA4720750
+2025-08-04 08:24:22.636  INFO 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR262/008/ERR2620038/ERR2620038.fastq.gz
+2025-08-04 08:24:22.639 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR2620038.fastq.gz, parentId:SAMEA4720758
+2025-08-04 08:24:36.082 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR2620038.fastq.gz, parentId:SAMEA4720758, bytesCopied:38566993
+2025-08-04 08:24:36.733 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : MD5 validation successful for file:ftp.sra.ebi.ac.uk/vol1/fastq/ERR262/008/ERR2620038/ERR2620038.fastq.gz
+2025-08-04 08:24:36.733 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : /mnt/d/迅雷下载/ENA//reads_fastq/SAMEA4720758/ERR2620038/ERR2620038.fastq.gz completed.
+2025-08-04 08:24:36.733  INFO 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR262/000/ERR2620040/ERR2620040.fastq.gz
+2025-08-04 08:24:36.735 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR2620040.fastq.gz, parentId:SAMEA4720760
+2025-08-04 08:26:07.031 ERROR 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderClient   : /mnt/d/迅雷下载/ENA/reads_fastq/SAMEA104281224/ERR2112080/ERR2112080.fastq.gz failed to download
+
+java.net.SocketTimeoutException: Read timed out
+	at java.base/sun.nio.ch.NioSocketImpl.timedRead(NioSocketImpl.java:278)
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:304)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:346)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:796)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:1099)
+	at java.base/java.io.BufferedInputStream.fill(BufferedInputStream.java:291)
+	at java.base/java.io.BufferedInputStream.implRead(BufferedInputStream.java:325)
+	at java.base/java.io.BufferedInputStream.read(BufferedInputStream.java:312)
+	at java.base/sun.net.ftp.impl.FtpClient.readServerResponse(FtpClient.java:434)
+	at java.base/sun.net.ftp.impl.FtpClient.readReply(FtpClient.java:511)
+	at java.base/sun.net.ftp.impl.FtpClient.completePending(FtpClient.java:1678)
+	at java.base/sun.net.ftp.impl.FtpClient.issueCommand(FtpClient.java:541)
+	at java.base/sun.net.ftp.impl.FtpClient.close(FtpClient.java:1214)
+	at java.base/sun.net.www.protocol.ftp.FtpURLConnection$FtpInputStream.close(FtpURLConnection.java:132)
+	at java.base/sun.net.www.MeteredStream.close(MeteredStream.java:165)
+	at java.base/sun.net.www.MeteredStream.justRead(MeteredStream.java:85)
+	at java.base/sun.net.www.MeteredStream.read(MeteredStream.java:132)
+	at java.base/java.io.FilterInputStream.read(FilterInputStream.java:95)
+	at me.tongfei.progressbar.wrapped.ProgressBarWrappedInputStream.read(ProgressBarWrappedInputStream.java:37)
+	at org.apache.commons.io.IOUtils.copyLarge(IOUtils.java:1127)
+	at org.apache.commons.io.IOUtils.copy(IOUtils.java:849)
+	at org.apache.commons.io.IOUtils.copyLarge(IOUtils.java:1104)
+	at uk.ac.ebi.ena.backend.service.FileDownloaderClient.downloadFTPUrlConnection(FileDownloaderClient.java:181)
+	at uk.ac.ebi.ena.backend.service.FileDownloaderService.lambda$startDownload$0(FileDownloaderService.java:228)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+2025-08-04 08:26:07.032 DEBUG 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR2112080.fastq.gz, parentId:SAMEA104281224, bytesCopied:0
+2025-08-04 08:26:07.032  WARN 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderService  : Unsuccessful Validation for remoteFile:ftp.sra.ebi.ac.uk/vol1/fastq/ERR211/000/ERR2112080/ERR2112080.fastq.gz. Bytes downloaded does not match with given bytes
+2025-08-04 08:26:07.032 ERROR 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderService  : Failed to download file:ERR2112080.fastq.gz, experimentId:SAMEA104281224
+2025-08-04 08:26:07.033  INFO 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR211/008/ERR2111948/ERR2111948.fastq.gz
+2025-08-04 08:26:07.035  WARN 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderService  : File ERR2111948.fastq.gz exists but size mismatch 4487414231. Redownloading
+2025-08-04 08:26:07.035 DEBUG 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR2111948.fastq.gz, parentId:SAMEA104281221
+2025-08-04 08:39:23.694 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR2620040.fastq.gz, parentId:SAMEA4720760, bytesCopied:884752681
+2025-08-04 08:39:50.537 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : MD5 validation successful for file:ftp.sra.ebi.ac.uk/vol1/fastq/ERR262/000/ERR2620040/ERR2620040.fastq.gz
+2025-08-04 08:39:50.537 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : /mnt/d/迅雷下载/ENA//reads_fastq/SAMEA4720760/ERR2620040/ERR2620040.fastq.gz completed.
+2025-08-04 08:39:50.537  INFO 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR335/007/ERR3354507/ERR3354507.fastq.gz
+2025-08-04 08:39:50.539 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR3354507.fastq.gz, parentId:SAMEA5662572
+2025-08-04 08:41:44.958 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR3354507.fastq.gz, parentId:SAMEA5662572, bytesCopied:149817077
+2025-08-04 08:41:47.479 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : MD5 validation successful for file:ftp.sra.ebi.ac.uk/vol1/fastq/ERR335/007/ERR3354507/ERR3354507.fastq.gz
+2025-08-04 08:41:47.479 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : /mnt/d/迅雷下载/ENA//reads_fastq/SAMEA5662572/ERR3354507/ERR3354507.fastq.gz completed.
+2025-08-04 08:41:47.479  INFO 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR335/002/ERR3354512/ERR3354512.fastq.gz
+2025-08-04 08:41:47.496 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR3354512.fastq.gz, parentId:SAMEA5662582
+2025-08-04 08:49:33.520 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR3354512.fastq.gz, parentId:SAMEA5662582, bytesCopied:628672461
+2025-08-04 08:49:44.995 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : MD5 validation successful for file:ftp.sra.ebi.ac.uk/vol1/fastq/ERR335/002/ERR3354512/ERR3354512.fastq.gz
+2025-08-04 08:49:44.996 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : /mnt/d/迅雷下载/ENA//reads_fastq/SAMEA5662582/ERR3354512/ERR3354512.fastq.gz completed.
+2025-08-04 08:49:44.996  INFO 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR335/005/ERR3354485/ERR3354485.fastq.gz
+2025-08-04 08:49:45.008 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR3354485.fastq.gz, parentId:SAMEA5662562
+2025-08-04 08:58:07.449 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR3354485.fastq.gz, parentId:SAMEA5662562, bytesCopied:499167325
+2025-08-04 08:58:15.850 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : MD5 validation successful for file:ftp.sra.ebi.ac.uk/vol1/fastq/ERR335/005/ERR3354485/ERR3354485.fastq.gz
+2025-08-04 08:58:15.850 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : /mnt/d/迅雷下载/ENA//reads_fastq/SAMEA5662562/ERR3354485/ERR3354485.fastq.gz completed.
+2025-08-04 08:58:15.851  INFO 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR335/005/ERR3354495/ERR3354495.fastq.gz
+2025-08-04 08:58:15.852 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR3354495.fastq.gz, parentId:SAMEA5662574
+2025-08-04 09:22:41.347 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR3354495.fastq.gz, parentId:SAMEA5662574, bytesCopied:1067029761
+2025-08-04 09:23:01.619  WARN 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : MD5 failed for file:ftp.sra.ebi.ac.uk/vol1/fastq/ERR335/005/ERR3354495/ERR3354495.fastq.gz
+2025-08-04 09:23:01.620 ERROR 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Failed to download file:ERR3354495.fastq.gz, experimentId:SAMEA5662574
+2025-08-04 09:23:01.620  INFO 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR335/009/ERR3354499/ERR3354499.fastq.gz
+2025-08-04 09:23:01.643 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR3354499.fastq.gz, parentId:SAMEA5662579
+2025-08-04 09:34:20.660 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR3354499.fastq.gz, parentId:SAMEA5662579, bytesCopied:208020467
+2025-08-04 09:34:32.582 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : MD5 validation successful for file:ftp.sra.ebi.ac.uk/vol1/fastq/ERR335/009/ERR3354499/ERR3354499.fastq.gz
+2025-08-04 09:34:32.582 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : /mnt/d/迅雷下载/ENA//reads_fastq/SAMEA5662579/ERR3354499/ERR3354499.fastq.gz completed.
+2025-08-04 09:34:32.583  INFO 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR335/000/ERR3354500/ERR3354500.fastq.gz
+2025-08-04 09:34:32.617 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR3354500.fastq.gz, parentId:SAMEA5662586
+2025-08-04 09:41:42.545 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR3354500.fastq.gz, parentId:SAMEA5662586, bytesCopied:226351649
+2025-08-04 09:41:46.594 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : MD5 validation successful for file:ftp.sra.ebi.ac.uk/vol1/fastq/ERR335/000/ERR3354500/ERR3354500.fastq.gz
+2025-08-04 09:41:46.595 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : /mnt/d/迅雷下载/ENA//reads_fastq/SAMEA5662586/ERR3354500/ERR3354500.fastq.gz completed.
+2025-08-04 09:41:46.595  INFO 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR335/004/ERR3354504/ERR3354504.fastq.gz
+2025-08-04 09:41:46.596 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR3354504.fastq.gz, parentId:SAMEA5662584
+2025-08-04 09:42:49.276 ERROR 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderClient   : /mnt/d/迅雷下载/ENA/reads_fastq/SAMEA7600824/ERR5295769/ERR5295769.fastq.gz failed to download
+
+java.net.SocketTimeoutException: Read timed out
+	at java.base/sun.nio.ch.NioSocketImpl.timedRead(NioSocketImpl.java:278)
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:304)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:346)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:796)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:1099)
+	at java.base/java.io.BufferedInputStream.fill(BufferedInputStream.java:291)
+	at java.base/java.io.BufferedInputStream.implRead(BufferedInputStream.java:325)
+	at java.base/java.io.BufferedInputStream.read(BufferedInputStream.java:312)
+	at java.base/sun.net.ftp.impl.FtpClient.readServerResponse(FtpClient.java:434)
+	at java.base/sun.net.ftp.impl.FtpClient.readReply(FtpClient.java:511)
+	at java.base/sun.net.ftp.impl.FtpClient.completePending(FtpClient.java:1678)
+	at java.base/sun.net.ftp.impl.FtpClient.issueCommand(FtpClient.java:541)
+	at java.base/sun.net.ftp.impl.FtpClient.close(FtpClient.java:1214)
+	at java.base/sun.net.www.protocol.ftp.FtpURLConnection$FtpInputStream.close(FtpURLConnection.java:132)
+	at java.base/sun.net.www.MeteredStream.close(MeteredStream.java:165)
+	at java.base/sun.net.www.MeteredStream.justRead(MeteredStream.java:85)
+	at java.base/sun.net.www.MeteredStream.read(MeteredStream.java:132)
+	at java.base/java.io.FilterInputStream.read(FilterInputStream.java:95)
+	at me.tongfei.progressbar.wrapped.ProgressBarWrappedInputStream.read(ProgressBarWrappedInputStream.java:37)
+	at org.apache.commons.io.IOUtils.copyLarge(IOUtils.java:1127)
+	at org.apache.commons.io.IOUtils.copy(IOUtils.java:849)
+	at org.apache.commons.io.IOUtils.copyLarge(IOUtils.java:1104)
+	at uk.ac.ebi.ena.backend.service.FileDownloaderClient.downloadFTPUrlConnection(FileDownloaderClient.java:181)
+	at uk.ac.ebi.ena.backend.service.FileDownloaderService.lambda$startDownload$0(FileDownloaderService.java:228)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+2025-08-04 09:42:49.276 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR5295769.fastq.gz, parentId:SAMEA7600824, bytesCopied:0
+2025-08-04 09:42:49.276  WARN 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Unsuccessful Validation for remoteFile:ftp.sra.ebi.ac.uk/vol1/fastq/ERR529/009/ERR5295769/ERR5295769.fastq.gz. Bytes downloaded does not match with given bytes
+2025-08-04 09:42:49.276 ERROR 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Failed to download file:ERR5295769.fastq.gz, experimentId:SAMEA7600824
+2025-08-04 09:42:49.277  INFO 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR529/004/ERR5295774/ERR5295774.fastq.gz
+2025-08-04 09:42:49.278 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR5295774.fastq.gz, parentId:SAMEA7600825
+2025-08-04 09:43:12.810 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR5295774.fastq.gz, parentId:SAMEA7600825, bytesCopied:63498586
+2025-08-04 09:43:14.039 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : MD5 validation successful for file:ftp.sra.ebi.ac.uk/vol1/fastq/ERR529/004/ERR5295774/ERR5295774.fastq.gz
+2025-08-04 09:43:14.039 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : /mnt/d/迅雷下载/ENA//reads_fastq/SAMEA7600825/ERR5295774/ERR5295774.fastq.gz completed.
+2025-08-04 09:43:14.039  INFO 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR529/005/ERR5295775/ERR5295775.fastq.gz
+2025-08-04 09:43:14.040 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR5295775.fastq.gz, parentId:SAMEA7600825
+2025-08-04 09:49:43.826 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR3354504.fastq.gz, parentId:SAMEA5662584, bytesCopied:253689856
+2025-08-04 09:49:43.826  WARN 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Unsuccessful Validation for remoteFile:ftp.sra.ebi.ac.uk/vol1/fastq/ERR335/004/ERR3354504/ERR3354504.fastq.gz. Bytes downloaded does not match with given bytes
+2025-08-04 09:49:43.827 ERROR 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Failed to download file:ERR3354504.fastq.gz, experimentId:SAMEA5662584
+2025-08-04 09:49:43.827  INFO 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR335/006/ERR3354506/ERR3354506.fastq.gz
+2025-08-04 09:49:43.829 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR3354506.fastq.gz, parentId:SAMEA5662575
+2025-08-04 09:59:20.561 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR3354506.fastq.gz, parentId:SAMEA5662575, bytesCopied:356994534
+2025-08-04 09:59:27.152 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : MD5 validation successful for file:ftp.sra.ebi.ac.uk/vol1/fastq/ERR335/006/ERR3354506/ERR3354506.fastq.gz
+2025-08-04 09:59:27.153 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : /mnt/d/迅雷下载/ENA//reads_fastq/SAMEA5662575/ERR3354506/ERR3354506.fastq.gz completed.
+2025-08-04 09:59:27.153  INFO 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR335/009/ERR3354509/ERR3354509.fastq.gz
+2025-08-04 09:59:27.155 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR3354509.fastq.gz, parentId:SAMEA5662588
+2025-08-04 10:03:26.732 ERROR 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderClient   : /mnt/d/迅雷下载/ENA/reads_fastq/SAMEA104281221/ERR2111948/ERR2111948.fastq.gz failed to download
+
+java.net.SocketTimeoutException: Read timed out
+	at java.base/sun.nio.ch.NioSocketImpl.timedRead(NioSocketImpl.java:278)
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:304)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:346)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:796)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:1099)
+	at java.base/java.io.BufferedInputStream.fill(BufferedInputStream.java:291)
+	at java.base/java.io.BufferedInputStream.implRead(BufferedInputStream.java:325)
+	at java.base/java.io.BufferedInputStream.read(BufferedInputStream.java:312)
+	at java.base/sun.net.ftp.impl.FtpClient.readServerResponse(FtpClient.java:434)
+	at java.base/sun.net.ftp.impl.FtpClient.readReply(FtpClient.java:511)
+	at java.base/sun.net.ftp.impl.FtpClient.completePending(FtpClient.java:1678)
+	at java.base/sun.net.ftp.impl.FtpClient.issueCommand(FtpClient.java:541)
+	at java.base/sun.net.ftp.impl.FtpClient.close(FtpClient.java:1214)
+	at java.base/sun.net.www.protocol.ftp.FtpURLConnection$FtpInputStream.close(FtpURLConnection.java:132)
+	at java.base/sun.net.www.MeteredStream.close(MeteredStream.java:165)
+	at java.base/sun.net.www.MeteredStream.justRead(MeteredStream.java:85)
+	at java.base/sun.net.www.MeteredStream.read(MeteredStream.java:132)
+	at java.base/java.io.FilterInputStream.read(FilterInputStream.java:95)
+	at me.tongfei.progressbar.wrapped.ProgressBarWrappedInputStream.read(ProgressBarWrappedInputStream.java:37)
+	at org.apache.commons.io.IOUtils.copyLarge(IOUtils.java:1127)
+	at org.apache.commons.io.IOUtils.copy(IOUtils.java:849)
+	at org.apache.commons.io.IOUtils.copyLarge(IOUtils.java:1104)
+	at uk.ac.ebi.ena.backend.service.FileDownloaderClient.downloadFTPUrlConnection(FileDownloaderClient.java:181)
+	at uk.ac.ebi.ena.backend.service.FileDownloaderService.lambda$startDownload$0(FileDownloaderService.java:228)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+2025-08-04 10:03:26.732 DEBUG 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR2111948.fastq.gz, parentId:SAMEA104281221, bytesCopied:0
+2025-08-04 10:03:26.733  WARN 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderService  : Unsuccessful Validation for remoteFile:ftp.sra.ebi.ac.uk/vol1/fastq/ERR211/008/ERR2111948/ERR2111948.fastq.gz. Bytes downloaded does not match with given bytes
+2025-08-04 10:03:26.733 ERROR 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderService  : Failed to download file:ERR2111948.fastq.gz, experimentId:SAMEA104281221
+2025-08-04 10:03:26.733  INFO 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR211/003/ERR2112083/ERR2112083.fastq.gz
+2025-08-04 10:03:26.735 DEBUG 2876 --- [pool-2-thread-2] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR2112083.fastq.gz, parentId:SAMEA104281219
+2025-08-04 10:07:12.657 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR3354509.fastq.gz, parentId:SAMEA5662588, bytesCopied:200031128
+2025-08-04 10:07:16.363 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : MD5 validation successful for file:ftp.sra.ebi.ac.uk/vol1/fastq/ERR335/009/ERR3354509/ERR3354509.fastq.gz
+2025-08-04 10:07:16.364 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : /mnt/d/迅雷下载/ENA//reads_fastq/SAMEA5662588/ERR3354509/ERR3354509.fastq.gz completed.
+2025-08-04 10:07:16.364  INFO 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR335/000/ERR3354510/ERR3354510.fastq.gz
+2025-08-04 10:07:16.365 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR3354510.fastq.gz, parentId:SAMEA5662591
+2025-08-04 10:08:27.101 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR3354510.fastq.gz, parentId:SAMEA5662591, bytesCopied:47229211
+2025-08-04 10:08:27.965 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : MD5 validation successful for file:ftp.sra.ebi.ac.uk/vol1/fastq/ERR335/000/ERR3354510/ERR3354510.fastq.gz
+2025-08-04 10:08:27.965 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : /mnt/d/迅雷下载/ENA//reads_fastq/SAMEA5662591/ERR3354510/ERR3354510.fastq.gz completed.
+2025-08-04 10:08:27.965  INFO 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR262/001/ERR2620021/ERR2620021.fastq.gz
+2025-08-04 10:08:27.967 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : File ERR2620021.fastq.gz already exists and size matches 2255955465. Skipping.
+2025-08-04 10:08:27.967  INFO 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR262/003/ERR2620023/ERR2620023.fastq.gz
+2025-08-04 10:08:27.968 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : File ERR2620023.fastq.gz already exists and size matches 244466108. Skipping.
+2025-08-04 10:08:27.968  INFO 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR262/004/ERR2620024/ERR2620024.fastq.gz
+2025-08-04 10:08:27.970 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : File ERR2620024.fastq.gz already exists and size matches 194591048. Skipping.
+2025-08-04 10:08:27.970  INFO 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR262/005/ERR2620025/ERR2620025.fastq.gz
+2025-08-04 10:08:27.979  WARN 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : File ERR2620025.fastq.gz exists but size mismatch 161851782. Redownloading
+2025-08-04 10:08:27.980 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR2620025.fastq.gz, parentId:SAMEA4720745
+2025-08-04 10:13:40.738 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR2620025.fastq.gz, parentId:SAMEA4720745, bytesCopied:161851782
+2025-08-04 10:13:44.774 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : MD5 validation successful for file:ftp.sra.ebi.ac.uk/vol1/fastq/ERR262/005/ERR2620025/ERR2620025.fastq.gz
+2025-08-04 10:13:44.775 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : /mnt/d/迅雷下载/ENA//reads_fastq/SAMEA4720745/ERR2620025/ERR2620025.fastq.gz completed.
+2025-08-04 10:13:44.775  INFO 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR262/006/ERR2620026/ERR2620026.fastq.gz
+2025-08-04 10:13:44.777  WARN 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : File ERR2620026.fastq.gz exists but size mismatch 4842407818. Redownloading
+2025-08-04 10:13:44.777 DEBUG 2876 --- [pool-2-thread-1] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR2620026.fastq.gz, parentId:SAMEA4720746
+2025-08-04 13:14:47.434 ERROR 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderClient   : /mnt/d/迅雷下载/ENA/reads_fastq/SAMEA7600825/ERR5295775/ERR5295775.fastq.gz failed to download
+
+java.net.SocketTimeoutException: Read timed out
+	at java.base/sun.nio.ch.NioSocketImpl.timedRead(NioSocketImpl.java:278)
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:304)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:346)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:796)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:1099)
+	at java.base/java.io.BufferedInputStream.fill(BufferedInputStream.java:291)
+	at java.base/java.io.BufferedInputStream.implRead(BufferedInputStream.java:325)
+	at java.base/java.io.BufferedInputStream.read(BufferedInputStream.java:312)
+	at java.base/sun.net.ftp.impl.FtpClient.readServerResponse(FtpClient.java:434)
+	at java.base/sun.net.ftp.impl.FtpClient.readReply(FtpClient.java:511)
+	at java.base/sun.net.ftp.impl.FtpClient.completePending(FtpClient.java:1678)
+	at java.base/sun.net.ftp.impl.FtpClient.issueCommand(FtpClient.java:541)
+	at java.base/sun.net.ftp.impl.FtpClient.close(FtpClient.java:1214)
+	at java.base/sun.net.www.protocol.ftp.FtpURLConnection$FtpInputStream.close(FtpURLConnection.java:132)
+	at java.base/sun.net.www.MeteredStream.close(MeteredStream.java:165)
+	at java.base/sun.net.www.MeteredStream.justRead(MeteredStream.java:85)
+	at java.base/sun.net.www.MeteredStream.read(MeteredStream.java:132)
+	at java.base/java.io.FilterInputStream.read(FilterInputStream.java:95)
+	at me.tongfei.progressbar.wrapped.ProgressBarWrappedInputStream.read(ProgressBarWrappedInputStream.java:37)
+	at org.apache.commons.io.IOUtils.copyLarge(IOUtils.java:1127)
+	at org.apache.commons.io.IOUtils.copy(IOUtils.java:849)
+	at org.apache.commons.io.IOUtils.copyLarge(IOUtils.java:1104)
+	at uk.ac.ebi.ena.backend.service.FileDownloaderClient.downloadFTPUrlConnection(FileDownloaderClient.java:181)
+	at uk.ac.ebi.ena.backend.service.FileDownloaderService.lambda$startDownload$0(FileDownloaderService.java:228)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+2025-08-04 13:14:47.435 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Completed download ERR5295775.fastq.gz, parentId:SAMEA7600825, bytesCopied:0
+2025-08-04 13:14:47.435  WARN 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Unsuccessful Validation for remoteFile:ftp.sra.ebi.ac.uk/vol1/fastq/ERR529/005/ERR5295775/ERR5295775.fastq.gz. Bytes downloaded does not match with given bytes
+2025-08-04 13:14:47.435 ERROR 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Failed to download file:ERR5295775.fastq.gz, experimentId:SAMEA7600825
+2025-08-04 13:14:47.435  INFO 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : FileURL: ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR529/007/ERR5295777/ERR5295777.fastq.gz
+2025-08-04 13:14:47.436 DEBUG 2876 --- [pool-2-thread-3] u.a.e.e.b.service.FileDownloaderService  : Downloading ERR5295777.fastq.gz, parentId:SAMEA7600825

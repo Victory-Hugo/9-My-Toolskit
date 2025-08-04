@@ -20,7 +20,7 @@ OUTPUT_DIR='/mnt/d/迅雷下载/ENA/'
 FORMAT='READS_FASTQ'
 # FORMAT='READS_BAM'
 # 5. 定义下载协议（FTP 或 ASPERA）
-PROTOCOL='FTP'
+PROTOCOL='ASPERA'
 
 # -----------------------------------------------------------------------------
 # 方法一：直接让工具读取 list.txt （ENA 支持 --accessions=<file> 方式）
