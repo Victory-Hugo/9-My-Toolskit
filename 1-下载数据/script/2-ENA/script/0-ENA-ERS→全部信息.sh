@@ -1,14 +1,14 @@
 #!/bin/bash
 set -euo pipefail
 
-input="/mnt/c/Users/Administrator/Desktop/1.TXT"     # 每行一个 ERS2540882 形式
-output="/mnt/c/Users/Administrator/Desktop/ENA_full.tsv"
+input="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/2-ENA/conf/ERS.txt"     # 每行一个 ERS2540882 形式
+output="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/2-ENA/conf/ENA_full.tsv"
 
 # 要的字段列表
-FIELDS="run_accession,sample_accession,experiment_accession,study_accession,tax_id,scientific_name,base_count,fastq_ftp,sra_ftp,bam_ftp,bam_bytes,bam_md5"
+FIELDS="run_accession,sample_accession,experiment_accession,study_accession,tax_id,scientific_name,base_count,fastq_ftp,fastq_md5,sra_ftp,bam_ftp,bam_bytes,bam_md5"
 
 # 写表头（和 API 返回一致）
-echo -e "run_accession\tsample_accession\texperiment_accession\tstudy_accession\ttax_id\tscientific_name\tbase_count\tfastq_ftp\tsra_ftp\tbam_ftp\tbam_bytes\tbam_md5" > "$output"
+echo -e "run_accession\tsample_accession\texperiment_accession\tstudy_accession\ttax_id\tscientific_name\tbase_count\tfastq_ftp\tfastq_md5\tsra_ftp\tbam_ftp\tbam_bytes\tbam_md5" > "$output"
 
 while IFS= read -r ers; do
     # 跳过空行和注释
