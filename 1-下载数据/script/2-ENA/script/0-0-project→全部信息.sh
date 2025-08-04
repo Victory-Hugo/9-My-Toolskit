@@ -1,13 +1,15 @@
 #!/usr/bin/env bash
 set -uo pipefail
 
-# 固定变量（写死）
-PROJECT="PRJEB32764"
-OUTPUT="/mnt/c/Users/Administrator/Desktop/PRJEB32764_MD5.tsv"
-RETRY=3
+#TODO 修改下列
+PROJECT="PRJEB32764" #todo 需要查询的项目编号
+OUTPUT="/mnt/c/Users/Administrator/Desktop/aDNA.tsv" #todo 输出文件路径
+
+# ENA API 字段
 FIELDS="run_accession,sample_accession,experiment_accession,study_accession,tax_id,scientific_name,base_count,fastq_ftp,fastq_md5"
 ENA_API="https://www.ebi.ac.uk/ena/portal/api/filereport"
 LOG="/tmp/get_${PROJECT}_$(date '+%Y%m%d_%H%M%S').log"
+RETRY=3
 
 # 写表头（制表符分隔）
 echo -e "run_accession\tsample_accession\texperiment_accession\tstudy_accession\ttax_id\tscientific_name\tbase_count\tfastq_ftp\tfastq_md5" > "$OUTPUT"

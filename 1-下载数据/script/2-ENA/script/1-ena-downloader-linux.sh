@@ -1,77 +1,32 @@
-# #!/usr/bin/env bash
-# set -euo pipefail
-
-# # -----------------------------------------------------------------------------
-# # 脚本：download_ena.sh
-# # 功能：调用 ENA File Downloader，根据 list.txt 中的 accession 列表批量下载 FASTQ
-# # 使用：chmod +x download_ena.sh && ./download_ena.sh
-# # -----------------------------------------------------------------------------
-# #TODO 1. 定义变量：ENA downloader 的 jar 包路径
-# #TODO 2. 定义 accession 列表文件（每行一个 accession）
-# BASE_DIR='/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/2-ENA/'
-# JAVA_SOFT_PATH="${BASE_DIR}/func/ena-file-downloader.jar"
-# ASPERA_PATH='/home/luolintao/miniconda3/pkgs/aspera-cli-3.9.6-h5e1937b_0'
-
-# #TODO 2. 定义 accession 列表文件（每行一个 accession）
-# ACC_FILE="/mnt/f/OneDrive/文档（共享）/4_古代DNA/SAMEA_aDNA.txt"
-# #TODO 3. 定义 Aspera CLI 的安装路径
-# #TODO 具体路径请根据实际安装位置修改
-# #! 注意：Aspera CLI 需要先安装，具体安装方法请参考相关文档
-# #! 强烈的推荐使用conda安装 Aspera CLI：
-# #* `conda install -y -c hcc aspera-cli`
-# #* 在使用Aspera CLI 前，请确保已安装 Aspera CLI。如果需要配置秘钥，可以复制下方的秘钥。
-# #* 我将秘钥复制了一份放在了ASPERA_DSA_SSH="${BASE_DIR}/conf/asperaweb_id_dsa.openssh"
-
-# #TODO 3. 定义下载输出目录（根据需要修改）
-# OUTPUT_DIR='/mnt/d/迅雷下载/ENA/'
-
-# #TODO 4. 定义下载格式（可选：READS_FASTQ, READS_SUBMITTED, READS_BAM 等）
-# #TODO 具体格式请查看`1-下载数据/script/2-ENA/markdown/0-阅读我.md`
-# FORMAT='READS_FASTQ'
-# # FORMAT='READS_BAM'
-# # 5. 定义下载协议（FTP 或 ASPERA）
-# PROTOCOL='ASPERA'
-
-# # -----------------------------------------------------------------------------
-# # 方法一：直接让工具读取 list.txt （ENA 支持 --accessions=<file> 方式）
-# # -----------------------------------------------------------------------------
-
-# java -jar "${JAVA_SOFT_PATH}" \
-#   --accessions="${ACC_FILE}" \
-#   --format="${FORMAT}" \
-#   --location="${OUTPUT_DIR}" \
-#   --protocol="${PROTOCOL}" \
-#   --asperaLocation="${ASPERA_PATH}" \
-#   --email=None
-
-# #* 基础命令
-# # -k1：启用断点续传。
-# # -l 100m：限制下载速度为 100 Mbps。
-# # -P33001：指定 Aspera 端口。
-# # -Q：quiet 模式，抑制常规的进度/统计输出，只在出错时显示。用在脚本/批量里可以减少噪音。
-# # -T：关闭传输内容的加密，让 FASP 以“非加密”模式跑数据。
-# # 注意这会降低传输的保密性，但对公开的 ENA/SRA 数据影响不大，因为内容本身是公开的。
-# /home/luolintao/miniconda3/pkgs/aspera-cli-3.9.6-h5e1937b_0/bin/ascp
-# /home/luolintao/miniconda3/envs/pyg/bin/ascp \
-#   -QT \
-#   -l 100m \
-#   -P33001 \
-#   -k1 \
-#   -i "${ASPERA_DSA_SSH}" \
-#   era-fasp@fasp.sra.ebi.ac.uk:/vol1/fastq/SRR142/075/SRR14209175/SRR14209175.fastq.gz \
-#   "${OUTPUT_DIR}/SRR14209175.fastq.gz"
 #!/usr/bin/env bash
 set -uo pipefail  # 不用 -e，内部手动控制失败逻辑以支持重试/续跑
 
 # ---------------------- 默认配置（可通过环境/CLI 覆盖） -----------------------
+#TODO 1. 定义变量：ENA downloader 的 jar 包路径
+#TODO 2. 定义 accession 列表文件（每行一个 accession）
 BASE_DIR='/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/2-ENA'
 JAVA_SOFT_PATH="${BASE_DIR}/func/ena-file-downloader.jar"
 ACC_FILE='/mnt/f/OneDrive/文档（共享）/4_古代DNA/SAMEA_aDNA.txt'
+
+#TODO 3. 定义 Aspera CLI 的安装路径
+#TODO 具体路径请根据实际安装位置修改
+#! 注意：Aspera CLI 需要先安装，具体安装方法请参考相关文档
+#! 强烈的推荐使用conda安装 Aspera CLI：
+#* `conda install -y -c hcc aspera-cli`
+#* 在使用Aspera CLI 前，请确保已安装 Aspera CLI。如果需要配置秘钥，可以复制下方的秘钥。
+#* 我将秘钥复制了一份放在了ASPERA_DSA_SSH="${BASE_DIR}/conf/asperaweb_id_dsa.openssh"
 ASPERA_PATH='/home/luolintao/miniconda3/pkgs/aspera-cli-3.9.6-h5e1937b_0'
 ASPERA_DSA_SSH="${BASE_DIR}/conf/asperaweb_id_dsa.openssh"
+
+#TODO 3. 定义下载输出目录（根据需要修改）
 OUTPUT_DIR='/mnt/d/迅雷下载/ENA'
+#TODO 4. 定义下载格式（可选：READS_FASTQ, READS_SUBMITTED, READS_BAM 等）
+#TODO 具体格式请查看`1-下载数据/script/2-ENA/markdown/0-阅读我.md`
 FORMAT='READS_FASTQ'
 PROTOCOL='ASPERA'
+
+#TODO 5. 定义最大重试次数和重试间隔（秒）
+#TODO 这些参数可以根据网络状况和数据大小调整
 MAX_RETRIES=3
 RETRY_BASE_DELAY=5  # 秒
 CONCURRENT_LOCK="/tmp/$(basename "$0").lock"
@@ -229,3 +184,21 @@ main() {
 
 # ------------------- 执行 -------------------
 main
+
+
+# #* 基础命令
+# # -k1：启用断点续传。
+# # -l 100m：限制下载速度为 100 Mbps。
+# # -P33001：指定 Aspera 端口。
+# # -Q：quiet 模式，抑制常规的进度/统计输出，只在出错时显示。用在脚本/批量里可以减少噪音。
+# # -T：关闭传输内容的加密，让 FASP 以“非加密”模式跑数据。
+# # 注意这会降低传输的保密性，但对公开的 ENA/SRA 数据影响不大，因为内容本身是公开的。
+# /home/luolintao/miniconda3/pkgs/aspera-cli-3.9.6-h5e1937b_0/bin/ascp
+# /home/luolintao/miniconda3/envs/pyg/bin/ascp \
+#   -QT \
+#   -l 100m \
+#   -P33001 \
+#   -k1 \
+#   -i "${ASPERA_DSA_SSH}" \
+#   era-fasp@fasp.sra.ebi.ac.uk:/vol1/fastq/SRR142/075/SRR14209175/SRR14209175.fastq.gz \
+#   "${OUTPUT_DIR}/SRR14209175.fastq.gz"
