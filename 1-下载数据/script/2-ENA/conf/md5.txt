@@ -1,0 +1,8 @@
+fa1d77bcbfe2817e5ca14c6a495b6dca  /mnt/d/迅雷下载/ENA/finished_1/ERR2111937/ERR2111937.fastq.gz
+803e7d7dd7277bec3019a14699f06bce  /mnt/d/迅雷下载/ENA/finished_1/ERR2111938/ERR2111938.fastq.gz
+693e0a6849cea66efa8bb72a334e99f9  /mnt/d/迅雷下载/ENA/finished_1/ERR2111941/ERR2111941.fastq.gz
+c3d94545f25f4565ff079a07229755e1  /mnt/d/迅雷下载/ENA/finished_1/ERR2111942/ERR2111942.fastq.gz
+f32b4fc80852233921c64dd9e3a53fe2  /mnt/d/迅雷下载/ENA/finished_1/ERR2111944/ERR2111944.fastq.gz
+be2c0610c72a60232d3d2ceacfc45c15  /mnt/d/迅雷下载/ENA/finished_1/ERR2111945/ERR2111945.fastq.gz
+4c953c8418ffacd9a4f74f9335193039  /mnt/d/迅雷下载/ENA/finished_1/ERR2111946/ERR2111946.fastq.gz
+54b1841e4a9342cb407a4644b0ca10d3  /mnt/d/迅雷下载/ENA/finished_1/ERR2111949/ERR2111949.fastq.gz
