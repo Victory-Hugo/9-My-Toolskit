@@ -20,45 +20,45 @@
 使用说明：
 - 请根据实际情况修改LOG_FILE、ALL_LIST_FILE、INCOMPLETE_LIST_FILE、SUCCESS_LIST_FILE、SRC_ROOT和DST_ROOT的路径。
 - 运行脚本前请确保相关目录和文件存在，且有足够权限进行文件操作。
-'
-#!需要注意，我发现一些在log文件中被记录为'could not be completed'的样本编号，实际上是可能已经完成了;
-#!但是ena 的愚蠢的下载器会认为这些样本没有下载完成
-#TODO输入文件
-LOG_FILE="/mnt/d/迅雷下载/ENA/logs/2025-08-04_20-34-15_app.log" #TODO 替换为实际的日志文件路径
-ALL_LIST_FILE="/mnt/f/OneDrive/文档（共享）/4_古代DNA/ERR_aDNA.txt" #TODO 替换为实际的样本编号列表路径
+# '
+# #!需要注意，我发现一些在log文件中被记录为'could not be completed'的样本编号，实际上是可能已经完成了;
+# #!但是ena 的愚蠢的下载器会认为这些样本没有下载完成
+# #TODO输入文件
+# LOG_FILE="/mnt/d/迅雷下载/ENA/logs/2025-08-04_20-34-15_app.log" #TODO 替换为实际的日志文件路径
+# ALL_LIST_FILE="/mnt/f/OneDrive/文档（共享）/4_古代DNA/ERR_aDNA.txt" #TODO 替换为实际的样本编号列表路径
 
-#TODO输出文件
-INCOMPLETE_LIST_FILE="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/2-ENA/conf/Incomplete.list.txt" #TODO 替换为输出路径
-SUCCESS_LIST_FILE="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/2-ENA/conf/Success.list.txt" #TODO 替换为输出路径
+# #TODO输出文件
+# INCOMPLETE_LIST_FILE="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/2-ENA/conf/Incomplete.list.txt" #TODO 替换为输出路径
+# SUCCESS_LIST_FILE="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/2-ENA/conf/Success.list.txt" #TODO 替换为输出路径
 
-# 提取日志中的成功信息并格式化输出
+# # 提取日志中的成功信息并格式化输出
 
-echo "提取成功的样本编号..."
-grep 'SUCCESSFUL' \
-    "$LOG_FILE" |\
-    awk -v FS=':' '{print $5}' |\
-    awk -v FS='fastq' '{print $1}' |\
-    awk -v FS='_' '{print $1}' |\
-    awk -v FS='.' '{print $1}' |\
-    sort -u > "$SUCCESS_LIST_FILE"
-echo "成功的样本编号已保存到 [$SUCCESS_LIST_FILE]"
+# echo "提取成功的样本编号..."
+# grep 'SUCCESSFUL' \
+#     "$LOG_FILE" |\
+#     awk -v FS=':' '{print $5}' |\
+#     awk -v FS='fastq' '{print $1}' |\
+#     awk -v FS='_' '{print $1}' |\
+#     awk -v FS='.' '{print $1}' |\
+#     sort -u > "$SUCCESS_LIST_FILE"
+# echo "成功的样本编号已保存到 [$SUCCESS_LIST_FILE]"
 
-echo "提取失败的样本编号..."
-grep 'could not be completed' "$LOG_FILE" |\
-    awk -v FS='file ' '{print $2}' |\
-    awk -v FS='_' '{print $1}' |\
-    awk -v FS='.' '{print $1}' |\
-    sort -u > "$INCOMPLETE_LIST_FILE"
-echo "失败的样本编号已保存到 [$INCOMPLETE_LIST_FILE]"
+# echo "提取失败的样本编号..."
+# grep 'could not be completed' "$LOG_FILE" |\
+#     awk -v FS='file ' '{print $2}' |\
+#     awk -v FS='_' '{print $1}' |\
+#     awk -v FS='.' '{print $1}' |\
+#     sort -u > "$INCOMPLETE_LIST_FILE"
+# echo "失败的样本编号已保存到 [$INCOMPLETE_LIST_FILE]"
 
 
-# 使用comm命令比较成功编号和总的编号列表
-# 比较 ALL_LIST_FILE 与 SUCCESS_LIST_FILE 的差集，保存到 INCOMPLETE_LIST_FILE
-# 取差集：ALL - SUCCESS → 追加到 INCOMPLETE
-comm -23 <(sort "$ALL_LIST_FILE") <(sort "$SUCCESS_LIST_FILE") \
-    >> "$INCOMPLETE_LIST_FILE"
-sort -u "$INCOMPLETE_LIST_FILE" -o "$INCOMPLETE_LIST_FILE"
-echo "  ⇒ 差集（未完成样本编号）已保存到 [$INCOMPLETE_LIST_FILE]"
+# # 使用comm命令比较成功编号和总的编号列表
+# # 比较 ALL_LIST_FILE 与 SUCCESS_LIST_FILE 的差集，保存到 INCOMPLETE_LIST_FILE
+# # 取差集：ALL - SUCCESS → 追加到 INCOMPLETE
+# comm -23 <(sort "$ALL_LIST_FILE") <(sort "$SUCCESS_LIST_FILE") \
+#     >> "$INCOMPLETE_LIST_FILE"
+# sort -u "$INCOMPLETE_LIST_FILE" -o "$INCOMPLETE_LIST_FILE"
+# echo "  ⇒ 差集（未完成样本编号）已保存到 [$INCOMPLETE_LIST_FILE]"
 
 # 将已经下载成功的文件所在的文件夹放到/mnt/d/迅雷下载/ENA/finished_1
 # 刚下载好的文件目前在：/mnt/d/迅雷下载/ENA/reads_fastq：
