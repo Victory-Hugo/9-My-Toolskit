@@ -5,7 +5,7 @@ set -euo pipefail
 # 下载目录（请根据实际情况修改）
 DOWNLOAD_DIR="/mnt/d/迅雷下载/ENA/finished_3"
 # MD5 结果记录文件
-MD5_FILE="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/2-ENA/conf/md5.txt"
+MD5_FILE="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/2-ENA/debug/md5.txt"
 
 # 如果 MD5_FILE 不存在，则创建之
 touch "$MD5_FILE"
@@ -37,3 +37,4 @@ for file in "${files[@]}"; do
 done
 
 echo "全部完成！"
+
