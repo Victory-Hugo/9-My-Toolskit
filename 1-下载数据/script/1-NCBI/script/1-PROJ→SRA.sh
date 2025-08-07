@@ -31,7 +31,7 @@ set -euo pipefail
 # PRJNA1219970
 # PRJNA1028672
 # PRJNA572371
-PROJECT_NUMBER="PRJNA1028672"   # 替换为你的 BioProject 编号
+PROJECT_NUMBER="PRJNA572371"   # 替换为你的 BioProject 编号
 OUT_CSV="/mnt/c/Users/Administrator/Desktop/${PROJECT_NUMBER}_runinfo.csv" 
 
 echo "[$(date +'%F %T')] 开始处理 BioProject ${PROJECT_NUMBER}"
