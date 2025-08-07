@@ -26,11 +26,7 @@
 
 #!/bin/bash
 set -euo pipefail
-# PRJNA1112767
-# PRJNA1225594
-# PRJNA1219970
-# PRJNA1028672
-# PRJNA572371
+
 PROJECT_NUMBER="PRJNA572371"   # 替换为你的 BioProject 编号
 OUT_CSV="/mnt/c/Users/Administrator/Desktop/${PROJECT_NUMBER}_runinfo.csv" 
 
