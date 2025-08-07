@@ -15,7 +15,7 @@ ACC_FILE='/mnt/f/OneDrive/文档（共享）/4_古代DNA/ERR_aDNA.txt'
 #* `conda install -y -c hcc aspera-cli`
 #* 在使用Aspera CLI 前，请确保已安装 Aspera CLI。如果需要配置秘钥，可以复制下方的秘钥。
 #* 我将秘钥复制了一份放在了ASPERA_DSA_SSH="${BASE_DIR}/conf/asperaweb_id_dsa.openssh"
-ASPERA_PATH='/home/luolintao/miniconda3/pkgs/aspera-cli-3.9.6-h5e1937b_0'
+ASPERA_PATH='/home/luolintao/miniconda3/pkgs/aspera-cli-3.9.6-h5e1937b_0'  #! 替换为自己电脑中的conda下的aspera-cli路径：/home/用户名/miniconda3/pkgs/aspera-cli-版本号
 ASPERA_DSA_SSH="${BASE_DIR}/conf/asperaweb_id_dsa.openssh"
 
 #TODO 3. 定义下载输出目录（根据需要修改）
