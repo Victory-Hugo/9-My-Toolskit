@@ -112,7 +112,7 @@ def main():
 
     print(f"MD5 完全匹配: {len(df_match)} 条")
     print(f"MD5 不匹配: {len(df_mismatch)} 条")
-    print(f"本地缺失需下载: {len(df_need)} 条")
+    # print(f"本地缺失需下载: {len(df_need)} 条")
 
     # 4. 提取前缀并写文件
     def extract_prefix(df):
@@ -136,25 +136,25 @@ def main():
     extract_prefix(df_mismatch).to_csv(
         OUTDIR + "md5_损坏.txt", sep="\t", index=False, header=False
     )
-    extract_prefix(df_need).to_csv(
-        OUTDIR + "md5_缺失.txt", sep="\t", index=False, header=False
-    )
+    # extract_prefix(df_need).to_csv(
+    #     OUTDIR + "md5_缺失.txt", sep="\t", index=False, header=False
+    # )
     # 损坏或缺失合并
     s1 = extract_prefix(df_mismatch)
     s2 = extract_prefix(df_need)
-    pd.concat([s1, s2], ignore_index=True) \
-      .drop_duplicates() \
-      .sort_values() \
-      .to_csv(
-          OUTDIR + "md5_损坏或缺失.txt",
-          sep="\t", index=False, header=False
-      )
+    # pd.concat([s1, s2], ignore_index=True) \
+    #   .drop_duplicates() \
+    #   .sort_values() \
+    #   .to_csv(
+    #       OUTDIR + "md5_损坏或缺失.txt",
+    #       sep="\t", index=False, header=False
+    #   )
 
     print("处理完成，输出文件：")
     print("  - md5_完全匹配.txt      （前缀 + 正确 md5）")
     print("  - md5_损坏.txt")
-    print("  - md5_缺失.txt")
-    print("  - md5_损坏或缺失.txt")
+    # print("  - md5_缺失.txt")
+    # print("  - md5_损坏或缺失.txt")
 
 if __name__ == "__main__":
     main()

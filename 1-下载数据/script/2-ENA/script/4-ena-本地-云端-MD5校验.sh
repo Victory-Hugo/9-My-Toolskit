@@ -33,7 +33,7 @@ echo "==> 运行 MD5 对比脚本"
   --cloud-file "$CLOUD_MD5_FILE" \
   --outdir "$OUTPUT_DIR"
 
-DAMAGE_LOSS_FILE="$OUTPUT_DIR/md5_损坏或缺失.txt"
+DAMAGE_LOSS_FILE="$OUTPUT_DIR/md5_损坏.txt"
 if [[ ! -f "$DAMAGE_LOSS_FILE" ]]; then
   echo "ERROR: 列表文件不存在：$DAMAGE_LOSS_FILE" >&2
   exit 1
@@ -54,7 +54,7 @@ for subdir in "$DOWNLOAD_DIR"/finished_*; do
   done
 done
 
-echo "正在匹配损坏或缺失的文件..."
+echo "正在匹配损坏的文件..."
 declare -A to_delete_set=()  # 使用关联数组去重
 while IFS= read -r id; do
   [[ -z "$id" ]] && continue
