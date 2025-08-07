@@ -100,6 +100,8 @@ def main():
         on="File_Name", how="outer",
         suffixes=("_cloud", "_local")
     )
+    df_cloud_new.drop_duplicates(subset=['File_Name', 'md5_new']).\
+        sort_values(by='File_Name').to_csv(OUTDIR + "ENA_cloud_md5.txt", sep='\t', index=False,header=None)
 
     mask_both          = df_merge["md5_new"].notnull() & df_merge["md5"].notnull()
     mask_equal         = mask_both & (df_merge["md5_new"] == df_merge["md5"])

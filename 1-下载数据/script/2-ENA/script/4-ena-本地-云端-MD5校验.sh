@@ -18,86 +18,113 @@ IFS=$'\n\t'
 # - 需保证相关路径和文件存在且有读写权限。
 # - 依赖指定的 Python 环境和脚本，请提前配置好环境。
 # '
+# 配置区
 PYTHON_PATH="/home/luolintao/miniconda3/envs/pyg/bin/python3"
 BASE_DIR="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/2-ENA"
 PY_SCRIPT="$BASE_DIR/python/1-本地-云端-MD5校验.py"
-LOCAL_MD5_FILE="$BASE_DIR/debug/md5.txt"
-CLOUD_MD5_FILE="$BASE_DIR/debug/ERR_aDNA_MD5.txt"
+LOCAL_MD5="$BASE_DIR/debug/md5.txt"
+CLOUD_MD5="$BASE_DIR/debug/ERR_aDNA_MD5.txt"
 OUTPUT_DIR="$BASE_DIR/debug/output"
-DOWNLOAD_DIR="/mnt/d/迅雷下载/ENA" 
+DOWNLOAD_DIR="/mnt/d/迅雷下载/ENA"
 
-mkdir -p "$OUTPUT_DIR"
-echo "==> 运行 MD5 对比脚本"
-"$PYTHON_PATH" "$PY_SCRIPT" \
-  --local-file "$LOCAL_MD5_FILE" \
-  --cloud-file "$CLOUD_MD5_FILE" \
-  --outdir "$OUTPUT_DIR"
+# 函数：运行 MD5 比对
+run_md5_compare() {
+  mkdir -p "$OUTPUT_DIR"
+  echo "==> 运行 MD5 对比脚本"
+  "$PYTHON_PATH" "$PY_SCRIPT" \
+    --local-file "$LOCAL_MD5" \
+    --cloud-file "$CLOUD_MD5" \
+    --outdir "$OUTPUT_DIR"
+}
 
-DAMAGE_LOSS_FILE="$OUTPUT_DIR/md5_损坏.txt"
-if [[ ! -f "$DAMAGE_LOSS_FILE" ]]; then
-  echo "ERROR: 列表文件不存在：$DAMAGE_LOSS_FILE" >&2
-  exit 1
-fi
+# 函数：收集待删除路径到数组 DELETE_LIST
+collect_to_delete() {
+  local damage_file="$OUTPUT_DIR/md5_损坏.txt"
+  [[ -f "$damage_file" ]] || {
+    echo "ERROR: 列表文件不存在：$damage_file" >&2
+    exit 1
+  }
 
-echo "收集待删除的文件/目录列表…"
-declare -a to_delete=()
+  echo "收集待删除的文件/目录列表…"
 
-# 优化方案：先获取所有已存在的目录，然后与损坏列表进行匹配
-echo "正在扫描现有目录结构..."
-declare -A existing_dirs=()
-for subdir in "$DOWNLOAD_DIR"/finished_*; do
-  [[ -d "$subdir" ]] || continue
-  for item in "$subdir"/*; do
-    [[ -e "$item" ]] || continue
-    basename_item=$(basename "$item")
-    existing_dirs["$basename_item"]="$item"
+  # 先把已有的所有样本（文件或目录）按 basename 建 map
+  declare -A exist_map=()
+  for dir in "$DOWNLOAD_DIR"/finished_*; do
+    [[ -d "$dir" ]] || continue
+    for item in "$dir"/*; do
+      [[ -e "$item" ]] || continue
+      exist_map["$(basename "$item")"]="$item"
+    done
   done
-done
 
-echo "正在匹配损坏的文件..."
-declare -A to_delete_set=()  # 使用关联数组去重
-while IFS= read -r id; do
-  [[ -z "$id" ]] && continue
-  
-  # 检查以该ID开头的所有文件/目录
-  for key in "${!existing_dirs[@]}"; do
-    if [[ "$key" == "${id}"* ]]; then
-      path="${existing_dirs[$key]}"
-      if [[ -z "${to_delete_set[$path]:-}" ]]; then
-        to_delete_set["$path"]=1
-        to_delete+=( "$path" )
-        echo "找到待删除项: $path"
+  echo "正在匹配损坏的文件..."
+  while read -r id; do
+    [[ -z "$id" ]] && continue
+    for name in "${!exist_map[@]}"; do
+      if [[ "$name" == "$id"* ]]; then
+        DELETE_LIST+=("${exist_map[$name]}")
+        unset exist_map["$name"]  # 去重
+        echo "  找到待删除: ${exist_map[$name]:-${exist_map[$name]}}"
       fi
+    done
+  done < "$damage_file"
+}
+
+# 函数：交互确认并删除
+confirm_and_delete() {
+  local n=${#DELETE_LIST[@]}
+  echo "共收集到 $n 个待删除项："
+  printf '  %s\n' "${DELETE_LIST[@]}"
+
+  read -r -p "确认删除以上项目？输入 yes 删除，其它取消: " ans
+  if [[ "$ans" != "yes" ]]; then
+    echo "已取消删除。"
+    return
+  fi
+
+  echo "开始删除…"
+  for path in "${DELETE_LIST[@]}"; do
+    if [[ -d "$path" ]]; then
+      echo "  删除目录: $path"
+      rm -rf "$path"
+    elif [[ -f "$path" ]]; then
+      echo "  删除文件: $path"
+      rm -f "$path"
     fi
   done
-done < "$DAMAGE_LOSS_FILE"
+  echo "删除完成，共删除 $n 项。"
+}
 
-count=${#to_delete[@]}
-if (( count == 0 )); then
-  echo "未找到任何要删除的文件或目录。"
-  exit 0
-fi
+# 函数：后续统计对比
+stats_and_compare() {
+  echo "[统计已下载名称...]"
+  find "$DOWNLOAD_DIR" -type f -name '*fastq.gz' \
+    | awk -F/ '{print $NF}' \
+    | sed 's/\.fastq\.gz$//' \
+    | sort -u > "$OUTPUT_DIR/Downloaded_IDs.txt"
 
-echo "共找到 $count 个待删除项："
-for p in "${to_delete[@]}"; do
-  echo "  $p"
-done
+  echo "[生成云端样本列表...]"
+  awk -F'\t' '{print $1}' "$OUTPUT_DIR/ENA_cloud_md5.txt" \
+    | sort -u > "$OUTPUT_DIR/Cloud_IDs.temp"
 
-read -r -p "确认删除以上所有项目？输入 yes 删除，输入其他任何内容取消: " confirm
-if [[ "$confirm" != "yes" ]]; then
-  echo "已取消删除。"
-  exit 0
-fi
+  echo "[比较已下载与云端列表，输出缺失...]"
+  comm -13 "$OUTPUT_DIR/Downloaded_IDs.txt" "$OUTPUT_DIR/Cloud_IDs.temp" \
+    > "$OUTPUT_DIR/md5_缺失.txt"
 
-echo "开始删除…"
-for p in "${to_delete[@]}"; do
-  if [[ -d "$p" ]]; then
-    echo "Deleting directory: $p"
-    rm -rf "$p"
-  elif [[ -f "$p" ]]; then
-    echo "Deleting file: $p"
-    rm -f "$p"
-  fi
-done
+  rm -f "$OUTPUT_DIR/Cloud_IDs.temp"
+  rm -f "$OUTPUT_DIR/Downloaded_IDs.txt"
+  echo "[缺失样本列表已输出至 md5_缺失.txt]"
+  cat "$OUTPUT_DIR/md5_缺失.txt" >> "$OUTPUT_DIR/md5_损坏.txt"
+  sort -u "$OUTPUT_DIR/md5_损坏.txt" -o "$OUTPUT_DIR/md5_用我继续下载.temp"
+  awk -v FS='_' '{print $1}' "$OUTPUT_DIR/md5_用我继续下载.temp" \
+    | sort -u > "$OUTPUT_DIR/md5_用我继续下载.txt"
+  rm -f "$OUTPUT_DIR/md5_用我继续下载.temp"
+}
 
-echo "删除完成，共删除 $count 项。"
+### 主流程
+declare -a DELETE_LIST=()
+
+run_md5_compare
+collect_to_delete
+confirm_and_delete
+stats_and_compare
