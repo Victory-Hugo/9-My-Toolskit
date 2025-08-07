@@ -5,16 +5,16 @@ from urllib3.util.retry import Retry
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 # 配置常量
-BASE_PATH = r'D:/幽门螺旋杆菌'
-FILE_PATH = r'F:/OneDrive/文档（科研）/脚本/我的科研脚本/Python/数据科学/下载NCBI.txt'
+BASE_PATH = r'/mnt/c/Users/Administrator/Desktop/'
+FILE_PATH = r'/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/1-NCBI/conf/下载NCBI.txt'
 OUTPUT_FILE = os.path.join(BASE_PATH, 'generated_urls.txt')
 SUCCESS_FILE = os.path.join(BASE_PATH, 'success.txt')
 FAILURE_FILE = os.path.join(BASE_PATH, 'failure.txt')
 
 URL_TEMPLATE = 'https://api.ncbi.nlm.nih.gov/datasets/v2/genome/accession/{}/download?include_annotation_type=GENOME_FASTA' \
-    # '&include_annotation_type=GENOME_GFF' \
+    '&include_annotation_type=GENOME_GFF' \
+    '&include_annotation_type=CDS_FASTA' 
     # '&include_annotation_type=RNA_FASTA' \
-    # '&include_annotation_type=CDS_FASTA' \
     # '&include_annotation_type=PROT_FASTA' \
     # '&include_annotation_type=SEQUENCE_REPORT' \
     # '&hydrated=FULLY_HYDRATED'
