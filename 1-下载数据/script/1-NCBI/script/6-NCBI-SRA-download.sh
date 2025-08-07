@@ -1,3 +1,40 @@
+: '
+脚本名称: 6-NCBI-SRA-download.sh
+功能描述:
+    本脚本用于批量下载 NCBI SRA 数据，支持断点续传和失败重试，适用于大规模数据下载任务。
+    主要特性包括：
+      - 并行下载（依赖 GNU parallel）
+      - 每个 accession 号可配置最大重试次数
+      - 下载失败的 accession 号会被记录，便于后续处理
+      - 跳过已成功下载的数据，避免重复下载
+
+使用说明:
+    1. 修改脚本中的以下参数以适应你的环境：
+        - SRA_LIST: 包含 SRA accession 号的文本文件路径，每行一个 accession
+        - PREFETCH: prefetch 可执行文件的绝对路径
+        - OUTDIR: 下载数据的输出目录
+        - JOBS: 并行任务数（根据机器性能调整）
+        - MAX_RETRY: 每个 accession 最大重试次数
+    2. 确保已安装 GNU parallel 和 sratoolkit，并配置好环境变量
+    3. 运行脚本即可自动批量下载 SRA 数据
+
+依赖:
+    - GNU parallel
+    - sratoolkit（prefetch 工具）
+
+输出:
+    - 下载的 SRA 文件保存在 OUTDIR 目录下
+    - 下载失败的 accession 号记录在 $FAILED_LIST 文件中
+    - parallel 运行日志保存在 $JOBLOG 文件中
+
+注意事项:
+    - 若某个 accession 多次下载失败，请检查网络或 SRA 号有效性
+    - 脚本会自动跳过已存在的 SRA 文件，支持断点续传
+    - 失败列表可用于后续单独重试或人工检查
+
+作者: （请填写作者信息）
+更新时间: （请填写日期）
+'
 #!/usr/bin/env bash
 # SRA 批量下载脚本（改进版）
 # 依赖：GNU parallel, prefetch
