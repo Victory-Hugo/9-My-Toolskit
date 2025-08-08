@@ -54,7 +54,7 @@ OUTPUT_TXT="${BASE_DIR}/conf/aDNA.txt" #todo 最终输出文件路径
 
 #*============无需修改系列的内容=====================
 # ENA API 字段
-FIELDS="run_accession,sample_accession,experiment_accession,study_accession,tax_id,scientific_name,base_count,fastq_ftp,fastq_md5"
+FIELDS="run_accession,sample_accession,sample_alias,study_title,experiment_accession,study_accession,tax_id,scientific_name,base_count,fastq_ftp,fastq_md5"
 ENA_API="https://www.ebi.ac.uk/ena/portal/api/filereport"
 LOG="/tmp/get_${PROJECT}_$(date '+%Y%m%d_%H%M%S').log"
 RETRY=3
@@ -62,7 +62,7 @@ RETRY=3
 # 输入输出文件路径
 INPUT="${OUTPUT}"
 # 写表头（制表符分隔）
-echo -e "run_accession\tsample_accession\texperiment_accession\tstudy_accession\ttax_id\tscientific_name\tbase_count\tfastq_ftp\tfastq_md5" > "$OUTPUT"
+echo -e "run_accession\tsample_accession\tsample_alias\tstudy_title\texperiment_accession\tstudy_accession\ttax_id\tscientific_name\tbase_count\tfastq_ftp\tfastq_md5" > "$OUTPUT"
 
 log() {
   echo "[$(date '+%F %T')] $*" | tee -a "$LOG" >&2

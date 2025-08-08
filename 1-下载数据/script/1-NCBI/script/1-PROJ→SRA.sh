@@ -26,8 +26,10 @@
 
 #!/bin/bash
 set -euo pipefail
-
-PROJECT_NUMBER="PRJNA572371"   # 替换为你的 BioProject 编号
+# #? 如果网络出现TLS握手错误，可以尝试取消/使用代理
+# unset http_proxy
+# unset https_proxy
+PROJECT_NUMBER="PRJNA778930"   # 替换为你的 BioProject 编号
 OUT_CSV="/mnt/c/Users/Administrator/Desktop/${PROJECT_NUMBER}_runinfo.csv" 
 
 echo "[$(date +'%F %T')] 开始处理 BioProject ${PROJECT_NUMBER}"
