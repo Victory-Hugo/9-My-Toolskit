@@ -62,13 +62,16 @@ collect_to_delete() {
     [[ -z "$id" ]] && continue
     for name in "${!exist_map[@]}"; do
       if [[ "$name" == "$id"* ]]; then
-        DELETE_LIST+=("${exist_map[$name]}")
-        unset exist_map["$name"]  # 去重
-        echo "  找到待删除: ${exist_map[$name]:-${exist_map[$name]}}"
+        # 修正点：先缓存再 unset，避免 unbound variable
+        path="${exist_map[$name]}"
+        DELETE_LIST+=("$path")
+        unset exist_map["$name"]
+        echo "  找到待删除: $path"
       fi
     done
   done < "$damage_file"
 }
+
 
 # 函数：交互确认并删除
 confirm_and_delete() {
