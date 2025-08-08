@@ -4,7 +4,7 @@ from Bio import Entrez, SeqIO
 Entrez.email = "your_email@example.com"
 
 # 指定保存文件的目录
-save_directory = r"F:/OneDrive/文档（科研）/脚本/我的科研脚本/Python/数据科学/下载序列"
+save_directory = r"/mnt/c/Users/Administrator/Desktop/"
 
 # 定义函数以仅提取特征信息
 def extract_sequences_info(id_list):
@@ -29,7 +29,7 @@ def extract_sequences_info(id_list):
 
 # 从同一个文件读取序列ID
 id_list = []
-with open("F:/OneDrive/文档（科研）/脚本/我的科研脚本/Python/数据科学/下载NCBI.txt", "r") as file:
+with open("/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/1-NCBI/conf/下载NCBI.txt", "r") as file:
     for line in file:
         id_list.append(line.strip())
 

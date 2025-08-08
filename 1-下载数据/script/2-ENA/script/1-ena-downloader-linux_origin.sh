@@ -71,17 +71,18 @@ log "去重后共 ${uniq_count} 个 accession，将一次性传给 Java 下载�
 
 # ---------------------- 运行 Java 一次性下载 -----------------------
 log "调用 Java 开始下载..."
-if java -jar "$JAVA_SOFT_PATH" \
+java -jar "$JAVA_SOFT_PATH" \
     --accessions="$ACC_DEDUP" \
     --format="$FORMAT" \
     --location="$OUTPUT_DIR" \
     --protocol="$PROTOCOL" \
     --asperaLocation="${ASPERA_PATH}" \
-    --email=None 
-    >>"$MAIN_LOG" 2>&1; then
+    --email=giantlinlinlin@gmail.com >>"$MAIN_LOG" 2>&1
+STATUS=$?
+if [ $STATUS -eq 0 ]; then
   log "Java 下载命令返回成功。"
 else
-  log "Java 下载命令失败，请查看日志: ${MAIN_LOG}"
+  log "Java 下载命令失败，状态码: $STATUS，请查看日志: ${MAIN_LOG}"
   rm -f "$ACC_DEDUP"
   exit 1
 fi
