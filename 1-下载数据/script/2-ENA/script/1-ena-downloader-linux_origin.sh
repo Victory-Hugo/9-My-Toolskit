@@ -77,7 +77,7 @@ if java -jar "$JAVA_SOFT_PATH" \
     --location="$OUTPUT_DIR" \
     --protocol="$PROTOCOL" \
     --asperaLocation="${ASPERA_PATH}" \
-    --email=None \
+    --email=None 
     >>"$MAIN_LOG" 2>&1; then
   log "Java 下载命令返回成功。"
 else
