@@ -15,13 +15,15 @@
 '
 #! /bin/bash
 set -euo pipefail
+unset http_proxy
+unset https_proxy
 #* 下载 NCBI 数据的组装数据
-
+PROJ="PRJNA1112767"
 PYTHON_SCRIPT="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/1-NCBI/python/7-下载NCBI的Assembly.py"
-TXT_FILE="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/1-NCBI/conf/下载NCBI.txt"
+TXT_FILE="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/1-NCBI/conf/${PROJ}_下载NCBI.txt"
 PYTHON_PATH="/home/luolintao/miniconda3/envs/pyg/bin/python3"
-DOWNLOAD_PATH="/mnt/c/Users/Administrator/Desktop"
-
+DOWNLOAD_PATH="/mnt/d/迅雷下载/${PROJ}"
+mkdir -p "${DOWNLOAD_PATH}"
 # 然后：
 ${PYTHON_PATH} \
   ${PYTHON_SCRIPT} \
