@@ -8,9 +8,9 @@
    * 来自苏州市医院 A 和温州市某医院的 100 份临床样本已上传至 NCBI GenBank，对应的 BioProject 登录号是 **PRJNA1112767(完成)**。
 3. **宏基因组数据**：
 
-   * 苏州市社区宏基因组样本：BioProject **PRJNA1225594**
-   * 苏州市医院 B 的临床宏基因组样本：BioProject **PRJNA1219970**
-   * 上海市宏基因组样本：BioProject **PRJNA1028672**
+   * 苏州市社区宏基因组样本：BioProject **PRJNA1225594(完成)**
+   * 苏州市医院 B 的临床宏基因组样本：BioProject **PRJNA1219970(完成)**
+   * 上海市宏基因组样本：BioProject **PRJNA1028672(完成)**
    * 深圳市宏基因组样本：BioProject **PRJNA572371**
 4. **补充材料**：
 

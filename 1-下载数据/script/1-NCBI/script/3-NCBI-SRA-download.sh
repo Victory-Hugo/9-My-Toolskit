@@ -47,8 +47,9 @@
 # 基本参数                          #
 ####################################
 #TODO : 修改以下参数以适应你的环境
-
-PROJ="PRJNA1225594"
+unset http_proxy
+unset https_proxy
+PROJ="PRJNA1028672"
 SRA_LIST="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/1-NCBI/conf/${PROJ}_RUN_ID.txt" #* 格式：每行一个 accession 号
 
 #* prefetch 可执行文件路径

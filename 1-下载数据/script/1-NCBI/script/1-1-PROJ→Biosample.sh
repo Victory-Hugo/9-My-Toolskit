@@ -3,7 +3,7 @@ set -euo pipefail
 unset http_proxy
 unset https_proxy
 
-PROJECT_NUMBER="PRJNA1225594"
+PROJECT_NUMBER="PRJNA572371"
 OUT_CSV="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/1-NCBI/conf/${PROJECT_NUMBER}_runinfo.csv"
 
 echo "[$(date +'%F %T')] 开始处理 BioProject ${PROJECT_NUMBER}"
