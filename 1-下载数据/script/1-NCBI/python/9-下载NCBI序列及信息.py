@@ -4,7 +4,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 
 # ——————— 配置部分 ———————
 Entrez.email         = "giantlinlinlin@gmail.com"
-save_directory       = r"/mnt/d/迅雷下载/NCBI/BA菌Refseq3.5M_8M_下载NCBI/"
+save_directory       = r"/mnt/d/迅雷下载/鲍曼组装/"
 os.makedirs(save_directory, exist_ok=True)
 success_log_file     = os.path.join(save_directory, "success_log.txt")
 failure_log_file     = os.path.join(save_directory, "failure_log.txt")
