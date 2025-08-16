@@ -4,7 +4,7 @@
 unset http_proxy
 unset https_proxy
 set -euo pipefail
-PROJ="PRJNA1028672"
+PROJ="PRJNA572371"
 INFILE="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/1-NCBI/conf/${PROJ}_runinfo.csv"
 OUT_FILE="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/1-NCBI/conf/${PROJ}_biosample.tsv"
 

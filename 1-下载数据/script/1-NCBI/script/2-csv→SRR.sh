@@ -6,7 +6,7 @@ PYTHON="/home/luolintao/miniconda3/envs/pyg/bin/python3"
 SCRIPT_1="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/1-NCBI/python/0-csv→SRR.py"
 SCRIPT_2="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/1-NCBI/python/0-csv→Run_Sample.py"
 # 输入输出文件路径
-PROJ="PRJNA1028672"
+PROJ="PRJNA572371"
 INPUT="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/1-NCBI/conf/${PROJ}_runinfo.csv"
 OUTPUT1="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/1-NCBI/conf/${PROJ}_RUN_ID.txt"
 OUTPUT2="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/1-NCBI/conf/${PROJ}_SAMPLE_RUN_ID.txt"

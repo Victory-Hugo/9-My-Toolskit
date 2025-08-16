@@ -11,7 +11,7 @@
    * 苏州市社区宏基因组样本：BioProject **PRJNA1225594(完成)**
    * 苏州市医院 B 的临床宏基因组样本：BioProject **PRJNA1219970(完成)**
    * 上海市宏基因组样本：BioProject **PRJNA1028672(完成)**
-   * 深圳市宏基因组样本：BioProject **PRJNA572371**
+   * 深圳市宏基因组样本：BioProject **PRJNA572371(完成)**
 4. **补充材料**：
 
    * 所有样本的详细 accession 编号见 Supplementary Data 4。
