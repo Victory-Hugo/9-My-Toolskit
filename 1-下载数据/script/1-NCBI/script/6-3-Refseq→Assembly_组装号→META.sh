@@ -6,10 +6,10 @@ unset http_proxy
 unset https_proxy
 set -euo pipefail
 
-# 输入：只含 BioSample ID 的纯文本（每行一个）
+# 输入：只含 biosample ID 的纯文本（每行一个）
 INFILE="/mnt/d/迅雷下载/鲍曼组装/conf/AB_Biosample.txt"
 # 输出：带元数据的 tsv（直接写入，无临时文件）
-OUT_FILE="/mnt/d/迅雷下载/鲍曼组装/conf/AB_Biosample_META.tsv"
+OUT_FILE="/mnt/d/迅雷下载/鲍曼组装/conf/AB_Biosample_META_more.tsv"
 
 # 简单检查输入文件
 if [[ ! -f "$INFILE" ]]; then
@@ -25,7 +25,7 @@ mapfile -t BIOSAMPLES < <(
 )
 
 # 写表头（直接覆盖 OUT_FILE）
-echo -e "BioSampleAccn\tDescription\tSubmitter\tCollected_by\tGeographic_location" > "$OUT_FILE"
+echo -e "BioSampleAccn\tDescription\tSubmitter\tCollected_by\tGeographic_location\tHost\tCollection_date\tLatitude_and_longitude" > "$OUT_FILE"
 
 if (( ${#BIOSAMPLES[@]} == 0 )); then
   echo "WARN: 未从 $INFILE 读取到任何 BioSample ID" >&2
@@ -47,30 +47,26 @@ fetch_one() {
           -block Attribute -if Attribute@attribute_name -equals "collected_by" -element Attribute \
           -block Attribute -if Attribute@attribute_name -equals "geo_loc_name" -element Attribute \
           -block Attribute -if Attribute@attribute_name -equals "geographic location (country and/or sea)" -element Attribute \
-          -block Attribute -if Attribute@attribute_name -equals "geographic location (region and locality)" -element Attribute
+          -block Attribute -if Attribute@attribute_name -equals "geographic location (region and locality)" -element Attribute \
+          -block Attribute -if Attribute@attribute_name -equals "host" -element Attribute \
+          -block Attribute -if Attribute@attribute_name -equals "collection_date" -element Attribute \
+          -block Attribute -if Attribute@attribute_name -equals "lat_lon" -element Attribute 
   )"; then
     # 查询失败时输出 NA 行（追加到 OUT_FILE）
-    echo -e "${bs}\tNA\tNA\tNA\tNA" >> "$OUT_FILE"
+    echo -e "${bs}\tNA\tNA\tNA\tNA\tNA\tNA\tNA" >> "$OUT_FILE"
     return
   fi
 
-  # 解析 xtract 返回的字段（Title Name collected geo_loc_name geo_country geo_region）
-  IFS=$'\t' read -r title name collected geo_loc_name geo_country geo_region <<< "$line"
+  # 解析 xtract 返回的字段（Title Name collected_by geo_loc_name host collection_date lat_lon）
+  IFS=$'\t' read -r title name collected geo_loc_name host collection_date lat_lon <<< "$line"
   local geo="NA"
   
-  # 优先使用 geo_loc_name -> 再组合 country + region
+  # 使用 geo_loc_name 作为地理位置
   if [[ -n "$geo_loc_name" && "$geo_loc_name" != "NA" ]]; then
     geo="$geo_loc_name"
-  elif [[ -n "$geo_country" && "$geo_country" != "NA" ]]; then
-    geo="$geo_country"
-    if [[ -n "$geo_region" && "$geo_region" != "NA" ]]; then
-      geo="$geo; $geo_region"
-    fi
-  elif [[ -n "$geo_region" && "$geo_region" != "NA" ]]; then
-    geo="$geo_region"
   fi
 
-  echo -e "${bs}\t${title:-NA}\t${name:-NA}\t${collected:-NA}\t${geo}" >> "$OUT_FILE"
+  echo -e "${bs}\t${title:-NA}\t${name:-NA}\t${collected:-NA}\t${geo}\t${host:-NA}\t${collection_date:-NA}\t${lat_lon:-NA}" >> "$OUT_FILE"
 }
 
 # 主循环：逐个查询（直接追加到 OUT_FILE）

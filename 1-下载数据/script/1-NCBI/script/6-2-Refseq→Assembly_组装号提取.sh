@@ -1,7 +1,7 @@
 #!/bin/bash
 set -u
 
-INPUT="/mnt/d/迅雷下载/鲍曼组装/ncbi_refseq_assembly_mapping.csv"
+INPUT="/mnt/d/迅雷下载/鲍曼组装/ncbi_refseq_assembly_mapping_gnu_parallel.csv"
 OUT_ASSEMBLY="/mnt/d/迅雷下载/鲍曼组装/conf/AB_Assembly.txt"
 OUT_BIOSAMPLE="/mnt/d/迅雷下载/鲍曼组装/conf/AB_Biosample.txt"
 
