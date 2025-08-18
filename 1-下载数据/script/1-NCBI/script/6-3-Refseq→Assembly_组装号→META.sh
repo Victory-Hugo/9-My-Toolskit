@@ -1,15 +1,18 @@
 #!/bin/bash
-# 查询 BioSample 元数据（Description / Submitter / Collected by / Geographic location）
-# 用法：bash biosample_fetch.sh
+# 下载 BioSample XML 文件到本地
+# 用法：bash biosample_xml_download.sh
 
 unset http_proxy
 unset https_proxy
-set -euo pipefail
+
 
 # 输入：只含 biosample ID 的纯文本（每行一个）
 INFILE="/mnt/d/迅雷下载/鲍曼组装/conf/AB_Biosample.txt"
-# 输出：带元数据的 tsv（直接写入，无临时文件）
-OUT_FILE="/mnt/d/迅雷下载/鲍曼组装/conf/AB_Biosample_META_more.tsv"
+# 输出目录：保存XML文件的目录
+XML_DIR="/mnt/d/迅雷下载/鲍曼组装/xml"
+
+# 创建输出目录
+mkdir -p "$XML_DIR"
 
 # 简单检查输入文件
 if [[ ! -f "$INFILE" ]]; then
@@ -24,56 +27,62 @@ mapfile -t BIOSAMPLES < <(
     | sort -u
 )
 
-# 写表头（直接覆盖 OUT_FILE）
-echo -e "BioSampleAccn\tDescription\tSubmitter\tCollected_by\tGeographic_location\tHost\tCollection_date\tLatitude_and_longitude" > "$OUT_FILE"
-
 if (( ${#BIOSAMPLES[@]} == 0 )); then
   echo "WARN: 未从 $INFILE 读取到任何 BioSample ID" >&2
-  echo "完成：已创建空表头 -> $OUT_FILE"
   exit 0
 fi
 
-# 查询函数：保持你原来的 xtract 字段顺序与行为
-fetch_one() {
+echo "开始下载 ${#BIOSAMPLES[@]} 个 BioSample 的 XML 文件到 $XML_DIR"
+
+# 下载单个 BioSample XML 文件
+download_xml() {
   local bs="$1"
-  local line
-  if ! line="$(
-    esearch -db biosample -query "$bs" \
-      | efetch -format xml \
-      | xtract \
-          -pattern BioSample \
-          -block Description -element Title \
-          -block Owner -element Name \
-          -block Attribute -if Attribute@attribute_name -equals "collected_by" -element Attribute \
-          -block Attribute -if Attribute@attribute_name -equals "geo_loc_name" -element Attribute \
-          -block Attribute -if Attribute@attribute_name -equals "geographic location (country and/or sea)" -element Attribute \
-          -block Attribute -if Attribute@attribute_name -equals "geographic location (region and locality)" -element Attribute \
-          -block Attribute -if Attribute@attribute_name -equals "host" -element Attribute \
-          -block Attribute -if Attribute@attribute_name -equals "collection_date" -element Attribute \
-          -block Attribute -if Attribute@attribute_name -equals "lat_lon" -element Attribute 
-  )"; then
-    # 查询失败时输出 NA 行（追加到 OUT_FILE）
-    echo -e "${bs}\tNA\tNA\tNA\tNA\tNA\tNA\tNA" >> "$OUT_FILE"
-    return
-  fi
-
-  # 解析 xtract 返回的字段（Title Name collected_by geo_loc_name host collection_date lat_lon）
-  IFS=$'\t' read -r title name collected geo_loc_name host collection_date lat_lon <<< "$line"
-  local geo="NA"
+  local xml_file="$XML_DIR/${bs}.xml"
   
-  # 使用 geo_loc_name 作为地理位置
-  if [[ -n "$geo_loc_name" && "$geo_loc_name" != "NA" ]]; then
-    geo="$geo_loc_name"
+  echo "正在下载: $bs"
+  
+  # 下载XML并保存到文件
+  if esearch -db biosample -query "$bs" | efetch -format xml > "$xml_file"; then
+    # 检查文件是否为空或包含错误信息
+    if [[ -s "$xml_file" ]] && grep -q "<BioSample" "$xml_file"; then
+      echo "  成功: $xml_file"
+      return 0
+    else
+      echo "  失败: XML文件为空或格式错误"
+      rm -f "$xml_file"
+      return 1
+    fi
+  else
+    echo "  失败: 无法下载 $bs"
+    rm -f "$xml_file"
+    return 1
   fi
-
-  echo -e "${bs}\t${title:-NA}\t${name:-NA}\t${collected:-NA}\t${geo}\t${host:-NA}\t${collection_date:-NA}\t${lat_lon:-NA}" >> "$OUT_FILE"
 }
 
-# 主循环：逐个查询（直接追加到 OUT_FILE）
+# 统计变量
+success_count=0
+failed_count=0
+skipped_count=0
+
+# 主循环：逐个下载XML文件
 for bs in "${BIOSAMPLES[@]}"; do
-  fetch_one "$bs"
-  # 保留原来 sleep 节奏（必要时可放大以避免 NCBI 限流）
-  sleep 0.01
+  # 检查文件是否已存在
+  if [[ -f "$XML_DIR/${bs}.xml" ]]; then
+    echo "跳过（文件已存在）: ${bs}.xml"
+    ((skipped_count++))
+  elif download_xml "$bs"; then
+    ((success_count++))
+  else
+    ((failed_count++))
+  fi
+  
+  # 控制请求频率，避免被NCBI限制
+  sleep 0.1
 done
 
-echo "完成：结果已保存到 $OUT_FILE"
+echo ""
+echo "下载完成！"
+echo "成功: $success_count"
+echo "跳过: $skipped_count" 
+echo "失败: $failed_count"
+echo "XML文件保存在: $XML_DIR"
