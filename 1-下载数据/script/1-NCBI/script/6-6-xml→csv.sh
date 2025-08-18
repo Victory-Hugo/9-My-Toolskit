@@ -17,9 +17,9 @@
 PYTHON3="python3"
 PY_SCRIPT1="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/1-NCBI/python/6-6-xml→csv.py"
 PY_SCRIPT2="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/1-NCBI/python/6-7-csv-concat.py"
-XML_DIR="/mnt/d/迅雷下载/鲍曼组装/xml"
+XML_DIR="/mnt/d/迅雷下载/鲍曼组装/xml2"
 OUT_DIR="/mnt/d/迅雷下载/鲍曼组装/csv"
-FINAL_CSV="/mnt/d/迅雷下载/鲍曼组装/merged.csv"
+FINAL_CSV="/mnt/d/迅雷下载/鲍曼组装/merged2.csv"
 
 # 确保输出目录存在
 mkdir -p "$OUT_DIR"
