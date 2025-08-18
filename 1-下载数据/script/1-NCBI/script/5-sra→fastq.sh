@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # 下载目录（末尾不加斜杠）  
-DOWNLOAD_DIR="/mnt/d/迅雷下载/NCBI"
+DOWNLOAD_DIR="/mnt/d/迅雷下载/NCBI/PRJNA1028672/"
 
 # 日志文件
 LOG_FILE="${DOWNLOAD_DIR}/conversion.log"

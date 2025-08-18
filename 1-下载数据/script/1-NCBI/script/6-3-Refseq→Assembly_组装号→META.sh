@@ -7,9 +7,9 @@ unset https_proxy
 
 
 # 输入：只含 biosample ID 的纯文本（每行一个）
-INFILE="/mnt/d/迅雷下载/鲍曼组装/conf/AB_Biosample.txt"
+INFILE="/mnt/d/迅雷下载/鲍曼组装/conf/AB_Biosample_sort.txt"
 # 输出目录：保存XML文件的目录
-XML_DIR="/mnt/d/迅雷下载/鲍曼组装/xml"
+XML_DIR="/mnt/d/迅雷下载/鲍曼组装/xml2"
 
 # 创建输出目录
 mkdir -p "$XML_DIR"

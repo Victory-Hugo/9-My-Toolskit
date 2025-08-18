@@ -1,3 +1,29 @@
+: '
+脚本功能说明：
+本脚本用于批量查询 NCBI BioSample 数据库中的样本元数据，
+包括 Description、Submitter、Collected by 和 Geographic location 信息，并将结果保存为 TSV 文件。
+#!2025年8月18日更新：不建议使用如下脚本获取信息，因为获取的信息不完善。
+#!建议使用1-下载数据/script/1-NCBI/script/6-3-Refseq→Assembly_组装号→META.sh获取最完整的信息
+主要流程：
+1. 读取指定项目的 runinfo.csv 文件，自动检测分隔符（支持 TAB、逗号、分号、竖线）。
+2. 自动查找 BioSampleAccn 或 BioSample 列，提取所有唯一的 BioSample ID。
+3. 通过 NCBI Entrez 工具（esearch、efetch、xtract）查询每个 BioSample 的元数据信息。
+4. 优先使用 geo_loc_name 字段作为地理位置信息，若无则组合 country 和 region 字段。
+5. 将所有结果写入输出文件（TSV 格式），包含表头。
+6. 支持异常处理，若查询失败则填充 NA。
+
+使用方法：
+bash biosample_fetch.sh input.csv
+
+依赖工具：
+- NCBI Entrez Direct (esearch, efetch, xtract)
+- awk, sort, head, tr, mapfile
+
+注意事项：
+- 输入文件需包含 BioSampleAccn 或 BioSample 列。
+- 需提前安装 NCBI Entrez Direct 工具。
+- 脚本自动处理代理设置，适合在无代理环境下运行。
+'
 #!/bin/bash
 # 查询 BioSample 元数据（Description / Submitter / Collected by / Geographic location）
 # 用法：bash biosample_fetch.sh input.csv
