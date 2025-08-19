@@ -26,12 +26,19 @@ def xml_to_csv(xml_path, out_dir):
             record[name] = value
             all_attrs.add(name)
         
-        # ✅ 提取 BioProject 的 label
+        # ✅ 提取 SRA Id
+        sra_id = biosample.find("Ids/Id[@db='SRA']")
+        if sra_id is not None and sra_id.text:
+            record["SRA"] = sra_id.text.strip()
+        else:
+            record["SRA"] = "NA"
+        
+        # ✅ 提取 bioproject label
         bioproject = biosample.find("Links/Link[@target='bioproject']")
         if bioproject is not None:
-            record["bioproject_label"] = bioproject.attrib.get("label")
+            record["bioproject"] = bioproject.attrib.get("label", "NA")
         else:
-            record["bioproject_label"] = "NA"
+            record["bioproject"] = "NA"
 
         rows.append(record)
 

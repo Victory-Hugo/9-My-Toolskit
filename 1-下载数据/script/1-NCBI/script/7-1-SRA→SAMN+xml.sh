@@ -10,7 +10,7 @@ unset https_proxy
 
 # 默认配置
 #!INFILE每行一个SRA编号，例如"ERR1012803"
-INFILE="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/1-NCBI/conf/鲍曼NC2025.txt"
+INFILE="/mnt/d/迅雷下载/鲍曼组装/conf/1.txt"
 XML_DIR="/mnt/d/迅雷下载/鲍曼组装/xml"
 CSV_FILE="$XML_DIR/run_biosample_map.csv"
 LOG_FILE="$XML_DIR/run_biosample_log.txt"
