@@ -19,9 +19,9 @@ unset http_proxy
 unset https_proxy
 #* 下载 NCBI 数据的组装数据
 PYTHON_SCRIPT="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/1-NCBI/python/7-下载NCBI的Assembly.py"
-TXT_FILE="/mnt/d/迅雷下载/鲍曼组装/conf/AB_Assembly.txt"
+TXT_FILE="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/1-NCBI/conf/鲍曼NC2025组装.txt"
 PYTHON_PATH="/home/luolintao/miniconda3/envs/pyg/bin/python3"
-DOWNLOAD_PATH="/mnt/d/迅雷下载/鲍曼组装/data"
+DOWNLOAD_PATH="/mnt/d/迅雷下载/鲍曼组装2"
 mkdir -p "${DOWNLOAD_PATH}"
 # 然后：
 ${PYTHON_PATH} \

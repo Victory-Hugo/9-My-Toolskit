@@ -26,6 +26,13 @@ def xml_to_csv(xml_path, out_dir):
             record[name] = value
             all_attrs.add(name)
         
+        # ✅ 提取 BioProject 的 label
+        bioproject = biosample.find("Links/Link[@target='bioproject']")
+        if bioproject is not None:
+            record["bioproject_label"] = bioproject.attrib.get("label")
+        else:
+            record["bioproject_label"] = "NA"
+
         rows.append(record)
 
     # 转换为 DataFrame
