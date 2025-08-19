@@ -5,11 +5,11 @@
 # 日期：2025年8月19日
 
 # 默认配置
-INPUT_FILE="/mnt/c/Users/Administrator/Desktop/1.txt"
-BIOSAMPLE_DIR="/mnt/c/Users/Administrator/Desktop/biosample_xml"
-SRA_DIR="/mnt/c/Users/Administrator/Desktop/SRA_xml"
-LOG_FILE="/mnt/c/Users/Administrator/Desktop/download_log.txt"
-DEFAULT_PARALLEL_JOBS=10  # 默认并行任务数（使用API密钥可以提高）
+INPUT_FILE="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/1-NCBI/conf/biosample.txt"
+BIOSAMPLE_DIR="/mnt/g/鲍曼META/biosample_xml"
+SRA_DIR="/mnt/g/鲍曼META/SRA_xml"
+LOG_FILE="/mnt/g/鲍曼META/download_log.txt"
+DEFAULT_PARALLEL_JOBS=6  # 默认并行任务数（使用API密钥可以提高）
 
 # NCBI API配置
 NCBI_API_KEY="29b326d54e7a21fc6c8b9afe7d71f441d809" #!请自己在NCBI申请API密钥
@@ -128,22 +128,46 @@ process_sample() {
     # 2. 尝试获取关联的SRA数据
     echo "  [$$] 正在搜索关联的SRA数据..."
     
-    # 方法1：通过elink链接
-    echo "    [$$] 尝试方法1: elink..."
-    sra_ids=$(esearch -db biosample -query "$sample_id" | elink -target sra | esummary | grep -o "SRR[0-9]\+" | sort -u 2>/dev/null)
+    # 方法1：从biosample XML中直接提取SRA ID
+    echo "    [$$] 尝试方法1: 从biosample XML提取SRA ID..."
+    sra_ids=$(grep '<Id db="SRA">' "$biosample_xml" | sed 's/.*<Id db="SRA">\([^<]*\)<\/Id>.*/\1/' | sort -u 2>/dev/null)
     
-    # 方法2：如果没找到，尝试直接搜索
+    # 方法2：通过elink链接
     if [ -z "$sra_ids" ]; then
-        echo "    [$$] 尝试方法2: 直接搜索..."
-        sra_ids=$(esearch -db sra -query "$sample_id" | esummary | grep -o "SRR[0-9]\+" | sort -u 2>/dev/null)
+        echo "    [$$] 尝试方法2: elink..."
+        # 提取所有SRA相关的ID（支持SRR/ERR/DRR/SRS/DRS等格式）
+        sra_ids=$(esearch -db biosample -query "$sample_id" | elink -target sra | esummary | grep -E "<Item Name=\"Run\".*>|<Item Name=\"Experiment\".*>" | sed 's/.*>\([^<]*\)<.*/\1/' | grep -E "[SED]R[RS][0-9]+|DRS[0-9]+" | sort -u 2>/dev/null)
+        
+        # 如果仍未找到，尝试更通用的提取方式
+        if [ -z "$sra_ids" ]; then
+            sra_ids=$(esearch -db biosample -query "$sample_id" | elink -target sra | esummary | grep -oE "[SED]R[RS][0-9]+|DRS[0-9]+" | sort -u 2>/dev/null)
+        fi
     fi
     
-    # 方法3：通过bioproject搜索
+    # 方法3：如果没找到，尝试直接搜索
     if [ -z "$sra_ids" ]; then
-        bioproject_id=$(grep -o 'PRJNA[0-9]\+' "$biosample_xml" | head -1)
+        echo "    [$$] 尝试方法3: 直接搜索..."
+        sra_ids=$(esearch -db sra -query "$sample_id" | esummary | grep -oE "[SED]R[RS][0-9]+|DRS[0-9]+" | sort -u 2>/dev/null)
+    fi
+    
+    # 方法4：通过bioproject搜索
+    if [ -z "$sra_ids" ]; then
+        # 从XML中提取bioproject ID（支持多种格式）
+        bioproject_id=$(grep -E '<Link.*target="bioproject".*>|<Id db="BioProject">' "$biosample_xml" | head -1)
         if [ -n "$bioproject_id" ]; then
-            echo "    [$$] 尝试方法3: 通过bioproject $bioproject_id 搜索..."
-            sra_ids=$(esearch -db sra -query "$bioproject_id" | esummary | grep -o "SRR[0-9]\+" | sort -u 2>/dev/null)
+            # 提取bioproject ID，支持PRJNA、PRJDB等格式
+            if echo "$bioproject_id" | grep -q 'target="bioproject"'; then
+                # 从Link标签中提取：<Link type="entrez" target="bioproject" label="PRJDB3841">298563</Link>
+                project_id=$(echo "$bioproject_id" | sed 's/.*label="\([^"]*\)".*/\1/')
+            else
+                # 从Id标签中提取：<Id db="BioProject">PRJNA123456</Id>
+                project_id=$(echo "$bioproject_id" | sed 's/.*<Id db="BioProject">\([^<]*\)<\/Id>.*/\1/')
+            fi
+            
+            if [ -n "$project_id" ]; then
+                echo "    [$$] 尝试方法4: 通过bioproject $project_id 搜索..."
+                sra_ids=$(esearch -db sra -query "$project_id" | esummary | grep -oE "[SED]R[RS][0-9]+|DRS[0-9]+" | sort -u 2>/dev/null)
+            fi
         fi
     fi
     
@@ -152,22 +176,22 @@ process_sample() {
         local successful_sra=""
         local failed_sra=""
         
-        for srr_id in $sra_ids; do
-            if [ -n "$srr_id" ]; then
-                echo "    [$$] 处理 $srr_id..."
-                srr_xml="$SRA_DIR/${srr_id}.xml"
-                if esearch -db sra -query "$srr_id" | efetch -format xml > "$srr_xml" 2>/dev/null; then
-                    if [ -s "$srr_xml" ]; then
-                        echo "    [$$] ✓ SRR XML已保存: $srr_xml"
-                        successful_sra="$successful_sra $srr_id"
+        for sra_id in $sra_ids; do
+            if [ -n "$sra_id" ]; then
+                echo "    [$$] 处理 $sra_id..."
+                sra_xml="$SRA_DIR/${sra_id}.xml"
+                if esearch -db sra -query "$sra_id" | efetch -format xml > "$sra_xml" 2>/dev/null; then
+                    if [ -s "$sra_xml" ]; then
+                        echo "    [$$] ✓ SRA XML已保存: $sra_xml"
+                        successful_sra="$successful_sra $sra_id"
                     else
-                        rm -f "$srr_xml"
-                        echo "    [$$] ✗ SRR XML为空: $srr_id"
-                        failed_sra="$failed_sra $srr_id"
+                        rm -f "$sra_xml"
+                        echo "    [$$] ✗ SRA XML为空: $sra_id"
+                        failed_sra="$failed_sra $sra_id"
                     fi
                 else
-                    echo "    [$$] ✗ 获取SRR XML失败: $srr_id"
-                    failed_sra="$failed_sra $srr_id"
+                    echo "    [$$] ✗ 获取SRA XML失败: $sra_id"
+                    failed_sra="$failed_sra $sra_id"
                 fi
             fi
         done
