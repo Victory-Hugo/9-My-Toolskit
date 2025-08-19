@@ -45,13 +45,14 @@ find "${DOWNLOAD_DIR}" -type f -name "*.sra" | while IFS= read -r sra_file; do
     fi
 done
 
-#* ====================版本二=========================
-#* 使用了更先进的并行压缩和日志记录方式，适合大规模数据转换
 # #!/usr/bin/env bash
+# * ====================版本二=========================
+# * 使用了更先进的并行压缩和日志记录方式，适合大规模数据转换
+
 # set -euo pipefail
 
 # # 下载目录（末尾不加斜杠）
-# DOWNLOAD_DIR="/mnt/d/迅雷下载/NCBI"
+# DOWNLOAD_DIR="/mnt/d/迅雷下载/NCBI/PRJNA1225594/"
 
 # # 日志文件
 # LOG_FILE="${DOWNLOAD_DIR}/conversion.log"
@@ -101,7 +102,7 @@ done
 #         ${COMPRESS_CMD} "${raw1}" "${raw2}"
 
 #         # 删除原 .sra
-#         rm -f "${sra_file}"
+#         # rm -f "${sra_file}"
 #         echo "$(date '+%F %T') [DEL]    删除 ${base_name}.sra" \
 #             >> "${LOG_FILE}"
 #     else
