@@ -9,6 +9,7 @@ unset http_proxy
 unset https_proxy
 
 # 默认配置
+#!INFILE每行一个SRA编号，例如"ERR1012803"
 INFILE="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/1-NCBI/conf/鲍曼NC2025.txt"
 XML_DIR="/mnt/d/迅雷下载/鲍曼组装/xml"
 CSV_FILE="$XML_DIR/run_biosample_map.csv"
@@ -16,7 +17,7 @@ LOG_FILE="$XML_DIR/run_biosample_log.txt"
 DEFAULT_PARALLEL_JOBS=8  # 默认并行任务数
 
 # NCBI API配置
-NCBI_API_KEY="29b326d54e7a21fc6c8b9afe7d71f441d809"
+NCBI_API_KEY="29b326d54e7a21fc6c8b9afe7d71f441d809" #!请自己在NCBI申请API密钥
 export NCBI_API_KEY
 
 # 并行任务数（可通过命令行参数调整）

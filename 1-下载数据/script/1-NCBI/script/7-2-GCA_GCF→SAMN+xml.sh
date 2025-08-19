@@ -14,10 +14,10 @@ INFILE="/mnt/d/迅雷下载/鲍曼组装/conf/AB_Assembly.txt"
 XML_DIR="/mnt/d/迅雷下载/鲍曼组装/xml3"
 CSV_FILE="$XML_DIR/assembly_biosample_map.csv"
 LOG_FILE="$XML_DIR/assembly_biosample_log.txt"
-DEFAULT_PARALLEL_JOBS=6  # 默认并行任务数（Assembly查询较重，用较少并发）
+DEFAULT_PARALLEL_JOBS=5  # 默认并行任务数（Assembly查询较重，用较少并发）
 
 # NCBI API配置
-NCBI_API_KEY="29b326d54e7a21fc6c8b9afe7d71f441d809"
+NCBI_API_KEY="29b326d54e7a21fc6c8b9afe7d71f441d809" #!请自己在NCBI申请API密钥
 export NCBI_API_KEY
 
 # 并行任务数（可通过命令行参数调整）

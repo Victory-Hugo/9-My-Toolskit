@@ -12,7 +12,7 @@ LOG_FILE="/mnt/c/Users/Administrator/Desktop/download_log.txt"
 DEFAULT_PARALLEL_JOBS=10  # 默认并行任务数（使用API密钥可以提高）
 
 # NCBI API配置
-NCBI_API_KEY="29b326d54e7a21fc6c8b9afe7d71f441d809"
+NCBI_API_KEY="29b326d54e7a21fc6c8b9afe7d71f441d809" #!请自己在NCBI申请API密钥
 export NCBI_API_KEY
 
 # API使用说明：
