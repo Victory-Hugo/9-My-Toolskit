@@ -15,18 +15,19 @@
 #!/bin/bash
 
 PYTHON3="python3"
-PY_SCRIPT1="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/1-NCBI/python/6-6-xml→csv.py"
+PY_SCRIPT1="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/1-NCBI/python/6-6-xml→csv_Biosample.py"
+PY_SCRIPT1_2="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/1-NCBI/python/6-6-xml→csv_SRA.py"
 PY_SCRIPT2="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/1-NCBI/python/6-7-csv-concat.py"
-XML_DIR="/mnt/d/迅雷下载/鲍曼组装/xml"
-OUT_DIR="/mnt/d/迅雷下载/鲍曼组装/csv"
-FINAL_CSV="/mnt/d/迅雷下载/鲍曼组装/merged.csv"
+XML_DIR="/mnt/g/鲍曼META/SRA_xml/"
+OUT_DIR="/mnt/g/鲍曼META/csv"
+FINAL_CSV="/mnt/g/鲍曼META/merged.csv"
 
 # 确保输出目录存在
 mkdir -p "$OUT_DIR"
 
 # 用 GNU parallel 并行处理
 find "$XML_DIR" -name "*.xml" | parallel --bar -j 10 \
-    "$PYTHON3" "$PY_SCRIPT1" {} "$OUT_DIR/"
+    "$PYTHON3" "$PY_SCRIPT1_2" {} "$OUT_DIR/"
 
 "$PYTHON3" "$PY_SCRIPT2" \
     "$OUT_DIR" "$FINAL_CSV"
