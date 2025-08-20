@@ -4,6 +4,9 @@
 # 作者：Lintao Luo
 # 日期：2025年8月19日
 
+unset http_proxy
+unset https_proxy
+
 # 默认配置
 INPUT_FILE="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/1-NCBI/conf/biosample.txt"
 BIOSAMPLE_DIR="/mnt/g/鲍曼META/biosample_xml"
