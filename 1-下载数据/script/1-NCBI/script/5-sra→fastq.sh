@@ -1,8 +1,9 @@
-#!/usr/bin/env bash
+# #!/usr/bin/env bash
+
 # set -euo pipefail
 
 # # 下载目录（末尾不加斜杠）  
-# DOWNLOAD_DIR="/mnt/d/迅雷下载/NCBI/PRJNA1028672/"
+# DOWNLOAD_DIR="/mnt/c/Users/Administrator/Desktop/ERR197551/"
 
 # # 日志文件
 # LOG_FILE="${DOWNLOAD_DIR}/conversion.log"
@@ -53,7 +54,7 @@ set -euo pipefail
 
 
 # 下载目录（末尾不加斜杠）
-DOWNLOAD_DIR="/home/luolintao/10_鲍曼/PRJNA1225594/"
+DOWNLOAD_DIR="/mnt/c/Users/Administrator/Desktop/ERR4766511/"
 
 # 日志文件
 LOG_FILE="${DOWNLOAD_DIR}/conversion.log"
@@ -147,7 +148,7 @@ find "${DOWNLOAD_DIR}" -type f -name "*.sra" | while IFS= read -r sra_file; do
     # 开始转换
     echo "$(date '+%F %T') [START] ${base_name}.sra → FASTQ" \
         >> "${LOG_FILE}"
-    if /home/luolintao/S25_sratoolkit/bin/fasterq-dump-orig.3.1.1 --split-files --threads "${THREADS}" --outdir "${sra_dir}" "${sra_file}"; then
+    if fasterq-dump-orig.3.1.1 --split-files --threads "${THREADS}" --outdir "${sra_dir}" "${sra_file}"; then
         echo "$(date '+%F %T') [OK]    ${base_name}.sra 转换完成" \
             >> "${LOG_FILE}"
 
