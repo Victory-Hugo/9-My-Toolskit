@@ -22,8 +22,8 @@
 #!/bin/bash
 set -euo pipefail
 
-input="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/2-ENA/conf/ERS.txt"     # 每行一个 ERS2540882 形式
-output="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/2-ENA/conf/ENA_full.tsv"
+input="/mnt/g/鲍曼NC2025_8/conf/download_8.txt"     # 每行一个 ERS2540882 形式
+output="/mnt/g/鲍曼NC2025_8/conf/ENA_full.tsv"
 
 # 要的字段列表
 FIELDS="run_accession,sample_accession,sample_alias,study_title,experiment_accession,study_accession,tax_id,scientific_name,base_count,fastq_ftp,fastq_md5"

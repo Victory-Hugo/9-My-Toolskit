@@ -50,12 +50,12 @@
 unset http_proxy
 unset https_proxy
 # PROJ="鲍曼NC2025_1"
-SRA_LIST="/mnt/g/鲍曼NC2025_6/conf/download_6.txt" #? 格式：每行一个 SRA/ERR/DRR 号
+SRA_LIST="/mnt/g/鲍曼NC2025_7/conf/download_7.txt" #? 格式：每行一个 SRA/ERR/DRR 号
 
 #* prefetch 可执行文件路径
 PREFETCH="/mnt/e/Scientifc_software/sratoolkit.3.1.1-ubuntu64/bin/prefetch" #! 不知道如何配置的请查看`1-下载数据/script/1-NCBI/markdown/1-NCBI-SRA-代码使用说明.md`
 # OUTDIR="/mnt/g/${PROJ}/" #* 下载输出目录
-OUTDIR="/mnt/g/鲍曼NC2025_6/data/"
+OUTDIR="/mnt/g/鲍曼NC2025_7/data/"
 
 mkdir -p "$OUTDIR" || { echo "无法创建输出目录: $OUTDIR"; exit 1; }
 #* 下载配置
