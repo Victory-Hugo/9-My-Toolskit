@@ -1,12 +1,12 @@
 #!/bin/bash
 
-DATA_DIR="/home/luolintao/5-AB-鲍曼/1-组装/data"
+DATA_DIR="/data_raid/7_luolintao/1_鲍曼/2-测序/data/"
 OUT_DIR="${DATA_DIR}/FASTQ"
 LOG_FILE="${DATA_DIR}/sra_conversion_simple.log"
 PROGRESS_FILE="${DATA_DIR}/sra_progress.tmp"
 
 # 设置并行处理的线程数
-PARALLEL_JOBS=4
+PARALLEL_JOBS=8
 
 mkdir -p ${OUT_DIR}
 
