@@ -21,10 +21,10 @@ unset https_proxy
 # PROJ="PRJNA1112767"
 PYTHON_SCRIPT="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/1-NCBI/python/7-下载NCBI的Assembly.py"
 # TXT_FILE="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/1-NCBI/conf/${PROJ}_下载NCBI.txt"
-TXT_FILE="/mnt/d/迅雷下载/鲍曼组装/conf/AB_Assembly.txt"
+TXT_FILE="/mnt/c/Users/Administrator/Desktop/sequence.seq"
 PYTHON_PATH="/home/luolintao/miniconda3/envs/pyg/bin/python3"
 # DOWNLOAD_PATH="/mnt/d/迅雷下载/${PROJ}"
-DOWNLOAD_PATH="/mnt/d/迅雷下载/鲍曼组装2"
+DOWNLOAD_PATH="/mnt/d/1-鲍曼菌/0-蛋白Ref-dataset"
 mkdir -p "${DOWNLOAD_PATH}"
 # 然后：
 ${PYTHON_PATH} \
