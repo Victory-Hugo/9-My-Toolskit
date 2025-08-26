@@ -1,52 +1,4 @@
-# #!/usr/bin/env bash
-
-# set -euo pipefail
-
-# # 下载目录（末尾不加斜杠）  
-# DOWNLOAD_DIR="/mnt/c/Users/Administrator/Desktop/ERR197551/"
-
-# # 日志文件
-# LOG_FILE="${DOWNLOAD_DIR}/conversion.log"
-# touch "${LOG_FILE}"
-
-# # 查找所有 .sra
-# find "${DOWNLOAD_DIR}" -type f -name "*.sra" | while IFS= read -r sra_file; do
-#     base_name=$(basename "${sra_file}" .sra)
-#     fq1="${DOWNLOAD_DIR}/${base_name}_1.fastq.gz"
-#     fq2="${DOWNLOAD_DIR}/${base_name}_2.fastq.gz"
-
-#     # 如果两个输出都存在，说明已经转换完成，跳过
-#     if [[ -f "${fq1}" && -f "${fq2}" ]]; then
-#         echo "$(date '+%F %T') [SKIP] ${base_name} 已存在 ${base_name}_1.fastq.gz 和 ${base_name}_2.fastq.gz" \
-#             >> "${LOG_FILE}"
-#         continue
-#     fi
-
-#     # 如果只存在部分输出，先删除残留输出，保证重跑干净
-#     if [[ -f "${fq1}" || -f "${fq2}" ]]; then
-#         echo "$(date '+%F %T') [CLEANUP] ${base_name} 检测到残留 fastq，正在移除" \
-#             >> "${LOG_FILE}"
-#         rm -f "${fq1}" "${fq2}"
-#     fi
-
-#     # 开始转换
-#     echo "$(date '+%F %T') [START] 转换 ${base_name}.sra → fastq" \
-#         >> "${LOG_FILE}"
-#     if fastq-dump --split-files --gzip "${sra_file}" -O "${DOWNLOAD_DIR}"; then
-#         echo "$(date '+%F %T') [OK]   ${base_name}.sra 转换完成" \
-#             >> "${LOG_FILE}"
-
-#         # 删除中间文件（.sra）
-#         rm -f "${sra_file}"
-#         echo "$(date '+%F %T') [DEL]  删除 ${base_name}.sra" \
-#             >> "${LOG_FILE}"
-#     else
-#         echo "$(date '+%F %T') [FAIL] ${base_name}.sra 转换失败，保留原文件以便重试" \
-#             >> "${LOG_FILE}"
-#     fi
-# done
-
-#!/usr/bin/env bash
+#!/bin/bash
 # ====================版本二=========================
 # 使用了更先进的并行压缩和日志记录方式，适合大规模数据转换
 
@@ -54,7 +6,7 @@ set -euo pipefail
 
 
 # 下载目录（末尾不加斜杠）
-DOWNLOAD_DIR="/home/luolintao/10_鲍曼/PRJNA1225594/"
+DOWNLOAD_DIR="/data_raid/7_luolintao/1_Baoman/2-Sequence/data"
 
 # 日志文件
 LOG_FILE="${DOWNLOAD_DIR}/conversion.log"
@@ -148,7 +100,7 @@ find "${DOWNLOAD_DIR}" -type f -name "*.sra" | while IFS= read -r sra_file; do
     # 开始转换
     echo "$(date '+%F %T') [START] ${base_name}.sra → FASTQ" \
         >> "${LOG_FILE}"
-    if fasterq-dump-orig.3.1.1 --split-files --threads "${THREADS}" --outdir "${sra_dir}" "${sra_file}"; then
+    if fasterq-dump.2.9.6 --split-files --threads "${THREADS}" --outdir "${sra_dir}" "${sra_file}"; then
         echo "$(date '+%F %T') [OK]    ${base_name}.sra 转换完成" \
             >> "${LOG_FILE}"
 
@@ -185,3 +137,51 @@ find "${DOWNLOAD_DIR}" -type f -name "*.sra" | while IFS= read -r sra_file; do
             >> "${LOG_FILE}"
     fi
 done
+
+# #!/usr/bin/env bash
+
+# set -euo pipefail
+
+# # 下载目录（末尾不加斜杠）  
+# DOWNLOAD_DIR="/mnt/c/Users/Administrator/Desktop/ERR197551/"
+
+# # 日志文件
+# LOG_FILE="${DOWNLOAD_DIR}/conversion.log"
+# touch "${LOG_FILE}"
+
+# # 查找所有 .sra
+# find "${DOWNLOAD_DIR}" -type f -name "*.sra" | while IFS= read -r sra_file; do
+#     base_name=$(basename "${sra_file}" .sra)
+#     fq1="${DOWNLOAD_DIR}/${base_name}_1.fastq.gz"
+#     fq2="${DOWNLOAD_DIR}/${base_name}_2.fastq.gz"
+
+#     # 如果两个输出都存在，说明已经转换完成，跳过
+#     if [[ -f "${fq1}" && -f "${fq2}" ]]; then
+#         echo "$(date '+%F %T') [SKIP] ${base_name} 已存在 ${base_name}_1.fastq.gz 和 ${base_name}_2.fastq.gz" \
+#             >> "${LOG_FILE}"
+#         continue
+#     fi
+
+#     # 如果只存在部分输出，先删除残留输出，保证重跑干净
+#     if [[ -f "${fq1}" || -f "${fq2}" ]]; then
+#         echo "$(date '+%F %T') [CLEANUP] ${base_name} 检测到残留 fastq，正在移除" \
+#             >> "${LOG_FILE}"
+#         rm -f "${fq1}" "${fq2}"
+#     fi
+
+#     # 开始转换
+#     echo "$(date '+%F %T') [START] 转换 ${base_name}.sra → fastq" \
+#         >> "${LOG_FILE}"
+#     if fastq-dump --split-files --gzip "${sra_file}" -O "${DOWNLOAD_DIR}"; then
+#         echo "$(date '+%F %T') [OK]   ${base_name}.sra 转换完成" \
+#             >> "${LOG_FILE}"
+
+#         # 删除中间文件（.sra）
+#         rm -f "${sra_file}"
+#         echo "$(date '+%F %T') [DEL]  删除 ${base_name}.sra" \
+#             >> "${LOG_FILE}"
+#     else
+#         echo "$(date '+%F %T') [FAIL] ${base_name}.sra 转换失败，保留原文件以便重试" \
+#             >> "${LOG_FILE}"
+#     fi
+# done
