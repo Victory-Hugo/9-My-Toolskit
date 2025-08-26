@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DATA_DIR="/data_raid/7_luolintao/1_Baoman/2-Sequence/data/"
+DATA_DIR="/mnt/g/鲍曼NC2025_9/data/"
 OUT_DIR="${DATA_DIR}/FASTQ"
 LOG_FILE="${DATA_DIR}/sra_conversion_simple.log"
 PROGRESS_FILE="${DATA_DIR}/sra_progress.tmp"
