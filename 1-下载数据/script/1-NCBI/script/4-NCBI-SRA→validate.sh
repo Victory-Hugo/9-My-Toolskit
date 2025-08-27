@@ -30,7 +30,7 @@ set -euo pipefail
 # 可修改路径
 SRADIR="/mnt/g/鲍曼NC2025_1"            # .sra 所在上级目录
 LOGDIR="$SRADIR/logs"
-THREADS=2                                 # 并行样本数
+THREADS=1                                 # 并行样本数
 RETRY=2                                   # 每个样本验证重试次数
 
 VALIDATE_CMD="vdb-validate"               # 假定在 PATH 中
