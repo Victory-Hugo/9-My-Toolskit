@@ -24,7 +24,7 @@ OUTDIR="/mnt/g/鲍曼NC2025_8/data/"
 mkdir -p "$OUTDIR" || { echo "无法创建输出目录: $OUTDIR"; exit 1; }
 
 # 下载配置
-JOBS=1               # 并行任务数（如果为 1，则切换为串行模式）
+JOBS=2               # 并行任务数（如果为 1，则切换为串行模式）
 MAX_RETRY=3          # 每个 accession 最多重试次数
 FAILED_LIST="$OUTDIR/failed.list"   # 永久失败列表
 JOBLOG="$OUTDIR/joblog.txt"         # parallel 运行日志
