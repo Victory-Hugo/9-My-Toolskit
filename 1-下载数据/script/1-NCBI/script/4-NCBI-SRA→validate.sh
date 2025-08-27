@@ -28,7 +28,7 @@
 set -euo pipefail
 
 # 可修改路径
-SRADIR="/mnt/g/鲍曼NC2025_1"            # .sra 所在上级目录
+SRADIR="/mnt/g/鲍曼NC2025_2/data/"            # .sra 所在上级目录
 LOGDIR="$SRADIR/logs"
 THREADS=1                                 # 并行样本数
 RETRY=2                                   # 每个样本验证重试次数
