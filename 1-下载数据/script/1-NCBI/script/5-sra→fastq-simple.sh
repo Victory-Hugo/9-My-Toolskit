@@ -1,12 +1,12 @@
 #!/bin/bash
 
-DATA_DIR="/mnt/g/鲍曼NC2025_9/data/"
+DATA_DIR="/mnt/d/1-鲍曼菌/原始文件/"
 OUT_DIR="${DATA_DIR}/FASTQ"
 LOG_FILE="${DATA_DIR}/sra_conversion_simple.log"
 PROGRESS_FILE="${DATA_DIR}/sra_progress.tmp"
 
 # 设置并行处理的线程数
-PARALLEL_JOBS=8
+PARALLEL_JOBS=1
 
 mkdir -p ${OUT_DIR}
 
@@ -78,7 +78,7 @@ process_sra() {
     echo "Processing: $sra_file" >> ${LOG_FILE}
     
     # 切换到输出目录并运行fasterq-dump
-    if (cd "${OUT_DIR}" && fasterq-dump --split-files --threads 2 "$sra_file") 2>>${LOG_FILE}; then
+    if (cd "${OUT_DIR}" && fasterq-dump --split-files --threads 8 "$sra_file") 2>>${LOG_FILE}; then
         echo "FASTQ generation success: $basename" >> ${LOG_FILE}
         # 验证文件是否真的生成了
         if [[ -f "${OUT_DIR}/${basename}.sra_1.fastq" && -f "${OUT_DIR}/${basename}.sra_2.fastq" ]]; then

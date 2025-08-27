@@ -6,7 +6,7 @@ set -euo pipefail
 
 
 # 下载目录（末尾不加斜杠）
-DOWNLOAD_DIR="/data_raid/7_luolintao/1_Baoman/2-Sequence/data"
+DOWNLOAD_DIR="/mnt/d/1-鲍曼菌/原始文件/"
 
 # 日志文件
 LOG_FILE="${DOWNLOAD_DIR}/conversion.log"
