@@ -14,7 +14,12 @@ ossutil sync \
 # ossutil sync \
 #     /mnt/f/D1_Obsidian_publish/ \
 #     oss://obsidian-publisher/D1_Obsidian_publish/
-
+ossutil sync \
+    /mnt/f/OneDrive/文档（科研）/脚本/Download/1-Website_research_group/ \
+    oss://p2-research-group-website/ \
+    --delete \
+    --update \
+    --job 20
 # # 2.同步时删除多余文件
 # # *如果希望删除 OSS 中已存在但本地不存在的文件，可使用 --delete 参数：
 # # *注意事项：启用 --delete 参数后，OSS 中多余的文件将被删除，建议开启版本控制以防止误删重要数据
