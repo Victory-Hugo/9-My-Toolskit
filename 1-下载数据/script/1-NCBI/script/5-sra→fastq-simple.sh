@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DATA_DIR="/mnt/d/1-鲍曼菌/原始文件/"
+DATA_DIR="/data_raid/7_luolintao/1_Baoman/2-Sequence/FASTQ/鲍曼NC2025_1/DRR033185/"
 OUT_DIR="${DATA_DIR}/FASTQ"
 LOG_FILE="${DATA_DIR}/sra_conversion_simple.log"
 PROGRESS_FILE="${DATA_DIR}/sra_progress.tmp"
