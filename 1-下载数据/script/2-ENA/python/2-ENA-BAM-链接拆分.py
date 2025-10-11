@@ -112,6 +112,10 @@ def main():
         print_color(f"- {project_name}_bam_bai.url ({bai_count} 个BAI文件)", "32")
         print_color(f"- {project_name}_bam.md5", "32")
         print_color(f"- {project_name}_bam_bai.md5", "32")
+        print_color("[有BAM文件，建议1-0-ascp下载BAM.sh下载BAM文件]", "34")
+        print_color("[有BAM文件，建议1-0-ascp下载BAM.sh下载BAM文件]", "34")
+        print_color("[有BAM文件，建议1-0-ascp下载BAM.sh下载BAM文件]", "34")
+        print_color("[有BAM文件，建议1-0-ascp下载BAM.sh下载BAM文件]", "34")
         
     elif not df['fastq_ftp'].isnull().all() and df['submitted_ftp'].isnull().all():
         print_color("[fastq:YES] [bam:NO]", "33")  # 黄色
@@ -119,6 +123,9 @@ def main():
         print_color("建议使用NCBI的SRA工具下载，因为稳定且快！", "33")
         print_color("推荐使用以下文件和脚本:", "33")
         print_color(f"- 配置文件: 1-下载数据/script/2-ENA/conf/{project_name}.txt", "33")
+        print_color("- 下载脚本: 1-下载数据/script/1-NCBI/script/3-NCBI-SRA-download.sh", "33")
+        print_color("- 下载脚本: 1-下载数据/script/1-NCBI/script/3-NCBI-SRA-download.sh", "33")
+        print_color("- 下载脚本: 1-下载数据/script/1-NCBI/script/3-NCBI-SRA-download.sh", "33")
         print_color("- 下载脚本: 1-下载数据/script/1-NCBI/script/3-NCBI-SRA-download.sh", "33")
         
     else:
@@ -133,6 +140,10 @@ def main():
         print_color(f"- {project_name}_bam_bai.url ({bai_count} 个BAI文件)", "34")
         print_color(f"- {project_name}_bam.md5", "34")
         print_color(f"- {project_name}_bam_bai.md5", "34")
+        print_color("[有BAM文件，建议1-0-ascp下载BAM.sh下载BAM文件]", "34")
+        print_color("[有BAM文件，建议1-0-ascp下载BAM.sh下载BAM文件]", "34")
+        print_color("[有BAM文件，建议1-0-ascp下载BAM.sh下载BAM文件]", "34")
+        print_color("[有BAM文件，建议1-0-ascp下载BAM.sh下载BAM文件]", "34")
     
     print_color("处理完成！", "32")
 
