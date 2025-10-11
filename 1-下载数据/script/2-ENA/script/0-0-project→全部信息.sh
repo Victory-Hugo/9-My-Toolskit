@@ -41,20 +41,20 @@
 set -uo pipefail
 
 #TODO 修改下列
-PROJECT="PRJNA1219970" #todo 需要查询的项目编号
+PROJECT="PRJEB49419" #todo 需要查询的项目编号
 PYTHON="/home/luolintao/miniconda3/envs/pyg/bin/python3" # todo Python 解释器路径
 BASE_DIR="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/2-ENA" #todo 脚本所在目录
 # 写死的路径
 SCRIPT="${BASE_DIR}/python/0-tsv→txt.py" #todo Python 脚本路径
-OUTPUT="${BASE_DIR}/conf/aDNA.tsv" #todo 中间文件输出文件路径
-OUTPUT_TXT="${BASE_DIR}/conf/aDNA.txt" #todo 最终输出文件路径
+OUTPUT="${BASE_DIR}/conf/${PROJECT}.tsv" #todo 中间文件输出文件路径
+OUTPUT_TXT="${BASE_DIR}/conf/${PROJECT}.txt" #todo 最终输出文件路径
 
 
 
 
 #*============无需修改系列的内容=====================
 # ENA API 字段
-FIELDS="run_accession,sample_accession,sample_alias,study_title,experiment_accession,study_accession,tax_id,scientific_name,base_count,fastq_ftp,fastq_md5"
+FIELDS="run_accession,sample_accession,sample_alias,study_title,experiment_accession,study_accession,tax_id,scientific_name,base_count,fastq_ftp,fastq_md5,submitted_ftp,submitted_md5"
 ENA_API="https://www.ebi.ac.uk/ena/portal/api/filereport"
 LOG="/tmp/get_${PROJECT}_$(date '+%Y%m%d_%H%M%S').log"
 RETRY=3
@@ -62,7 +62,7 @@ RETRY=3
 # 输入输出文件路径
 INPUT="${OUTPUT}"
 # 写表头（制表符分隔）
-echo -e "run_accession\tsample_accession\tsample_alias\tstudy_title\texperiment_accession\tstudy_accession\ttax_id\tscientific_name\tbase_count\tfastq_ftp\tfastq_md5" > "$OUTPUT"
+echo -e "run_accession\tsample_accession\tsample_alias\tstudy_title\texperiment_accession\tstudy_accession\ttax_id\tscientific_name\tbase_count\tfastq_ftp\tfastq_md5\tsubmitted_ftp\tsubmitted_md5" > "$OUTPUT"
 
 log() {
   echo "[$(date '+%F %T')] $*" | tee -a "$LOG" >&2
@@ -99,7 +99,7 @@ query_project() {
     if [[ -z "$resp" ]]; then
       log "注意：ENA 返回空，accession=${acc}"
       # 生成空行占位（sample_accession 为原 project，其他字段空）
-      printf '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n' "" "$acc" "" "" "" "" "" "" "" >> "$OUTPUT"
+      printf '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n' "" "$acc" "" "" "" "" "" "" "" "" "" >> "$OUTPUT"
       return 0
     fi
 
@@ -109,21 +109,22 @@ query_project() {
     if [[ -n "$data" ]]; then
       # 追加所有 run 记录（可能多行）
       printf '%s\n' "$data" >> "$OUTPUT"
-      log "成功获取 ${acc} 的 ${#data[@]} 行数据。"
+      line_count=$(printf '%s\n' "$data" | wc -l)
+      log "成功获取 ${acc} 的 ${line_count} 行数据。"
     else
       log "查询到但没有数据（只有 header），accession=${acc}"
-      printf '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n' "" "$acc" "" "" "" "" "" "" "" >> "$OUTPUT"
+      printf '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n' "" "$acc" "" "" "" "" "" "" "" "" "" >> "$OUTPUT"
     fi
     return 0
   done
 
   log "错误：多次尝试仍无法获取 ${acc}，写占位空行。"
-  printf '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n' "" "$acc" "" "" "" "" "" "" "" >> "$OUTPUT"
+  printf '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n' "" "$acc" "" "" "" "" "" "" "" "" "" >> "$OUTPUT"
   return 1
 }
 
 # 主逻辑
-log "开始为 project ${PROJECT} 获取 run 级别 fastq_ftp 和 fastq_md5 信息。输出: ${OUTPUT}"
+log "开始为 project ${PROJECT} 获取 run 级别 fastq_ftp、fastq_md5、submitted_ftp 和 submitted_md5 信息。输出: ${OUTPUT}"
 query_project "$PROJECT"
 
 # 去重（可选，防止重复 run），保持 header

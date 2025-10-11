@@ -14,12 +14,12 @@
 unset http_proxy
 unset https_proxy
 # PROJ="鲍曼NC2025_1"
-SRA_LIST="/mnt/g/鲍曼NC2025_8/conf/download_8.txt" # 格式：每行一个 SRA/ERR/DRR 号
+SRA_LIST="/mnt/d/迅雷下载/古代DNA/conf/download_1.txt" # 格式：每行一个 SRA/ERR/DRR 号
 
 # prefetch 可执行文件路径
 PREFETCH="/mnt/e/Scientifc_software/sratoolkit.3.1.1-ubuntu64/bin/prefetch"
 # OUTDIR="/mnt/g/${PROJ}/" # 下载输出目录
-OUTDIR="/mnt/g/鲍曼NC2025_8/data/"
+OUTDIR="/mnt/d/迅雷下载/古代DNA/data"
 
 mkdir -p "$OUTDIR" || { echo "无法创建输出目录: $OUTDIR"; exit 1; }
 

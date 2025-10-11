@@ -4,7 +4,7 @@ set -uuo pipefail  # 遇到未定义变量退出
 # ---------------------- 默认配置（可通过环境/CLI 覆盖） -----------------------
 BASE_DIR='/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/2-ENA'
 JAVA_SOFT_PATH="${BASE_DIR}/func/ena-file-downloader.jar"
-ACC_FILE='/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/2-ENA/debug/output/md5_用我继续下载.txt'
+ACC_FILE='/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/2-ENA/conf/aDNA.txt'
 ASPERA_PATH='/home/luolintao/miniconda3/pkgs/aspera-cli-3.9.6-h5e1937b_0' #! 替换为自己电脑中的conda下的aspera-cli路径：/home/用户名/miniconda3/pkgs/aspera-cli-版本号
 FORMAT='READS_FASTQ'
 PROTOCOL='ASPERA'
