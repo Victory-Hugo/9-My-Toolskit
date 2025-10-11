@@ -112,10 +112,10 @@ def main():
         print_color(f"- {project_name}_bam_bai.url ({bai_count} 个BAI文件)", "32")
         print_color(f"- {project_name}_bam.md5", "32")
         print_color(f"- {project_name}_bam_bai.md5", "32")
-        print_color("[有BAM文件，建议1-0-ascp下载BAM.sh下载BAM文件]", "34")
-        print_color("[有BAM文件，建议1-0-ascp下载BAM.sh下载BAM文件]", "34")
-        print_color("[有BAM文件，建议1-0-ascp下载BAM.sh下载BAM文件]", "34")
-        print_color("[有BAM文件，建议1-0-ascp下载BAM.sh下载BAM文件]", "34")
+        print_color("[有BAM文件，建议1-0-下载BAM_下载_优化.sh下载BAM文件]", "34")
+        print_color("[有BAM文件，建议1-0-下载BAM_下载_优化.sh下载BAM文件]", "34")
+        print_color("[有BAM文件，建议1-0-下载BAM_下载_优化.sh下载BAM文件]", "34")
+        print_color("[有BAM文件，建议1-0-下载BAM_下载_优化.sh下载BAM文件]", "34")
         
     elif not df['fastq_ftp'].isnull().all() and df['submitted_ftp'].isnull().all():
         print_color("[fastq:YES] [bam:NO]", "33")  # 黄色
@@ -140,10 +140,10 @@ def main():
         print_color(f"- {project_name}_bam_bai.url ({bai_count} 个BAI文件)", "34")
         print_color(f"- {project_name}_bam.md5", "34")
         print_color(f"- {project_name}_bam_bai.md5", "34")
-        print_color("[有BAM文件，建议1-0-ascp下载BAM.sh下载BAM文件]", "34")
-        print_color("[有BAM文件，建议1-0-ascp下载BAM.sh下载BAM文件]", "34")
-        print_color("[有BAM文件，建议1-0-ascp下载BAM.sh下载BAM文件]", "34")
-        print_color("[有BAM文件，建议1-0-ascp下载BAM.sh下载BAM文件]", "34")
+        print_color("[有BAM文件，建议1-0-下载BAM_下载_优化.sh下载BAM文件]", "34")
+        print_color("[有BAM文件，建议1-0-下载BAM_下载_优化.sh下载BAM文件]", "34")
+        print_color("[有BAM文件，建议1-0-下载BAM_下载_优化.sh下载BAM文件]", "34")
+        print_color("[有BAM文件，建议1-0-下载BAM_下载_优化.sh下载BAM文件]", "34")
     
     print_color("处理完成！", "32")
 
