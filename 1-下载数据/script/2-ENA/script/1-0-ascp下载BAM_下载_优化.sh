@@ -1,9 +1,14 @@
 #!/usr/bin/env bash
 set -euo pipefail
-
-URL_DIR="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/2-ENA/conf"
-OUT_LIST="/mnt/c/Users/Administrator/Desktop/download1.txt"
-SAVE_DIR="/mnt/c/Users/Administrator/Desktop"
+#*######################################
+#! 不必取消代理，默认不走http协议       
+#* Ascli自带断点续功能                 
+#* 若中途失败会自动重试                 
+#* 且不会重复下载已完成的文件
+#*######################################
+URL_DIR="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/2-ENA/conf" #? 存放 *.url 文件的目录
+OUT_LIST="/mnt/d/迅雷下载/古代DNA/conf/download_1.txt" #? 每行一个下载路径:vol1/run/ERR953/ERR9539070/10337.bam
+SAVE_DIR="/mnt/d/迅雷下载/古代DNA/data" #? 下载保存目录
 
 # 清空或创建输出文件
 : > "$OUT_LIST"
@@ -36,6 +41,7 @@ download_with_retries() {
     do
         ascli -Pera server download \
           --log-level=info \
+          --ts=@json:'{"target_rate_kbps":0,"resume_policy":"sparse_csum"}' \
           --sources=@lines:@file:"$OUT_LIST" \
           --to-folder="$SAVE_DIR" && break
         i=$((i + 1))

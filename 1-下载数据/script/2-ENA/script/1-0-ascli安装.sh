@@ -16,12 +16,6 @@ ascli conf preset update era \
   --ssh-keys="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/2-ENA/conf/asperaweb_id_dsa.openssh" \
   --ts=@json:'{"target_rate_kbps":0}'
 
-# 或者（如果不使用 ssh 密钥文件）
-# ascli conf preset update era \
-#   --url=ssh://fasp.sra.ebi.ac.uk:33001 \
-#   --username=era-fasp \
-#   --ts=@json:'{"target_rate_kbps":300000}'
-
 # 3. 查看配置是否成功
 ascli conf preset show era
 
@@ -32,7 +26,7 @@ ascli conf preset show era
 # │ url                 │ ssh://fasp.sra.ebi.ac.uk:33001 │
 # │ username            │ era-fasp                       │
 # │ ssh_keys            │ 🔑                             │
-# │ ts.target_rate_kbps │ 300000                         │
+# │ ts.target_rate_kbps │ 0                         │
 # ╰─────────────────────┴────────────────────────────────╯
 
 # 4. 下载示例文件
@@ -40,3 +34,14 @@ ascli conf preset show era
 # ascli -Pera server download \
 #   vol1/fastq/SRR916/002/SRR9169172/SRR9169172.fastq.gz \
 #   --to-folder=/mnt/c/Users/Administrator/Desktop/
+
+# ascli \
+#   -Pera server download \
+#   --log-level=info \
+#   vol1/fastq/SRR916/002/SRR9169172/SRR9169172.fastq.gz \
+#   --to-folder=/mnt/c/Users/Administrator/Desktop/
+
+# ascli -Pera server download \
+#   --log-level=info \
+#   --sources=@lines:@file:/mnt/c/Users/Administrator/Desktop/download1.txt \
+#   --to-folder=/mnt/d/迅雷下载/古代DNA/data/
