@@ -18,8 +18,8 @@ unset https_proxy
 #*######################################
 PARALLEL_JOBS=3  # 用户可以修改这个数值
 
-OUT_LIST="/mnt/d/迅雷下载/古代DNA/FASTQ/conf/PRJEB36854.url" #? 每行一个下载路径:vol1/run/ERR953/ERR9539070/10337.bam
-SAVE_DIR="/mnt/d/迅雷下载/古代DNA/FASTQ/data" #? 下载保存目录
+OUT_LIST="/mnt/d/迅雷下载/古代DNA/BAM/conf/download.txt" #? 每行一个下载路径:vol1/run/ERR953/ERR9539070/10337.bam
+SAVE_DIR="/mnt/d/迅雷下载/古代DNA/BAM/data/" #? 下载保存目录
 
 # 全局变量：当前正在下载的文件路径和进程管理
 declare -A CURRENT_DOWNLOAD_FILES  # 关联数组：PID -> 文件路径
