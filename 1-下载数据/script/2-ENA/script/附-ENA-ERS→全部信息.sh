@@ -29,8 +29,8 @@
 set -euo pipefail
 
 # 配置参数
-input="/mnt/c/Users/Administrator/Desktop/1.TXT"     # 每行一个 SRR/ERR/DRR 或 ERS 编号
-output="/mnt/g/鲍曼NC2025_8/conf/ENA_full_2.tsv"
+input="/mnt/d/迅雷下载/古代DNA/补充下载/ERR.txt"     # 每行一个 SRR/ERR/DRR 或 ERS 编号
+output="/mnt/d/迅雷下载/古代DNA/补充下载/ERR.tsv"
 progress_file="${output}.progress"                   # 进度文件
 failed_log="${output}.failed.log"                   # 失败日志
 temp_dir="/tmp/ena_query_$$"                        # 临时目录

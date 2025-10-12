@@ -1,14 +1,15 @@
 #!/usr/bin/env bash
 set -uo pipefail
 # 注意：去掉了 -e 选项，因为我们需要手动处理错误
-#*######################################
-#! 不必取消代理，默认不走http协议       
-#* Ascli自带断点续功能                 
-#* 若中途失败会自动重试                 
-#* 且不会重复下载已完成的文件
-#*######################################
+
 unset http_proxy
 unset https_proxy
+
+#*######################################
+#* 脚本功能：批量下载文件
+#* 支持顺序下载和并行下载两种模式
+#* 具备断点续传和重试机制
+#*######################################
 
 #*######################################
 #* 用户配置：并行下载作业数量
@@ -17,9 +18,8 @@ unset https_proxy
 #*######################################
 PARALLEL_JOBS=3  # 用户可以修改这个数值
 
-URL_DIR="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/2-ENA/conf" #? 存放 *.url 文件的目录
-OUT_LIST="/mnt/d/迅雷下载/古代DNA/conf/download_1.txt" #? 每行一个下载路径:vol1/run/ERR953/ERR9539070/10337.bam
-SAVE_DIR="/mnt/d/迅雷下载/古代DNA/data" #? 下载保存目录
+OUT_LIST="/mnt/d/迅雷下载/古代DNA/补充下载/conf/download.txt" #? 每行一个下载路径:vol1/run/ERR953/ERR9539070/10337.bam
+SAVE_DIR="/mnt/d/迅雷下载/古代DNA/补充下载/data" #? 下载保存目录
 
 # 全局变量：当前正在下载的文件路径和进程管理
 declare -A CURRENT_DOWNLOAD_FILES  # 关联数组：PID -> 文件路径
@@ -29,6 +29,23 @@ WGET_PID=""  # 保留原有的单个进程变量，用于向后兼容
 # 初始化关联数组（确保在bash中正确声明）
 CURRENT_DOWNLOAD_FILES=()
 DOWNLOAD_PIDS=()
+
+# 彩色打印函数
+print_info() {
+    echo -e "\033[32m[INFO]\033[0m $1"
+}
+
+print_warn() {
+    echo -e "\033[33m[WARN]\033[0m $1"
+}
+
+print_error() {
+    echo -e "\033[31m[ERROR]\033[0m $1"
+}
+
+print_success() {
+    echo -e "\033[32m[SUCCESS]\033[0m $1"
+}
 
 # 信号处理函数：清理并退出
 cleanup_and_exit() {
@@ -83,41 +100,6 @@ cleanup_and_exit() {
 
 # 注册信号处理函数
 trap cleanup_and_exit SIGINT SIGTERM
-
-
-# 清空或创建输出文件
-: > "$OUT_LIST"
-
-# 构造 download 列表
-find "$URL_DIR" -type f -name "*.url" | while IFS= read -r url_file; do
-    [ -r "$url_file" ] || continue
-    grep -vE '^\s*#' "$url_file" | grep -vE '^\s*$' |
-    while IFS= read -r line; do
-            echo "$line"
-    done
-done | sort -u >> "$OUT_LIST"
-
-# 检查生成的列表是否为空
-if [ ! -s "$OUT_LIST" ]; then
-    echo "ERROR: download list is empty: $OUT_LIST"
-    exit 1
-fi
-# 彩色打印函数
-print_info() {
-    echo -e "\033[32m[INFO]\033[0m $1"
-}
-
-print_warn() {
-    echo -e "\033[33m[WARN]\033[0m $1"
-}
-
-print_error() {
-    echo -e "\033[31m[ERROR]\033[0m $1"
-}
-
-print_success() {
-    echo -e "\033[32m[SUCCESS]\033[0m $1"
-}
 
 # 单个文件下载函数：带重试和断点续传（用于顺序下载）
 download_file() {
@@ -365,13 +347,36 @@ sequential_download() {
     fi
 }
 
+# 检查下载列表文件是否存在
+if [[ ! -f "$OUT_LIST" ]]; then
+    print_error "下载列表文件不存在: $OUT_LIST"
+    print_error "请先运行生成下载列表的脚本"
+    exit 1
+fi
+
+# 检查下载列表是否为空
+if [[ ! -s "$OUT_LIST" ]]; then
+    print_error "下载列表文件为空: $OUT_LIST"
+    exit 1
+fi
+
 # 主下载逻辑
-print_info "开始批量下载BAM文件..."
+print_info "开始批量下载文件..."
 print_info "下载列表: $OUT_LIST"
 print_info "保存目录: $SAVE_DIR"
 
 # 确保保存目录存在
 mkdir -p "$SAVE_DIR"
+
+# 显示下载列表预览
+total_files=$(wc -l < "$OUT_LIST")
+print_info "下载列表预览（前3行，共 $total_files 个文件）:"
+head -3 "$OUT_LIST" | while IFS= read -r line; do
+    echo "  - $(basename "$line")"
+done
+if [[ $total_files -gt 3 ]]; then
+    echo "  ... 还有 $((total_files - 3)) 个文件"
+fi
 
 # 根据并行作业数选择下载模式
 exit_code=0
@@ -383,4 +388,4 @@ else
     exit_code=$?
 fi
 
-exit $exit_code 
+exit $exit_code
