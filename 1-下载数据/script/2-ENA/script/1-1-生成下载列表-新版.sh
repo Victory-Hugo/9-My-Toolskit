@@ -7,8 +7,8 @@
 #*######################################
 
 # 配置变量
-URL_DIR="/mnt/d/迅雷下载/古代DNA/BAM/conf/"
-OUT_LIST="/mnt/d/迅雷下载/古代DNA/BAM/conf/download.txt"
+URL_DIR="/mnt/g/luolintao/SikoraScience2017/conf/"
+OUT_LIST="/mnt/g/luolintao/SikoraScience2017/conf/download.txt"
 
 # 彩色打印函数
 print_info() {
