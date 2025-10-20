@@ -11,12 +11,23 @@
 
 ASCP_PATH="/home/luolintao/miniconda3/envs/pyg/bin/ascp"
 SECRET_FILE="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/3-CNCB/conf/aspera01.openssh"
-HRA_NAME="HRA011447"
-SAVE_PATH="/mnt/d/迅雷下载/CNCB/"
+HRA_NAME="HRA000283"
+CRA_NAME="CRA000283"
+SAVE_PATH="/mnt/g/2-MBE-Tubo/data/"
 LOG_DIR="${SAVE_PATH}/log/"
 
 mkdir -p "$SAVE_PATH"
 mkdir -p "$LOG_DIR"
+
+# "${ASCP_PATH}" \
+#     -P33001 \
+#     -i "$SECRET_FILE" \
+#     -QT \
+#     -l100m \
+#     -L ${LOG_DIR} \
+#     -k1 \
+#     -d "aspera01@download.cncb.ac.cn:gsa-human/${HRA_NAME}" \
+#     "$SAVE_PATH"
 
 "${ASCP_PATH}" \
     -P33001 \
@@ -25,9 +36,8 @@ mkdir -p "$LOG_DIR"
     -l100m \
     -L ${LOG_DIR} \
     -k1 \
-    -d "aspera01@download.cncb.ac.cn:gsa-human/${HRA_NAME}" \
+    -d "aspera01@download.cncb.ac.cn:gsa/${CRA_NAME}" \
     "$SAVE_PATH"
-
 
 #* 参数说明：
 #*   -P33001: 指定端口号为 33001
