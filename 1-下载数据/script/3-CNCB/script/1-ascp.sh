@@ -35,7 +35,6 @@ mkdir -p "$LOG_DIR"
     -P33001 \
     -i "$SECRET_FILE" \
     -QT \
-    -l100m \
     -L ${LOG_DIR} \
     -k1 \
     -d "aspera01@download.cncb.ac.cn:gsa/${CRA_NAME}" \
