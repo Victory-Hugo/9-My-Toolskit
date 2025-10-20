@@ -7,8 +7,8 @@ unset http_proxy
 unset https_proxy
 
 # 默认配置
-INPUT="/mnt/c/Users/Administrator/Desktop/cydD_Gene_ID.txt" #? 每行一个GeneID
-OUTDIR="/mnt/c/Users/Administrator/Desktop/downloadcydD"
+INPUT="/mnt/c/Users/Administrator/Desktop/Lol-家族系统发育树/conf/lolA_id.txt" #? 每行一个GeneID
+OUTDIR="/mnt/c/Users/Administrator/Desktop/Lol-家族系统发育树/data/lolA/"
 LOG_FILE="$OUTDIR/gene_download_log.txt"
 CSV_FILE="$OUTDIR/gene_download_map.csv"
 DEFAULT_PARALLEL_JOBS=8  # 基因查询相对较轻，可以使用更多并发
@@ -53,7 +53,7 @@ echo "开始处理 ${#GENE_IDS[@]} 个基因ID (使用 $PARALLEL_JOBS 个并行�
 init_log_file() {
     if [ ! -f "$LOG_FILE" ]; then
         echo "# Gene->Protein FASTA Download Log - Created on $(date)" > "$LOG_FILE"
-        echo "# Format: TIMESTAMP | GENE_ID | STATUS | OUTPUT_FILE | FILE_SIZE | PROTEIN_COUNT | NOTES" >> "$LOG_FILE"
+        echo "# Format: TIMESTAMP | GENE_ID | STATUS | OUTPUT_FILE | FILE_SIZE | SEQUENCE_COUNT | NOTES" >> "$LOG_FILE"
         echo "# STATUS: SUCCESS/FAILED/SKIPPED" >> "$LOG_FILE"
         echo "" >> "$LOG_FILE"
     fi
@@ -94,7 +94,7 @@ init_log_file
 
 # 如果 CSV 不存在就初始化表头
 if [[ ! -f "$CSV_FILE" ]]; then
-  echo "Gene_ID,Output_File,File_Size,Protein_Count,Status" > "$CSV_FILE"
+  echo "Gene_ID,Output_File,File_Size,Sequence_Count,Type" > "$CSV_FILE"
 fi
 
 # 重试函数
@@ -118,12 +118,40 @@ retry_esearch() {
   return 1
 }
 
-# 安全下载FASTA
-safe_download_fasta() {
+# 检查基因是否有关联的蛋白质
+check_gene_proteins() {
+  local gene_id="$1"
+  local protein_count
+  
+  protein_count=$(retry_esearch "$gene_id" "gene" | elink -target protein | grep -o '<Count>[0-9]*</Count>' | sed 's/<Count>\|<\/Count>//g' 2>/dev/null)
+  
+  if [[ -n "$protein_count" ]] && [[ "$protein_count" -gt 0 ]]; then
+    echo "$protein_count"
+    return 0
+  else
+    echo "0"
+    return 1
+  fi
+}
+
+# 获取基因信息用于诊断
+get_gene_info() {
+  local gene_id="$1"
+  local gene_info
+  
+  gene_info=$(retry_esearch "$gene_id" "gene" | efetch -format docsum 2>/dev/null | grep -E '<Name>|<Description>|<ScientificName>' | head -3 | sed 's/<[^>]*>//g' | tr '\n' '|' | sed 's/|$//')
+  
+  echo "$gene_info"
+}
+
+# 安全下载蛋白质FASTA
+safe_download_protein_fasta() {
   local gene_id="$1"
   local output_file="$2"
   local max_retries=3
   local retry_count=0
+  
+  echo "    基因 $gene_id 开始下载蛋白质序列..." >&2
   
   while (( retry_count < max_retries )); do
     # 清空文件以防止部分下载
@@ -138,7 +166,38 @@ safe_download_fasta() {
     fi
     
     ((retry_count++))
-    echo "    FASTA下载重试 $retry_count/$max_retries ..." >&2
+    echo "    蛋白质FASTA下载重试 $retry_count/$max_retries ..." >&2
+    sleep $((retry_count * 3))  # 递增等待时间
+  done
+  
+  # 删除失败的空文件
+  rm -f "$output_file"
+  return 1
+}
+
+# 安全下载核苷酸FASTA
+safe_download_nucleotide_fasta() {
+  local gene_id="$1"
+  local output_file="$2"
+  local max_retries=3
+  local retry_count=0
+  
+  echo "    基因 $gene_id 开始下载核苷酸序列..." >&2
+  
+  while (( retry_count < max_retries )); do
+    # 清空文件以防止部分下载
+    > "$output_file"
+    
+    # 执行下载命令 - 直接从基因数据库获取核苷酸序列
+    if retry_esearch "$gene_id" "gene" | elink -target nuccore | efetch -format fasta > "$output_file" 2>/dev/null; then
+      # 检查文件是否有实际内容（大于 100 字节且包含FASTA格式）
+      if [[ -s "$output_file" ]] && (( $(stat -c%s "$output_file") > 100 )) && grep -q "^>" "$output_file"; then
+        return 0
+      fi
+    fi
+    
+    ((retry_count++))
+    echo "    核苷酸FASTA下载重试 $retry_count/$max_retries ..." >&2
     sleep $((retry_count * 3))  # 递增等待时间
   done
   
@@ -181,48 +240,91 @@ process_gene() {
       return
   fi
 
-  # 定义输出文件
+  # 定义输出文件（默认蛋白质格式）
   local output_file="${OUTDIR}/Gene_ID_${gene_id}.faa"
+  local nucleotide_file="${OUTDIR}/Gene_ID_${gene_id}.fna"
   
-  # 如果文件已存在且不为空，检查是否为有效FASTA
+  # 检查是否已有蛋白质或核苷酸文件存在
+  local existing_file=""
+  local existing_type=""
+  
   if [[ -f "$output_file" ]] && [[ -s "$output_file" ]] && grep -q "^>" "$output_file"; then
-      local file_size=$(stat -c%s "$output_file")
-      local protein_count=$(count_proteins "$output_file")
-      echo "  [$$] ✓ 文件已存在且有效: $gene_id ($protein_count 个蛋白质)"
-      log_result "$gene_id" "SUCCESS" "$output_file" "$file_size" "$protein_count" "File already exists and valid"
+      existing_file="$output_file"
+      existing_type="蛋白质"
+  elif [[ -f "$nucleotide_file" ]] && [[ -s "$nucleotide_file" ]] && grep -q "^>" "$nucleotide_file"; then
+      existing_file="$nucleotide_file"
+      existing_type="核苷酸"
+  fi
+  
+  if [[ -n "$existing_file" ]]; then
+      local file_size=$(stat -c%s "$existing_file")
+      local sequence_count=$(count_proteins "$existing_file")
+      echo "  [$$] ✓ ${existing_type}文件已存在且有效: $gene_id ($sequence_count 个序列)"
+      log_result "$gene_id" "SUCCESS" "$existing_file" "$file_size" "$sequence_count" "File already exists and valid ($existing_type)"
       
       # 更新CSV
       if ! grep -q "^${gene_id}," "$CSV_FILE"; then
-          echo "$gene_id,$output_file,$file_size,$protein_count,SUCCESS" >> "$CSV_FILE"
+          local file_type=$(if [[ "$existing_type" == "蛋白质" ]]; then echo "PROTEIN"; else echo "NUCLEOTIDE"; fi)
+          echo "$gene_id,$existing_file,$file_size,$sequence_count,$file_type" >> "$CSV_FILE"
       fi
       return 0
   fi
 
-  echo "  [$$] 正在下载基因 $gene_id 的蛋白质序列..."
+  echo "  [$$] 正在下载基因 $gene_id 的序列..."
   
-  # 下载FASTA文件
-  if safe_download_fasta "$gene_id" "$output_file"; then
-      local file_size=$(stat -c%s "$output_file")
-      local protein_count=$(count_proteins "$output_file")
+  # 首先尝试下载蛋白质序列
+  local protein_count
+  protein_count=$(check_gene_proteins "$gene_id")
+  
+  if [[ "$protein_count" -gt 0 ]]; then
+      # 有蛋白质序列，下载蛋白质FASTA
+      echo "  [$$] 基因 $gene_id 有 $protein_count 个蛋白质序列，下载蛋白质..."
       
-      if [[ "$protein_count" -gt 0 ]]; then
-          echo "  [$$] ✓ 下载成功: $gene_id ($protein_count 个蛋白质, ${file_size} 字节)"
-          log_result "$gene_id" "SUCCESS" "$output_file" "$file_size" "$protein_count" "Downloaded successfully"
+      if safe_download_protein_fasta "$gene_id" "$output_file"; then
+          local file_size=$(stat -c%s "$output_file")
+          local sequence_count=$(count_proteins "$output_file")
+          
+          echo "  [$$] ✓ 蛋白质序列下载成功: $gene_id ($sequence_count 个序列, ${file_size} 字节)"
+          log_result "$gene_id" "SUCCESS" "$output_file" "$file_size" "$sequence_count" "Protein sequences downloaded successfully"
           
           # 更新CSV
           if ! grep -q "^${gene_id}," "$CSV_FILE"; then
-              echo "$gene_id,$output_file,$file_size,$protein_count,SUCCESS" >> "$CSV_FILE"
+              echo "$gene_id,$output_file,$file_size,$sequence_count,PROTEIN" >> "$CSV_FILE"
           fi
       else
-          echo "  [$$] ⚠ 警告: 下载的文件中没有找到蛋白质序列: $gene_id"
-          log_result "$gene_id" "FAILED" "$output_file" "$file_size" "0" "No proteins found in downloaded file"
-          rm -f "$output_file"
+          echo "  [$$] ✗ 蛋白质序列下载失败: $gene_id"
+          log_result "$gene_id" "FAILED" "" "0" "0" "Protein download failed after retries"
           return 1
       fi
   else
-      echo "  [$$] ✗ 下载失败: $gene_id"
-      log_result "$gene_id" "FAILED" "" "0" "0" "Download failed after retries"
-      return 1
+      # 没有蛋白质序列，尝试下载核苷酸序列
+      echo "  [$$] 基因 $gene_id 无蛋白质序列，尝试下载核苷酸序列..."
+      
+      # 改变文件扩展名为.fna
+      local nucleotide_output_file="${output_file%.faa}.fna"
+      
+      if safe_download_nucleotide_fasta "$gene_id" "$nucleotide_output_file"; then
+          local file_size=$(stat -c%s "$nucleotide_output_file")
+          local sequence_count=$(count_proteins "$nucleotide_output_file")  # 这个函数也适用于核苷酸序列计数
+          
+          echo "  [$$] ✓ 核苷酸序列下载成功: $gene_id ($sequence_count 个序列, ${file_size} 字节)"
+          log_result "$gene_id" "SUCCESS" "$nucleotide_output_file" "$file_size" "$sequence_count" "Nucleotide sequences downloaded successfully"
+          
+          # 更新CSV
+          if ! grep -q "^${gene_id}," "$CSV_FILE"; then
+              echo "$gene_id,$nucleotide_output_file,$file_size,$sequence_count,NUCLEOTIDE" >> "$CSV_FILE"
+          fi
+      else
+          echo "  [$$] ✗ 核苷酸序列下载也失败: $gene_id"
+          
+          # 获取基因信息用于诊断
+          local gene_info
+          gene_info=$(get_gene_info "$gene_id")
+          echo "  [$$] 基因信息: $gene_info"
+          
+          log_result "$gene_id" "FAILED" "" "0" "0" "Both protein and nucleotide download failed: $gene_info"
+          return 1
+      fi
   fi
 }
 
@@ -231,8 +333,11 @@ export -f process_gene
 export -f is_gene_completed
 export -f log_result
 export -f retry_esearch
-export -f safe_download_fasta
+export -f safe_download_protein_fasta
+export -f safe_download_nucleotide_fasta
 export -f count_proteins
+export -f check_gene_proteins
+export -f get_gene_info
 export CSV_FILE OUTDIR LOG_FILE NCBI_API_KEY
 
 # 使用并行处理
@@ -252,24 +357,38 @@ echo "FASTA文件目录: $OUTDIR"
 echo "CSV对照表: $CSV_FILE"
 
 # 显示统计信息
-fasta_count=$(find "$OUTDIR" -name "*.faa" 2>/dev/null | wc -l)
-total_proteins=0
+protein_count=$(find "$OUTDIR" -name "*.faa" 2>/dev/null | wc -l)
+nucleotide_count=$(find "$OUTDIR" -name "*.fna" 2>/dev/null | wc -l)
+total_files=$((protein_count + nucleotide_count))
+total_sequences=0
 total_size=0
 
-# 计算总蛋白质数和文件大小
+# 计算总序列数和文件大小（蛋白质文件）
 for fasta_file in "$OUTDIR"/*.faa; do
     if [[ -f "$fasta_file" ]]; then
-        proteins=$(count_proteins "$fasta_file")
+        sequences=$(count_proteins "$fasta_file")
         size=$(stat -c%s "$fasta_file" 2>/dev/null || echo "0")
-        total_proteins=$((total_proteins + proteins))
+        total_sequences=$((total_sequences + sequences))
+        total_size=$((total_size + size))
+    fi
+done
+
+# 计算总序列数和文件大小（核苷酸文件）
+for fasta_file in "$OUTDIR"/*.fna; do
+    if [[ -f "$fasta_file" ]]; then
+        sequences=$(count_proteins "$fasta_file")  # 这个函数同样适用于核苷酸序列计数
+        size=$(stat -c%s "$fasta_file" 2>/dev/null || echo "0")
+        total_sequences=$((total_sequences + sequences))
         total_size=$((total_size + size))
     fi
 done
 
 echo ""
 echo "统计信息："
-echo "- 成功下载的FASTA文件: $fasta_count 个"
-echo "- 总蛋白质序列数: $total_proteins 个"
+echo "- 成功下载的FASTA文件总数: $total_files 个"
+echo "  * 蛋白质文件 (.faa): $protein_count 个"
+echo "  * 核苷酸文件 (.fna): $nucleotide_count 个"
+echo "- 总序列数: $total_sequences 个"
 echo "- 总文件大小: $(( total_size / 1024 )) KB"
 
 # 显示日志统计
@@ -323,12 +442,14 @@ echo ""
 echo "注意事项："
 echo "- 基因查询相对较轻，可使用较高的并行数（8-15个）"
 echo "- 如果网络不稳定，可降低并行数到5-8个"
-echo "- 每个基因可能对应多个蛋白质序列"
-echo "- 输出文件命名格式: [基因ID]_all_proteins.faa"
+echo "- 每个基因可能对应多个序列"
+echo "- 优先下载蛋白质序列，无蛋白质时下载核苷酸序列"
+echo "- 输出文件命名格式: Gene_ID_[基因ID].faa (蛋白质) 或 Gene_ID_[基因ID].fna (核苷酸)"
 echo ""
 echo "文件说明："
-echo "- FASTA文件: 包含该基因对应的所有蛋白质序列"
-echo "- CSV对照表: 记录基因ID、文件路径、文件大小、蛋白质数量等信息"
+echo "- .faa文件: 包含该基因对应的蛋白质序列"
+echo "- .fna文件: 包含该基因对应的核苷酸序列（当无蛋白质序列时）"
+echo "- CSV对照表: 记录基因ID、文件路径、文件大小、序列数量、类型等信息"
 echo "- 日志文件: 记录详细的下载过程和错误信息"
 echo ""
 echo "如需修改输入文件路径，请编辑脚本开头的 INPUT 变量"
