@@ -8,6 +8,8 @@
 #* 步骤说明：
 #*   1. 创建保存数据的本地目录。
 #*   2. 使用 ascp 工具通过指定端口和密钥文件从 CNCB 下载数据集到本地目录。
+unset http_proxy
+unset https_proxy
 
 ASCP_PATH="/home/luolintao/miniconda3/envs/pyg/bin/ascp"
 SECRET_FILE="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/3-CNCB/conf/aspera01.openssh"
