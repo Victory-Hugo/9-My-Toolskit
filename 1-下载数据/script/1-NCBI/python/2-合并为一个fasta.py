@@ -1,10 +1,10 @@
 import os
 
 # 定义文件目录路径
-directory = r'F:/OneDrive/文档（科研）/脚本/我的科研脚本/Python/数据科学/下载序列'
+directory = r'/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/1-NCBI/download'
 #directory = r'C:/Users/victo/Desktop'
 # 定义输出文件路径
-output_file = os.path.join('C:/Users/victo/Desktop', 'merged_sequences.fasta')
+output_file = os.path.join('/mnt/c/Users/Administrator/Desktop', 'merged_sequences.fasta')
 
 # 打开输出文件，准备写入
 with open(output_file, 'w') as outfile:
