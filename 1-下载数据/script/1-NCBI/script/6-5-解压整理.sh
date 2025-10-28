@@ -1,7 +1,20 @@
 #!/usr/bin/env bash
 set -euo pipefail
-
-ROOT="/mnt/d/迅雷下载/鲍曼组装2/完整"
+#! 使用之前请先自己解压到单独的文件夹
+#*==========示例如下==========
+# ├── GCF_003063885.1_downloaded
+# │   ├── README.md
+# │   ├── md5sum.txt
+# │   └── ncbi_dataset
+# │       └── data
+# │           ├── GCF_003063885.1
+# │           │   ├── GCF_003063885.1_ASM306388v1_genomic.fna
+# │           │   ├── cds_from_genomic.fna
+# │           │   └── genomic.gff
+# │           ├── assembly_data_report.jsonl
+# │           └── dataset_catalog.json
+#*============================
+ROOT="/mnt/f/15_Bam_Tam/2-物种树/download"
 
 ############################
 # 1. 重命名 *_downloaded 目录
@@ -94,7 +107,19 @@ done
 
 
 ############################
-# 7. 展开 ncbi_dataset/data 目录结构
+# 7. 重命名 protein.faa -> <parent>.faa
+############################
+find "$ROOT" -type f -name 'protein.faa' -print0 |
+while IFS= read -r -d '' file; do
+  dir="$(dirname "$file")"
+  parent="$(basename "$dir")"
+  newpath="$dir/${parent}.faa"
+  rename_with_policy "$file" "$newpath"
+done
+
+
+############################
+# 8. 展开 ncbi_dataset/data 目录结构
 ############################
 for sample in "$ROOT"/*; do
   [ -d "$sample" ] || continue

@@ -241,6 +241,7 @@ def generate_urls(accession_numbers):
         "?include_annotation_type=GENOME_FASTA"
         "&include_annotation_type=GENOME_GFF"
         "&include_annotation_type=CDS_FASTA"
+        "&include_annotation_type=PROT_FASTA"
     )
     return [URL_TEMPLATE.format(acc) for acc in accession_numbers]
 
