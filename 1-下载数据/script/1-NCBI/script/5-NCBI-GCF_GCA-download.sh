@@ -18,29 +18,18 @@ set -euo pipefail
 unset http_proxy
 unset https_proxy
 #* 下载 NCBI 数据的组装数据
-# PROJ="PRJNA1112767"
+
 PYTHON_SCRIPT="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/1-NCBI/python/7-下载NCBI的Assembly.py"
-# TXT_FILE="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/1-NCBI/conf/${PROJ}_下载NCBI.txt"
-TXT_FILE="/mnt/c/Users/Administrator/Desktop/sequence.seq"
+TXT_FILE="/mnt/f/15_Bam_Tam/2-物种树/conf/balanced_accessions_ID.txt"
 PYTHON_PATH="/home/luolintao/miniconda3/envs/pyg/bin/python3"
-# DOWNLOAD_PATH="/mnt/d/迅雷下载/${PROJ}"
-DOWNLOAD_PATH="/mnt/d/1-鲍曼菌/0-蛋白Ref-dataset"
+DOWNLOAD_PATH="/mnt/f/15_Bam_Tam/2-物种树/download"
 mkdir -p "${DOWNLOAD_PATH}"
-# 然后：
+
 ${PYTHON_PATH} \
   ${PYTHON_SCRIPT} \
   --base-path "${DOWNLOAD_PATH}" \
-  --file-path "${TXT_FILE}"
+  --file-path "${TXT_FILE}" \
+  -w 5 --resume
 
-#!不推荐下列方式，因为潜在的被墙风险
-# datasets \
-#     download genome \
-#     accession GCF_040009695.1 \
-#     --filename GCF_040009695.1.zip \
-#     --include genome
 
-# datasets \
-#     download genome \
-#     accession GCF_040009695.1 \
-#     --filename GCF_040009695.1.zip \
-#     --include gff3,rna,cds,protein,genome,seq-report
+

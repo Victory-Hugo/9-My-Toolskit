@@ -18,9 +18,9 @@ PYTHON3="python3"
 PY_SCRIPT1="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/1-NCBI/python/6-6-xml→csv_Biosample.py"
 PY_SCRIPT1_2="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/1-NCBI/python/6-6-xml→csv_SRA.py"
 PY_SCRIPT2="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/1-NCBI/python/6-7-csv-concat.py"
-XML_DIR="/mnt/g/鲍曼META/SRA_xml/"
-OUT_DIR="/mnt/g/鲍曼META/csv"
-FINAL_CSV="/mnt/g/鲍曼META/merged.csv"
+XML_DIR="/mnt/f/15_Bam_Tam/2-物种树/meta/xml/"
+OUT_DIR="/mnt/f/15_Bam_Tam/2-物种树/meta/csv"
+FINAL_CSV="/mnt/f/15_Bam_Tam/2-物种树/meta/merged.csv"
 
 # 确保输出目录存在
 mkdir -p "$OUT_DIR"
