@@ -14,7 +14,7 @@ set -euo pipefail
 # │           ├── assembly_data_report.jsonl
 # │           └── dataset_catalog.json
 #*============================
-ROOT="/mnt/f/15_Bam_Tam/2-物种树/download"
+ROOT="/mnt/f/15_Bam_Tam/5-补齐更多物种/download"
 
 ############################
 # 1. 重命名 *_downloaded 目录

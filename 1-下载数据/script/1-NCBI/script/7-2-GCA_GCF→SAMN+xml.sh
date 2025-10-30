@@ -10,8 +10,8 @@ unset http_proxy
 unset https_proxy
 
 # 默认配置
-INFILE="/mnt/d/迅雷下载/鲍曼组装/conf/AB_Assembly.txt"
-XML_DIR="/mnt/d/迅雷下载/鲍曼组装/xml"
+INFILE="/mnt/f/15_Bam_Tam/5-补齐更多物种/conf/merge.ID.txt"
+XML_DIR="/mnt/f/15_Bam_Tam/5-补齐更多物种/meta"
 CSV_FILE="$XML_DIR/assembly_biosample_map.csv"
 LOG_FILE="$XML_DIR/assembly_biosample_log.txt"
 DEFAULT_PARALLEL_JOBS=5  # 默认并行任务数（Assembly查询较重，用较少并发）
