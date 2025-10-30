@@ -7,8 +7,8 @@ unset http_proxy
 unset https_proxy
 
 # 默认配置
-INPUT="/mnt/c/Users/Administrator/Desktop/Lol-家族系统发育树/conf/lolA_id.txt" #? 每行一个GeneID
-OUTDIR="/mnt/c/Users/Administrator/Desktop/Lol-家族系统发育树/data/lolA/"
+INPUT="/mnt/f/OneDrive/文档（科研）/脚本/Download/17-Orthologous-genes/1-数据获取/1-下载特定基因序列/conf/lolA_id.txt" #? 每行一个GeneID
+OUTDIR="/mnt/f/OneDrive/文档（科研）/脚本/Download/17-Orthologous-genes/1-数据获取/1-下载特定基因序列/data/"
 LOG_FILE="$OUTDIR/gene_download_log.txt"
 CSV_FILE="$OUTDIR/gene_download_map.csv"
 DEFAULT_PARALLEL_JOBS=8  # 基因查询相对较轻，可以使用更多并发
