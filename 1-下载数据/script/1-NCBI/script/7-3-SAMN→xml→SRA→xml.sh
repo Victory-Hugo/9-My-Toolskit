@@ -9,9 +9,9 @@ unset https_proxy
 
 # 默认配置
 INPUT_FILE="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/1-NCBI/conf/biosample1.txt"
-BIOSAMPLE_DIR="/mnt/g/鲍曼META/biosample_xml"
-SRA_DIR="/mnt/g/鲍曼META/SRA_xml"
-LOG_FILE="/mnt/g/鲍曼META/download_log.txt"
+BIOSAMPLE_DIR="/mnt/c/Users/Administrator/Desktop/biosample_xml"
+SRA_DIR="/mnt/c/Users/Administrator/Desktop/SRA_xml"
+LOG_FILE="/mnt/c/Users/Administrator/Desktop/download_log.txt"
 DEFAULT_PARALLEL_JOBS=6  # 默认并行任务数（使用API密钥可以提高）
 
 # NCBI API配置
