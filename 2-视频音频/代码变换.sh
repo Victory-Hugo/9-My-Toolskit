@@ -4,16 +4,16 @@
 # 直接运行: ./代码变换.sh
 
 # ==================== 配置区域（直接写死的路径） ====================
-SCRIPT_DIR="/mnt/c/Users/Administrator/Desktop"
+SCRIPT_DIR="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/2-视频音频/"
 CONDA_INIT="/home/luolintao/miniconda3/etc/profile.d/conda.sh"
 ENV_NAME="Manim"
-MANIM_SRC="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/2-视频音频/1-代码变换.py"
+MANIM_SRC="${SCRIPT_DIR}/1-代码变换.py"
 # 输入文件路径（写死）
-OLD_CODE_FILE="$SCRIPT_DIR/old_code.py"
-NEW_CODE_FILE="$SCRIPT_DIR/new_code.py"
+OLD_CODE_FILE="/mnt/c/Users/Administrator/Desktop/1.py"
+NEW_CODE_FILE="/mnt/c/Users/Administrator/Desktop/2.R"
 
 # 输出文件名
-OUTPUT_FILE="output.mp4"
+OUTPUT_FILE="/mnt/c/Users/Administrator/Desktop/output.mp4"
 
 # =====================================================================
 
