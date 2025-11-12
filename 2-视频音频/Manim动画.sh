@@ -13,7 +13,7 @@ MANIM_SRC="${SCRIPT_DIR}/2-md变化.py"
 OLD_CODE_FILE="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/2-视频音频/example_old.md" #! 第一个场景展示的内容
 NEW_CODE_FILE="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/2-视频音频/example_new.md" #! 第二个场景展示的内容
 # 输出文件名
-OUTPUT_FILE="/mnt/c/Users/Administrator/Desktop/output.mp4"
+OUTPUT_FILE="/mnt/c/Users/Administrator/Desktop/1.mp4"
 
 # =====================================================================
 

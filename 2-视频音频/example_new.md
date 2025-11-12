@@ -1,30 +1,29 @@
-# 更新后的文档
+# ArcGIS 与 ArcGIS Pro 对比要点
 
-## 新的介绍
+* **软件架构**
+  * ArcGIS（ArcMap / ArcCatalog）：32 位，单线程。
+  * ArcGIS Pro：64 位，多线程，性能更强。
 
-这是更新后的 Markdown 文档，展示了内容的变化。
+* **数据管理方式**
+  * ArcGIS：数据分散保存（MXD、LYR、GDB 分开）。
+  * ArcGIS Pro：采用集成式 Project（.aprx）工程结构，统一管理。
 
-### 高级数学公式
+* **用户界面**
+  * ArcGIS：经典菜单栏风格（类似旧版 Office 2003）。
+  * ArcGIS Pro：Ribbon 工具栏界面（类似 Office 365），更直观现代。
 
-爱因斯坦场方程：$G_{\mu\nu} = 8\pi T_{\mu\nu}$
+* **Python 环境**
+  * ArcGIS：使用 Python 2.x（ArcPy for ArcMap）。
+  * ArcGIS Pro：使用 Python 3.x（ArcPy for Pro）。
 
-傅里叶变换：
-$$F(\omega) = \int_{-\infty}^{\infty} f(t) e^{-i\omega t} dt$$
+* **渲染性能**
+  * ArcGIS：单核绘图，响应较慢。
+  * ArcGIS Pro：支持 GPU 加速，绘制流畅。
 
-### 扩展列表
+* **地图布局**
+  * ArcGIS：每个工程仅支持单一视图布局。
+  * ArcGIS Pro：支持多视图、多布局并行工作。
 
-1. 第一个改进
-2. 第二个改进
-3. 第三个改进
-4. 新增功能
-
-### 更新的代码
-
-```python
-import numpy as np
-print("Hello, Manim!")
-```
-
-**重要更新** 和 *新增特性*
-
-> 这是一个引用块，包含重要信息。
+* **更新与支持**
+  * ArcGIS：已进入维护阶段，停止主版本更新。
+  * ArcGIS Pro：持续迭代，是 Esri 当前主力平台。
