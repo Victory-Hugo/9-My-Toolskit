@@ -9,17 +9,20 @@ ossutil sync \
     --delete \
     --update \
     --job 20
+
 # # 1.基本同步命令
 # # *功能说明：该命令会将本地文件夹中的内容同步到 OSS，仅传输有变动的文件（基于文件修改时间和大小判断）
 # ossutil sync \
 #     /mnt/f/D1_Obsidian_publish/ \
 #     oss://obsidian-publisher/D1_Obsidian_publish/
+
 # osstil sync \
-#    /mnt/f/OneDrive/文档（科研）/脚本/Download/1-Website_research_group/ \
-#    oss://p2-research-group-website/ \
-#    --delete \
-#    --update \
-#    --job 20
+#     /mnt/f/OneDrive/文档（科研）/脚本/Download/1-Website_research_group/ \
+#     oss://p2-research-group-website/ \
+#     --delete \
+#     --update \
+#     --job 20
+
 # # 2.同步时删除多余文件
 # # *如果希望删除 OSS 中已存在但本地不存在的文件，可使用 --delete 参数：
 # # *注意事项：启用 --delete 参数后，OSS 中多余的文件将被删除，建议开启版本控制以防止误删重要数据
@@ -39,9 +42,9 @@ ossutil sync \
 # ossutil sync \
 #     /mnt/f/D1_Obsidian_publish/ \
 #     oss://obsidian-publisher/D1_Obsidian_publish/ --exclude "*.tmp"
+
 # # 4. 增量同步
 # # 通过 -u/--update 参数实现增量同步，仅同步满足以下条件的文件：
-
 # # 目标端不存在该文件。
 # # 源文件比目标文件更新。
 # ossutil sync \
@@ -57,7 +60,6 @@ ossutil sync \
 # 0 2 * * * ossutil sync \
 #     /mnt/f/D1_Obsidian_publish/ \
 #     oss://obsidian-publisher/D1_Obsidian_publish/ --delete
-
 
 # # 2. Windows 系统
 # # sync_to_oss.bat，内容如下：
