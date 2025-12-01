@@ -1,1 +1,0 @@
-java -jar /mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/2-ENA/func/ena-file-downloader.jar --accessions=ERR2111940 --format=READS_FASTQ --location=/mnt/c/Users/Administrator/Desktop/ --protocol=ASPERA --asperaLocation=null --email=NONE

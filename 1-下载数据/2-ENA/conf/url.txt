@@ -1,0 +1,2 @@
+ftp://ftp.sra.ebi.ac.uk/vol1/run/ERR148/ERR14826483/I20835.bam
+ftp://ftp.sra.ebi.ac.uk/vol1/run/ERR148/ERR14826460/I16534.bam
