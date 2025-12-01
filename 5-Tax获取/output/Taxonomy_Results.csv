@@ -1,0 +1,33 @@
+Accession,TaxID,Superkingdom,Kingdom,Phylum,Class,Order,Family,Genus,Species,ScientificName,DB,Status,Message
+PV740830,9606,,Metazoa,Chordata,Mammalia,Primates,Hominidae,Homo,Homo sapiens,Homo sapiens,nuccore,OK,ok
+PV740831,9606,,Metazoa,Chordata,Mammalia,Primates,Hominidae,Homo,Homo sapiens,Homo sapiens,nuccore,OK,ok
+PV740832,9606,,Metazoa,Chordata,Mammalia,Primates,Hominidae,Homo,Homo sapiens,Homo sapiens,nuccore,OK,ok
+PV740834,9606,,Metazoa,Chordata,Mammalia,Primates,Hominidae,Homo,Homo sapiens,Homo sapiens,nuccore,OK,ok
+PV740833,9606,,Metazoa,Chordata,Mammalia,Primates,Hominidae,Homo,Homo sapiens,Homo sapiens,nuccore,OK,ok
+PV740835,9606,,Metazoa,Chordata,Mammalia,Primates,Hominidae,Homo,Homo sapiens,Homo sapiens,nuccore,OK,ok
+PV740836,9606,,Metazoa,Chordata,Mammalia,Primates,Hominidae,Homo,Homo sapiens,Homo sapiens,nuccore,OK,ok
+PV740838,9606,,Metazoa,Chordata,Mammalia,Primates,Hominidae,Homo,Homo sapiens,Homo sapiens,nuccore,OK,ok
+PV740837,9606,,Metazoa,Chordata,Mammalia,Primates,Hominidae,Homo,Homo sapiens,Homo sapiens,nuccore,OK,ok
+PV740840,9606,,Metazoa,Chordata,Mammalia,Primates,Hominidae,Homo,Homo sapiens,Homo sapiens,nuccore,OK,ok
+PV740839,9606,,Metazoa,Chordata,Mammalia,Primates,Hominidae,Homo,Homo sapiens,Homo sapiens,nuccore,OK,ok
+PV740841,9606,,Metazoa,Chordata,Mammalia,Primates,Hominidae,Homo,Homo sapiens,Homo sapiens,nuccore,OK,ok
+PV740842,9606,,Metazoa,Chordata,Mammalia,Primates,Hominidae,Homo,Homo sapiens,Homo sapiens,nuccore,OK,ok
+PV740843,9606,,Metazoa,Chordata,Mammalia,Primates,Hominidae,Homo,Homo sapiens,Homo sapiens,nuccore,OK,ok
+PV740844,9606,,Metazoa,Chordata,Mammalia,Primates,Hominidae,Homo,Homo sapiens,Homo sapiens,nuccore,OK,ok
+PV740847,9606,,Metazoa,Chordata,Mammalia,Primates,Hominidae,Homo,Homo sapiens,Homo sapiens,nuccore,OK,ok
+PV740846,9606,,Metazoa,Chordata,Mammalia,Primates,Hominidae,Homo,Homo sapiens,Homo sapiens,nuccore,OK,ok
+PV740849,9606,,Metazoa,Chordata,Mammalia,Primates,Hominidae,Homo,Homo sapiens,Homo sapiens,nuccore,OK,ok
+PV740850,9606,,Metazoa,Chordata,Mammalia,Primates,Hominidae,Homo,Homo sapiens,Homo sapiens,nuccore,OK,ok
+PV740848,9606,,Metazoa,Chordata,Mammalia,Primates,Hominidae,Homo,Homo sapiens,Homo sapiens,nuccore,OK,ok
+GCA_000001405,9606,,Metazoa,Chordata,Mammalia,Primates,Hominidae,Homo,Homo sapiens,Homo sapiens,assembly,OK,ok
+GCF_000001405,9606,,Metazoa,Chordata,Mammalia,Primates,Hominidae,Homo,Homo sapiens,Homo sapiens,assembly,OK,ok
+GCA_000146045.2,559292,,Fungi,Ascomycota,Saccharomycetes,Saccharomycetales,Saccharomycetaceae,Saccharomyces,Saccharomyces cerevisiae,Saccharomyces cerevisiae S288C,assembly,OK,ok
+GCF_902167405.1,8049,,Metazoa,Chordata,Actinopteri,Gadiformes,Gadidae,Gadus,Gadus morhua,Gadus morhua,assembly,OK,ok
+GCF_009858895.2,2697049,,Orthornavirae,Pisuviricota,Pisoniviricetes,Nidovirales,Coronaviridae,Betacoronavirus,Betacoronavirus pandemicum,Severe acute respiratory syndrome coronavirus 2,assembly,OK,ok
+GCA_003368295.1,7957,,Metazoa,Chordata,Actinopteri,Cypriniformes,Cyprinidae,Carassius,Carassius auratus,Carassius auratus,assembly,OK,ok
+GCF_000146045.2,559292,,Fungi,Ascomycota,Saccharomycetes,Saccharomycetales,Saccharomycetaceae,Saccharomyces,Saccharomyces cerevisiae,Saccharomyces cerevisiae S288C,assembly,OK,ok
+SRR390728,9606,,Metazoa,Chordata,Mammalia,Primates,Hominidae,Homo,Homo sapiens,Homo sapiens,sra,OK,ok
+SRR390729,9606,,Metazoa,Chordata,Mammalia,Primates,Hominidae,Homo,Homo sapiens,Homo sapiens,sra,OK,ok
+SRR000001,9606,,Metazoa,Chordata,Mammalia,Primates,Hominidae,Homo,Homo sapiens,Homo sapiens,sra,OK,ok
+SRR390730,9606,,Metazoa,Chordata,Mammalia,Primates,Hominidae,Homo,Homo sapiens,Homo sapiens,sra,OK,ok
+SRA000001,5755,,,Discosea,,Longamoebia,Acanthamoebidae,Acanthamoeba,Acanthamoeba castellanii,Acanthamoeba castellanii,sra,OK,ok
