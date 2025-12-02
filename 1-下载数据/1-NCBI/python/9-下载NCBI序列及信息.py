@@ -1,44 +1,58 @@
 import os
+import time
+from pathlib import Path
+from urllib.error import HTTPError
 from Bio import Entrez, SeqIO
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
+# ——————— NCBI Entrez 配置 ———————
+Entrez.email = "giantlinlinlin@gmail.com"
+Entrez.api_key = "29b326d54e7a21fc6c8b9afe7d71f441d809"
+
 # ——————— 配置部分 ———————
-Entrez.email         = "giantlinlinlin@gmail.com"
-save_directory       = r"/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/1-NCBI/download/"
-os.makedirs(save_directory, exist_ok=True)
-success_log_file     = os.path.join(save_directory, "success_log.txt")
-failure_log_file     = os.path.join(save_directory, "failure_log.txt")
-basic_info_file      = os.path.join(save_directory, "基本信息.txt")
-conf_file            = os.path.join(os.path.dirname(save_directory), "conf", "下载NCBI.txt")
+BASE_DIR = Path("/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/1-NCBI")
+
+# 构造下载目录
+save_directory = BASE_DIR / "download"
+save_directory.mkdir(parents=True, exist_ok=True)
+
+# 一系列文件路径
+success_log_file = save_directory / "success_log.txt"
+failure_log_file = save_directory / "failure_log.txt"
+basic_info_file = save_directory / "基本信息.txt"
+conf_file = BASE_DIR / "conf" / "下载NCBI.txt"
+
+
+def efetch_with_retry(db, seq_id, rettype, retmode, retries=3, base_delay=2):
+    """Handle NCBI throttling by retrying transient HTTP errors."""
+    for attempt in range(1, retries + 1):
+        try:
+            return Entrez.efetch(db=db, id=seq_id, rettype=rettype, retmode=retmode)
+        except HTTPError as err:
+            if err.code in {429, 500, 502, 503, 504} and attempt < retries:
+                time.sleep(base_delay * attempt)
+                continue
+            raise
 
 
 def download_and_process_sequence(seq_id):
     try:
-        # —— 下载并解析 FASTA —— 
-        raw_fasta = Entrez.efetch(db="nucleotide",
-                                  id=seq_id,
-                                  rettype="fasta",
-                                  retmode="text")
-        # 用 fasta-pearson 格式，允许前置注释
-        fasta_records = list(SeqIO.parse(raw_fasta, "fasta-pearson"))
-        raw_fasta.close()
+        # —— 下载并解析 FASTA ——
+        with efetch_with_retry("nucleotide", seq_id, "fasta", "text") as raw_fasta:
+            fasta_records = list(SeqIO.parse(raw_fasta, "fasta"))
 
         if not fasta_records:
             raise ValueError("No FASTA record found")
         record_fasta = fasta_records[0]
 
         # 保存 FASTA 文件
-        fasta_path = os.path.join(save_directory, f"{seq_id}.fasta")
+        fasta_path = save_directory / f"{seq_id}.fasta"
         SeqIO.write(record_fasta, fasta_path, "fasta")
         print(f"[FASTA] 已保存：{fasta_path}")
 
-        # —— 下载并解析 GenBank —— 
-        raw_gb = Entrez.efetch(db="nucleotide",
-                               id=seq_id,
-                               rettype="gb",
-                               retmode="text")
-        gb_records = list(SeqIO.parse(raw_gb, "genbank"))
-        raw_gb.close()
+        # —— 下载并解析 GenBank ——
+        with efetch_with_retry("nucleotide", seq_id, "gb", "text") as raw_gb:
+            gb_records = list(SeqIO.parse(raw_gb, "genbank"))
 
         if not gb_records:
             raise ValueError("No GenBank record found")
@@ -49,9 +63,9 @@ def download_and_process_sequence(seq_id):
         for feat in record_gb.features:
             if feat.type == "source":
                 qs = feat.qualifiers
-                country  = qs.get("country",  ["Not Available"])[0]
-                isolate  = qs.get("isolate",  ["Not Available"])[0]
-                lat_lon  = qs.get("lat_lon",  ["Not Available"])[0]
+                country = qs.get("country", ["Not Available"])[0]
+                isolate = qs.get("isolate", ["Not Available"])[0]
+                lat_lon = qs.get("lat_lon", ["Not Available"])[0]
                 break
 
         # 提取参考文献标题
@@ -77,11 +91,14 @@ def download_and_process_sequence(seq_id):
 
 if __name__ == "__main__":
     # 读取 seq_id 列表
+    if not conf_file.exists():
+        raise FileNotFoundError(f"未找到配置文件: {conf_file}")
+
     with open(conf_file, "r", encoding="utf-8") as f:
         id_list = [line.strip() for line in f if line.strip()]
 
-    # 并行下载处理
-    with ThreadPoolExecutor(max_workers=5) as executor:
+    # 并行下载处理（控制并发减轻 429 风险）
+    with ThreadPoolExecutor(max_workers=3) as executor:
         futures = [executor.submit(download_and_process_sequence, sid) for sid in id_list]
         for future in as_completed(futures):
             try:
