@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
-# 使用本地shell串联流程：Accession→TaxID→完整分类CSV
+# 带默认配置并可参数覆盖的自包含命令行工具（self-contained CLI with overrideable defaults）
 
 set -euo pipefail
 
 
 BASE_DIR="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/5-Tax获取"
 
-ACCESSION_FILE="${BASE_DIR}/conf/AccessionID.txt"
+ACCESSION_FILE="/mnt/c/Users/Administrator/Desktop/conf/AccessionID.txt"
 NAMES_DMP="${BASE_DIR}/download/names.dmp"
 NODES_DMP="${BASE_DIR}/download/nodes.dmp"
-OUT_DIR="${BASE_DIR}/output"
+OUT_DIR="/mnt/c/Users/Administrator/Desktop/output"
 OUTPUT_FILE="${OUT_DIR}/Taxonomy_Results.csv"
 BIOSAMPLE_OUTPUT="${OUT_DIR}/BioSample_Map.csv"
 EMAIL="giantlinlinlin@gmail.com"
