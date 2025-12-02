@@ -1,7 +1,7 @@
 import os
 
 # 定义文件目录路径
-directory = r'/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/script/1-NCBI/download'
+directory = r'/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/1-NCBI/download'
 #directory = r'C:/Users/victo/Desktop'
 # 定义输出文件路径
 output_file = os.path.join('/mnt/c/Users/Administrator/Desktop', 'merged_sequences.fasta')
