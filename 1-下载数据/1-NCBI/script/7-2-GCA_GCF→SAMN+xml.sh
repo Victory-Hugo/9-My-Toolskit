@@ -5,13 +5,56 @@
 # 输出 XML 文件 + CSV 对照表（Input_ID ↔ Standard_ID ↔ SAMN ↔ Organism）
 # 作者：Lintao Luo  
 # 日期：2025年8月19日
+# 修改：2025年12月5日 - 支持参数调用
 
 unset http_proxy
 unset https_proxy
 
+# 解析命令行参数
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    --input-file|-i)
+      INFILE="$2"
+      shift 2
+      ;;
+    --output-dir|-o)
+      XML_DIR="$2"
+      shift 2
+      ;;
+    --parallel|-p)
+      PARALLEL_JOBS="$2"
+      shift 2
+      ;;
+    --help|-h)
+      echo "用法: $0 [选项]"
+      echo "选项:"
+      echo "  -i, --input-file FILE    输入的Assembly ID文件 (默认: 从Desktop/conf读取)"
+      echo "  -o, --output-dir DIR     输出目录 (默认: 与输入文件同目录的meta文件夹)"
+      echo "  -p, --parallel NUM       并行任务数 (默认: 5)"
+      echo "  -h, --help              显示此帮助信息"
+      exit 0
+      ;;
+    *)
+      # 第一个参数作为并行任务数（向后兼容）
+      if [[ "$1" =~ ^[0-9]+$ ]]; then
+        PARALLEL_JOBS="$1"
+      else
+        echo "未知参数: $1" >&2
+        exit 1
+      fi
+      shift
+      ;;
+  esac
+done
+
 # 默认配置
-INFILE="/mnt/f/15_Bam_Tam/5-补齐更多物种/conf/merge.ID.txt"
-XML_DIR="/mnt/f/15_Bam_Tam/5-补齐更多物种/meta"
+INFILE=${INFILE:-"/mnt/c/Users/Administrator/Desktop/conf/NCBI-Bac-reference.ID.txt"}
+# 如果未指定输出目录，则使用输入文件目录的上级目录下的meta文件夹
+if [[ -z "$XML_DIR" ]]; then
+  INPUT_DIR=$(dirname "$INFILE")
+  BASE_DIR=$(dirname "$INPUT_DIR")
+  XML_DIR="$BASE_DIR/meta"
+fi
 CSV_FILE="$XML_DIR/assembly_biosample_map.csv"
 LOG_FILE="$XML_DIR/assembly_biosample_log.txt"
 DEFAULT_PARALLEL_JOBS=5  # 默认并行任务数（Assembly查询较重，用较少并发）
