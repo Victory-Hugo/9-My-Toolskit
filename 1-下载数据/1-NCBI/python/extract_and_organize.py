@@ -5,7 +5,6 @@ NCBI数据解压和整理模块
 功能说明：
 1. 自动解压ZIP文件到单独文件夹
 2. 重命名和整理文件结构
-3. 创建树状目录结构避免文件夹过多
 
 支持模块导入和命令行调用两种方式。
 """
@@ -15,7 +14,7 @@ import shutil
 import sys
 import zipfile
 from pathlib import Path
-from typing import Tuple
+from typing import Tuple, Optional
 import logging
 from datetime import datetime
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -85,7 +84,7 @@ def extract_single_zip(zip_file: Path, root_dir: Path, overwrite: bool = False, 
 
 
 def extract_zip_files(root_dir: Path, overwrite: bool = False, backup: bool = False, 
-                     max_workers: int = None) -> Tuple[int, int]:
+                     max_workers: Optional[int] = None) -> Tuple[int, int]:
     """
     解压ZIP文件（并行处理）
     
@@ -319,83 +318,13 @@ def flatten_ncbi_structure(root_dir: Path) -> int:
     return count
 
 
-def create_tree_structure(root_dir: Path, max_files_per_dir: int = 5000) -> bool:
-    """创建树状目录结构"""
-    logging.info("步骤9: 创建树状目录结构...")
-    
-    # 获取所有需要整理的目录
-    dirs_to_organize = [d for d in root_dir.iterdir() 
-                       if d.is_dir() and "_organized_" not in d.name and "_backup_" not in d.name]
-    
-    total_dirs = len(dirs_to_organize)
-    logging.info(f"需要整理的目录总数: {total_dirs}")
-    
-    if total_dirs == 0:
-        logging.info("没有需要整理的目录。")
-        return False
-    
-    if total_dirs <= max_files_per_dir:
-        logging.info("目录数量未超过限制，无需重新组织")
-        return False
-    
-    # 创建临时目录
-    timestamp = int(datetime.now().timestamp())
-    temp_organized = root_dir.parent / f"{root_dir.name}_organized_{timestamp}"
-    temp_organized.mkdir()
-    
-    logging.info("目录数量超过限制，创建分层结构")
-    
-    try:
-        # 整理目录到分层结构
-        for i, dir_path in enumerate(dirs_to_organize):
-            # 计算嵌套路径
-            level1 = i // max_files_per_dir
-            nested_dir_name = f"{level1 * max_files_per_dir:04d}-{(level1 + 1) * max_files_per_dir - 1:04d}"
-            target_dir = temp_organized / nested_dir_name
-            
-            # 创建目标目录
-            target_dir.mkdir(exist_ok=True)
-            
-            # 移动目录
-            shutil.move(str(dir_path), str(target_dir))
-            
-            # 显示进度
-            if (i + 1) % 1000 == 0 or (i + 1) == total_dirs:
-                logging.info(f"已整理: {i + 1}/{total_dirs}")
-        
-        # 备份原目录并替换
-        backup_dir = root_dir.parent / f"{root_dir.name}_backup_{timestamp}"
-        logging.info(f"备份原目录到: {backup_dir}")
-        root_dir.rename(backup_dir)
-        temp_organized.rename(root_dir)
-        
-        # 统计新结构
-        level1_dirs = len([d for d in root_dir.iterdir() if d.is_dir()])
-        level2_dirs = sum(len([d for d in subdir.iterdir() if d.is_dir()]) 
-                         for subdir in root_dir.iterdir() if subdir.is_dir())
-        
-        logging.info("树状结构创建完成！")
-        logging.info(f"原目录备份: {backup_dir}")
-        logging.info(f"新目录结构: {root_dir}")
-        logging.info("新目录结构统计:")
-        logging.info(f"  一级目录数: {level1_dirs}")
-        logging.info(f"  二级目录数: {level2_dirs}")
-        
-        return True
-        
-    except Exception as e:
-        logging.error(f"创建树状结构失败: {e}")
-        # 清理临时目录
-        if temp_organized.exists():
-            shutil.rmtree(temp_organized)
-        return False
+
 
 
 def run(root_directory: str, 
         overwrite: bool = False, 
         backup: bool = False, 
-        max_files_per_dir: int = 5000,
-        max_workers: int = None,
+        max_workers: Optional[int] = None,
         verbose: bool = False) -> dict:
     """
     执行完整的解压和整理流程
@@ -404,7 +333,6 @@ def run(root_directory: str,
         root_directory: 根目录路径
         overwrite: 是否覆盖已存在的文件
         backup: 是否备份已存在的文件
-        max_files_per_dir: 每个目录最大文件数
         max_workers: 最大并发数（默认为CPU核心数）
         verbose: 是否显示详细日志
         
@@ -423,7 +351,6 @@ def run(root_directory: str,
         max_workers = min(multiprocessing.cpu_count(), 8)
     
     logging.info(f"开始处理目录: {root_dir}")
-    logging.info(f"每目录最大文件数: {max_files_per_dir}")
     logging.info(f"并发线程数: {max_workers}")
     
     results = {}
@@ -455,10 +382,6 @@ def run(root_directory: str,
         moved_files = flatten_ncbi_structure(root_dir)
         results['moved_files'] = moved_files
         
-        # 9. 创建树状结构
-        tree_created = create_tree_structure(root_dir, max_files_per_dir)
-        results['tree_created'] = tree_created
-        
         logging.info("全部完成！")
         return results
         
@@ -475,7 +398,7 @@ def main():
         epilog="""
 示例用法:
   %(prog)s /path/to/download
-  %(prog)s /path/to/download --overwrite --max-files 3000
+  %(prog)s /path/to/download --overwrite
   %(prog)s /path/to/download --backup --verbose --max-workers 4
   %(prog)s /path/to/download -j 16 -v  # 使用16个线程并显示详细日志
         """
@@ -499,13 +422,6 @@ def main():
     )
     
     parser.add_argument(
-        "--max-files",
-        type=int,
-        default=5000,
-        help="每个目录最大文件数 (默认: 5000)"
-    )
-    
-    parser.add_argument(
         "--max-workers", "-j",
         type=int,
         help="最大并发线程数 (默认: CPU核心数，最大8)"
@@ -524,7 +440,6 @@ def main():
             root_directory=args.root_directory,
             overwrite=args.overwrite,
             backup=args.backup,
-            max_files_per_dir=args.max_files,
             max_workers=args.max_workers,
             verbose=args.verbose
         )
@@ -538,7 +453,6 @@ def main():
         print(f"重命名文件: CDS({results['renamed_files']['cds']}) GFF({results['renamed_files']['gff']}) "
               f"FASTA({results['renamed_files']['fasta']}) 蛋白质({results['renamed_files']['protein']})")
         print(f"移动文件: {results['moved_files']} 个")
-        print(f"创建树状结构: {'是' if results['tree_created'] else '否'}")
         print("="*50)
         
     except Exception as e:

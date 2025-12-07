@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# 带默认配置并可参数覆盖的自包含命令行工具（self-contained CLI with overrideable defaults）
+#*==========Accession ID获取Taxonomy信息脚本==========*
 
 set -euo pipefail
 
