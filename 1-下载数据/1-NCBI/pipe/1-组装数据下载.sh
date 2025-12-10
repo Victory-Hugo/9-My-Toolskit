@@ -9,16 +9,16 @@ unset https_proxy
 #*============组装编号→数据下载==================
 
 PYTHON_SCRIPT="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/1-NCBI/python/7-下载NCBI的Assembly.py"
-TXT_FILE="/mnt/d/5-NCBI-Reference/1-Bac/conf/补充下载.txt"
+TXT_FILE="/mnt/d/5-NCBI-Reference/Other/1-fna_ID.txt"
 PYTHON_PATH="python3"
-DOWNLOAD_PATH="/mnt/d/5-NCBI-Reference/1-Bac/download2"
+DOWNLOAD_PATH="/mnt/d/5-NCBI-Reference/Other/download"
 mkdir -p "${DOWNLOAD_PATH}"
 
-${PYTHON_PATH} \
-  ${PYTHON_SCRIPT} \
-  --base-path "${DOWNLOAD_PATH}" \
-  --file-path "${TXT_FILE}" \
-  -w 10 --resume
+# ${PYTHON_PATH} \
+#   ${PYTHON_SCRIPT} \
+#   --base-path "${DOWNLOAD_PATH}" \
+#   --file-path "${TXT_FILE}" \
+#   -w 10 --resume
 
 
 #*============组装编号→样本编号→基础信息下载======
