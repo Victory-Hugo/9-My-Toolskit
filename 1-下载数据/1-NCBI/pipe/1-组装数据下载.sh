@@ -9,11 +9,12 @@ unset https_proxy
 #*============组装编号→数据下载==================
 
 PYTHON_SCRIPT="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/1-NCBI/python/7-下载NCBI的Assembly.py"
-TXT_FILE="/mnt/d/5-NCBI-Reference/Other/1-fna_ID.txt"     #! 每行一个组装编号，例如"GCA_000005845.2"
+TXT_FILE="/mnt/l/tmp/Satou_GA_2014/conf/1.txt"     #! 每行一个组装编号，例如"GCA_000005845.2"
 PYTHON_PATH="python3"
-DOWNLOAD_PATH="/mnt/d/5-NCBI-Reference/Other/download"
-mkdir -p "${DOWNLOAD_PATH}"
+DOWNLOAD_PATH="/mnt/l/tmp/Satou_GA_2014/download"
 
+
+# mkdir -p "${DOWNLOAD_PATH}"
 # ${PYTHON_PATH} \
 #   ${PYTHON_SCRIPT} \
 #   --base-path "${DOWNLOAD_PATH}" \
@@ -28,7 +29,7 @@ echo "现在开始下载样本基本信息………………………………"
 BIOSAMPLE_SCRIPT="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/1-NCBI/script/7-2-GCA_GCF→SAMN+xml.sh"
 
 # 设置输出目录为与下载目录同级的meta文件夹
-META_DIR="$(dirname "${DOWNLOAD_PATH}")/meta"
+META_DIR="/mnt/l/tmp/Satou_GA_2014/meta"
 
 # 执行BioSample信息获取
 "${BIOSAMPLE_SCRIPT}" \

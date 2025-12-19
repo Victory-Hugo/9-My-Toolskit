@@ -1,39 +1,10 @@
-: '
-脚本功能说明：
-本脚本用于根据指定的 NCBI BioProject 编号（如 PRJNA572371），
-自动检索并下载相关的 SRA 运行信息或 Assembly 信息，并保存为 CSV 文件。
-#! 注意，本脚本无法一次性获得project中所有样本的最详细的基础信息。
-#! 注意，本脚本无法一次性获得project中所有样本的最详细的基础信息。
-#! 注意，本脚本主要用于获取项目下的测序编号。
-主要流程：
-1. 解除代理设置，确保网络请求不受代理影响。
-2. 首先尝试通过 esearch/elink/efetch 获取 SRA runinfo 信息，保存为 CSV 文件。
-3. 若未获取到有效 SRA 信息，则自动切换到 Assembly 数据下载模式：
-  - 通过 esearch/efetch/xtract 获取 Assembly 相关信息（包括 BioSample、组装、物种、FTP 路径等），并格式化输出为表格。
-  - 仅保留前 13 列数据，并添加表头，最终保存为 CSV 文件。
-4. 输出处理进度和结果日志。
-
-依赖工具：
-- NCBI Entrez Direct 工具集（esearch、elink、efetch、xtract）
-- bash shell
-
-参数说明：
-- PROJECT_NUMBER：指定的 BioProject 编号
-- OUT_CSV：输出的 CSV 文件路径
-
-适用场景：
-- 批量下载和整理 NCBI BioProject 下的 SRA 或 Assembly 数据信息
-- 数据分析前的自动化信息收集
-
-作者：自定义
-'
 #!/bin/bash
-set -euo pipefail
+
 unset http_proxy
 unset https_proxy
 
-PROJECT_NUMBER="PRJNA482300"
-OUT_CSV="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/1-NCBI/conf/${PROJECT_NUMBER}_runinfo.tsv"
+PROJECT_NUMBER="PRJNA529500"
+OUT_CSV="/mnt/l/tmp/Thorell_NC_2023/conf/${PROJECT_NUMBER}_runinfo.tsv"
 
 echo "[$(date +'%F %T')] 开始处理 BioProject ${PROJECT_NUMBER}"
 
