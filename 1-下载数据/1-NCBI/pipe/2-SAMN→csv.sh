@@ -3,20 +3,20 @@
 #* ==============================================
 #* 第一步：调用SAMN→XML下载
 #* ==============================================
-# BASE_DIR="/mnt/l/tmp/Thorell_NC_2023/"
-# INPUT_FILE="${BASE_DIR}/conf/sample.txt"                                                   # 输入文件路径（包含SAMN编号的文件）
-# BIOSAMPLE_DIR="${BASE_DIR}/meta/xml"                                                     # 输出目录（Biosample XML文件保存位置）
-# LOG_FILE="${BASE_DIR}/log/download_log.txt"                                              # 日志文件路径
-# PARALLEL_JOBS=6                                                                          # 并行任务数（建议1-20之间，根据NCBI API限制调整）  
-# SCRIPT_PATH="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/1-NCBI/script/7-3-SAMN→xml→SRA→xml.sh"   # 实际执行脚本的路径
+BASE_DIR="/mnt/d/6-HPgnomAD-Origin-data/5-NCBI/2-Ancient-DNA/"
+INPUT_FILE="${BASE_DIR}/conf/biosample_result.txt"                                                   # 输入文件路径（包含SAMN编号的文件）
+BIOSAMPLE_DIR="${BASE_DIR}/meta/xml"                                                     # 输出目录（Biosample XML文件保存位置）
+LOG_FILE="${BASE_DIR}/log/download_log.txt"                                              # 日志文件路径
+PARALLEL_JOBS=6                                                                          # 并行任务数（建议1-20之间，根据NCBI API限制调整）  
+SCRIPT_PATH="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/1-NCBI/script/7-3-SAMN→xml→SRA→xml.sh"   # 实际执行脚本的路径
 
-# # ==============================================
-# # 参数验证和环境检查
-# # ==============================================
+# ==============================================
+# 参数验证和环境检查
+# ==============================================
 
-# echo "======================================"
-# echo "样本信息获取管道启动"
-# echo "======================================"
+echo "======================================"
+echo "样本信息获取管道启动"
+echo "======================================"
 
 # # 创建必要的目录结构
 # echo "创建必要的目录结构..."
@@ -81,7 +81,7 @@ SCR_DIR="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下�
 PY_SCRIPT1="${SCR_DIR}6-6-xml→csv_Biosample.py"
 PY_SCRIPT1_2="${SCR_DIR}6-6-xml→csv_SRA.py"
 PY_SCRIPT2="${SCR_DIR}6-7-csv-concat.py"
-META_DIR="/mnt/l/tmp/Thorell_NC_2023/meta/"
+META_DIR="/mnt/d/6-HPgnomAD-Origin-data/5-NCBI/2-Ancient-DNA/meta/"
 XML_DIR="${META_DIR}/xml"
 CSV_DIR="${META_DIR}/csv"
 FINAL_CSV="${META_DIR}/merged.csv"

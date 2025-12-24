@@ -14,12 +14,12 @@ PYTHON_PATH="python3"
 DOWNLOAD_PATH="/mnt/l/tmp/Satou_GA_2014/download"
 
 
-# mkdir -p "${DOWNLOAD_PATH}"
-# ${PYTHON_PATH} \
-#   ${PYTHON_SCRIPT} \
-#   --base-path "${DOWNLOAD_PATH}" \
-#   --file-path "${TXT_FILE}" \
-#   -w 10 --resume
+mkdir -p "${DOWNLOAD_PATH}"
+${PYTHON_PATH} \
+  ${PYTHON_SCRIPT} \
+  --base-path "${DOWNLOAD_PATH}" \
+  --file-path "${TXT_FILE}" \
+  -w 10 --resume
 
 
 #*============组装编号→样本编号→基础信息下载======
@@ -41,15 +41,15 @@ echo "组装数据下载和样本信息获取完成！"
 echo "下载数据位置: ${DOWNLOAD_PATH}"
 echo "样本信息位置: ${META_DIR}"
 
-# #*============自动解压和整理下载的数据==================
-# echo "现在开始解压和整理下载的数据………………………………"
+#*============自动解压和整理下载的数据==================
+echo "现在开始解压和整理下载的数据………………………………"
 
-# # 调用Python解压整理模块
-# EXTRACT_SCRIPT="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/1-NCBI/python/extract_and_organize.py"
+# 调用Python解压整理模块
+EXTRACT_SCRIPT="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/1-NCBI/python/extract_and_organize.py"
 
-# # 执行解压整理
-# python3 "${EXTRACT_SCRIPT}" "${DOWNLOAD_PATH}" --verbose
+# 执行解压整理
+python3 "${EXTRACT_SCRIPT}" "${DOWNLOAD_PATH}" --verbose
 
-# echo "所有处理步骤完成！"
-# echo "下载数据位置: ${DOWNLOAD_PATH}"
-# echo "样本信息位置: ${META_DIR}"
+echo "所有处理步骤完成！"
+echo "下载数据位置: ${DOWNLOAD_PATH}"
+echo "样本信息位置: ${META_DIR}"
