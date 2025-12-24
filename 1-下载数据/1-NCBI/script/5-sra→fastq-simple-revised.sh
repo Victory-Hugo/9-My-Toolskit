@@ -1,24 +1,91 @@
 #!/bin/bash
-# 合并版：固定路径 + 并行 fastq-dump
-# - 并行核心逻辑来自 pfastq-dump (移除参数解析，写死配置)
-# - 遍历固定 SRA_DIR 下的全部 .sra 文件
-# - 输出到固定 FASTQ_DIR，自动创建，最后清理临时目录
-# - 默认参数：--split-3 --gzip，线程数 16
+# 合并版：命令行参数 + 并行 fastq-dump
+# - 并行核心逻辑来自 pfastq-dump
+# - 从txt文件读取SRA文件路径列表
+# - 输出到指定 FASTQ_DIR，自动创建，最后清理临时目录
+# - 默认参数：--split-3 --gzip，线程数可配置
 # - 错误时不停止，继续处理剩余文件
 # 如果你在 Conda 环境下安装了 SRA Toolkit，建议在外部先激活：conda activate SRA
 
 ############################################
-# 1) 固定配置（按需改成你机器的绝对路径）
+# 1) 显示用法
 ############################################
-# SRA 根目录（包含 .sra 文件）
-SRA_DIR="/data_raid/7_luolintao/1_Baoman/2-Sequence/FASTQ"
-# FASTQ 输出目录（会自动创建）
-FASTQ_DIR="${SRA_DIR}/FASTQ"
-# 临时目录（用于分片写入与合并）
-TMPDIR="${SRA_DIR}/tmp_pfd"
-# 线程数（并行分块与并发 fastq-dump 子进程数）
-NTHREADS=32
-# fastq-dump 透传参数（固定写死）
+usage(){
+  cat <<EOF
+用法: $0 -i <SRA_LIST_FILE> -o <FASTQ_DIR> [-t THREADS] [-T TMPDIR]
+
+必需参数:
+  -i SRA_LIST_FILE  包含SRA文件路径的txt文件（每行一个.sra文件的完整路径）
+  -o FASTQ_DIR      FASTQ输出目录（会自动创建）
+
+可选参数:
+  -t THREADS        线程数（默认: 16）
+  -T TMPDIR         临时目录（默认: ./tmp_pfd）
+  -h                显示此帮助信息
+
+示例:
+  $0 -i sra_files.txt -o /path/to/output -t 32
+EOF
+  exit 1
+}
+
+############################################
+# 2) 解析命令行参数
+############################################
+SRA_LIST_FILE=""
+FASTQ_DIR=""
+NTHREADS=16
+TMPDIR="./tmp_pfd"
+
+while getopts "i:o:t:T:h" opt; do
+  case ${opt} in
+    i)
+      SRA_LIST_FILE="${OPTARG}"
+      ;;
+    o)
+      FASTQ_DIR="${OPTARG}"
+      ;;
+    t)
+      NTHREADS="${OPTARG}"
+      ;;
+    T)
+      TMPDIR="${OPTARG}"
+      ;;
+    h)
+      usage
+      ;;
+    \?)
+      echo "错误: 无效选项 -${OPTARG}" >&2
+      usage
+      ;;
+    :)
+      echo "错误: 选项 -${OPTARG} 需要参数" >&2
+      usage
+      ;;
+  esac
+done
+
+# 检查必需参数
+if [[ -z "${SRA_LIST_FILE}" ]]; then
+  echo "错误: 必须提供 -i 参数（SRA路径列表文件）" >&2
+  usage
+fi
+
+if [[ -z "${FASTQ_DIR}" ]]; then
+  echo "错误: 必须提供 -o 参数（FASTQ输出目录）" >&2
+  usage
+fi
+
+# 检查SRA列表文件是否存在
+if [[ ! -f "${SRA_LIST_FILE}" ]]; then
+  echo "错误: SRA列表文件不存在: ${SRA_LIST_FILE}" >&2
+  exit 1
+fi
+
+############################################
+# 3) 固定配置
+############################################
+# fastq-dump 透传参数
 OPTIONS="--split-3 --gzip"
 # 是否走 STDOUT（固定为 false：落盘到 FASTQ_DIR）
 STDOUT="false"
@@ -28,7 +95,7 @@ SRA_STAT_BIN="sra-stat"
 FASTQ_DUMP_BIN="fastq-dump"
 
 # 版本号（仅用于日志）
-VERSION="0.1.6-merged"
+VERSION="0.2.0-parameterized"
 
 # 统计变量
 TOTAL_FILES=0
@@ -37,7 +104,7 @@ FAILED_FILES=0
 declare -a FAILED_LIST=()
 
 ############################################
-# 2) 工具函数
+# 4) 工具函数
 ############################################
 print_version(){
   echo "pfastq-dump version ${VERSION} using fastq-dump "$(${FASTQ_DUMP_BIN} --version 2>/dev/null | awk '$1 ~ /^fastq/ { print $3 }' || echo "unknown")
@@ -213,7 +280,7 @@ parallel_fastq_dump(){
 }
 
 ############################################
-# 3) 主流程
+# 5) 主流程
 ############################################
 print_version
 
@@ -228,17 +295,11 @@ if ! check_binary_location "${FASTQ_DUMP_BIN}"; then
   exit 1
 fi
 
-echo "SRA_DIR : ${SRA_DIR}" >&2
+echo "SRA_LIST_FILE: ${SRA_LIST_FILE}" >&2
 echo "FASTQ_DIR: ${FASTQ_DIR}" >&2
 echo "TMPDIR  : ${TMPDIR}" >&2
 echo "THREADS : ${NTHREADS}" >&2
 echo "OPTIONS : ${OPTIONS}" >&2
-
-# 检查 SRA_DIR 是否存在
-if [[ ! -d "${SRA_DIR}" ]]; then
-  echo "FATAL: SRA_DIR ${SRA_DIR} does not exist" >&2
-  exit 1
-fi
 
 # 创建必要目录
 if ! mkdir -p "${FASTQ_DIR}"; then
@@ -251,20 +312,13 @@ if ! mkdir -p "${TMPDIR}"; then
   exit 1
 fi
 
-# 构建清单（固定为 SRA_DIR 下所有 .sra）
-SRA_LIST_FILE="${SRA_DIR}/sra_files.txt"
-find "${SRA_DIR}" -type f -name "*.sra" | sort > "${SRA_LIST_FILE}" 2>/dev/null || {
-  echo "ERROR: Failed to find .sra files in ${SRA_DIR}" >&2
-  exit 1
-}
-
-# 检查是否有文件要处理
+# 检查列表文件是否为空
 if [[ ! -s "${SRA_LIST_FILE}" ]]; then
-  echo "WARN: No .sra files found in ${SRA_DIR}" >&2
+  echo "WARN: SRA列表文件为空: ${SRA_LIST_FILE}" >&2
   exit 0
 fi
 
-TOTAL_FILES=$(wc -l < "${SRA_LIST_FILE}")
+TOTAL_FILES=$(grep -c . "${SRA_LIST_FILE}" 2>/dev/null || echo "0")
 echo "Found ${TOTAL_FILES} .sra files to process" >&2
 
 # 逐个处理

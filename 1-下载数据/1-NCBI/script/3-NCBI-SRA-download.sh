@@ -125,7 +125,7 @@ get_download_list() {
     local temp_list="/tmp/sra_download_list.$$"
     
     if [ "$RESUME_MODE" = true ] && [ -f "$STATUS_FILE" ]; then
-        log_message "断点续跑模式: 分析之前的下载状态..."
+        log_message "断点续跑模式: 分析之前的下载状态..." >&2
         
         # 创建临时文件存储需要下载的样本
         > "$temp_list"

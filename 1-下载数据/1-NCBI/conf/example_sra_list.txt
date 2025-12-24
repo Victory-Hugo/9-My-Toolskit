@@ -1,0 +1,8 @@
+/mnt/d/6-HPgnomAD-Origin-data/5-NCBI/2-Sequence/ERR1094785/ERR1094785.sra
+/mnt/d/6-HPgnomAD-Origin-data/5-NCBI/2-Sequence/ERR1094788/ERR1094788.sra
+/mnt/d/6-HPgnomAD-Origin-data/5-NCBI/2-Sequence/ERR1094789/ERR1094789.sra
+/mnt/d/6-HPgnomAD-Origin-data/5-NCBI/2-Sequence/ERR1094792/ERR1094792.sra
+/mnt/d/6-HPgnomAD-Origin-data/5-NCBI/2-Sequence/ERR1094793/ERR1094793.sra
+/mnt/d/6-HPgnomAD-Origin-data/5-NCBI/2-Sequence/ERR1094794/ERR1094794.sra
+/mnt/d/6-HPgnomAD-Origin-data/5-NCBI/2-Sequence/ERR1094802/ERR1094802.sra
+/mnt/d/6-HPgnomAD-Origin-data/5-NCBI/2-Sequence/ERR1094804/ERR1094804.sra
