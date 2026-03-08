@@ -1,0 +1,61 @@
+---
+format:
+  pdf:
+    pdf-engine: xelatex
+    documentclass: ctexart
+    classoption:
+      - 11pt
+      - oneside
+    colorlinks: true
+    link-citations: true
+    link-bibliography: true
+    geometry:
+      - left=50mm
+      - right=13mm
+      - top=20mm
+      - bottom=25mm
+      - marginparwidth=35mm
+      - marginparsep=10mm
+      - headheight=21pt
+      - headsep=2\baselineskip
+    include-in-header: _extensions/Victory-Hugo/ctexart_1/preamble.tex
+bibliography: ./data/参考文献.bib
+csl: ./data/中文作者日期引用格式.csl     # 引用样式文件,放在与本文件同一目录下(这里下载：https://www.zotero.org/styles/)
+---
+
+<!-- 在这里替换标题、作者和单位 -->
+
+```{=latex}
+\begin{flushleft}
+
+  {\fontsize{35}{39}\selectfont\bfseries\color{titleblue}离线服务器的Conda环境离线分发}\\[0.40em]
+
+  {\Large\bfseries Victory-Hugo\,\orcidlink{0009-0001-5790-4866}$^{1\ast}$}\\[0.72em]
+
+  {\large $^{1}$重庆医科大学基础医学院，重庆市渝中区石油路，400016，中国}\\[0.72em]
+
+\end{flushleft}
+
+\dividerline
+
+\leftnote{
+  \textbf{联系方式:}\\
+  \href{mailto:giantlinlinlin@gmail.com}{giantlinlinlin@gmail.com}
+
+  $^{\ast}$第一作者
+
+  \textbf{现地址:} 重庆市渝中区石油路，400016，中国
+
+}
+```
+
+# 摘要
+
+以下步骤用于在可联网的 Linux 机器上，从现有 conda 环境生成适合人工传输到离线服务器的交付包。
+
+```{=latex}
+\vspace{0.35em}
+\dividerline
+```
+
+{{< include ../README.md >}}

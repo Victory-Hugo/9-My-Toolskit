@@ -1,0 +1,33 @@
+{
+  "project": {
+    "name": "conda-env-offline-sync",
+    "project_dir": "."
+  },
+  "paths": {
+    "output_root": "result",
+    "dist_dir": "dist",
+    "tmp_dir": "tmp",
+    "log_dir": "logs"
+  },
+  "runtime": {
+    "bootstrap_python": "python3",
+    "jobs": 4
+  },
+  "tools": {
+    "conda": "/home/luolintao/miniconda3/bin/conda",
+    "tar": "tar"
+  },
+  "export": {
+    "env_name": "ScikitAllele",
+    "pip_download_mode": "prefer_binary",
+    "healthcheck_imports": [
+      "allel",
+      "numpy",
+      "pandas"
+    ]
+  },
+  "install": {
+    "bundle_input": "/home/luolintao/0-tmp/1-软件安装包/dist/conda-env-offline-sync-ScikitAllele-20260308T135737.tar.gz",
+    "target_prefix": "/home/luolintao/miniconda3/envs/ScikitAllele"
+  }
+}
