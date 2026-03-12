@@ -108,16 +108,30 @@ def canonicalize_local_requirement_target(target):
     return str(Path(target).expanduser().resolve())
 
 
+def is_vcs_requirement_target(target):
+    return target.startswith(("git+", "hg+", "svn+", "bzr+"))
+
+
+def collect_pip_managed_packages(conda_exe, env_name):
+    conda_packages = json.loads(run_command([conda_exe, "list", "-n", env_name, "--json"]).stdout)
+    return {
+        item["name"].lower()
+        for item in conda_packages
+        if item.get("channel") == "pypi" and item.get("name")
+    }
+
+
 def normalize_requirement_line(line, version_map, editable_location_map):
     stripped = line.strip()
     if not stripped or stripped.startswith("#"):
-        return None, None
+        return None, None, None, None
     if " @ " in stripped:
-        package_name = stripped.split(" @ ", 1)[0].strip()
+        package_name, requirement_target = [part.strip() for part in stripped.split(" @ ", 1)]
         version = version_map.get(package_name.lower())
         if version is None:
             raise RuntimeError(f"Unable to resolve version for pip requirement: {stripped}")
-        return f"{package_name}=={version}", stripped
+        source_requirement = stripped if is_vcs_requirement_target(requirement_target) else None
+        return f"{package_name}=={version}", stripped, package_name, source_requirement
     if stripped.startswith("-e "):
         editable_target = stripped[3:].strip()
         if "#egg=" in editable_target:
@@ -125,21 +139,40 @@ def normalize_requirement_line(line, version_map, editable_location_map):
             version = version_map.get(package_name.lower())
             if version is None:
                 raise RuntimeError(f"Unable to resolve version for editable pip requirement: {stripped}")
-            return f"{package_name}=={version}", stripped
+            source_requirement = editable_target if is_vcs_requirement_target(editable_target) else None
+            return f"{package_name}=={version}", stripped, package_name, source_requirement
         package_name = editable_location_map.get(canonicalize_local_requirement_target(editable_target))
         if package_name is None:
             raise RuntimeError(f"Unable to resolve package name for editable pip requirement: {stripped}")
         version = version_map.get(package_name.lower())
         if version is None:
             raise RuntimeError(f"Unable to resolve version for editable pip requirement: {stripped}")
-        return f"{package_name}=={version}", stripped
-    return stripped, None
+        return f"{package_name}=={version}", stripped, package_name, None
+    package_name = stripped.split(";", 1)[0].strip()
+    for delimiter in ("==", "===", ">=", "<=", "~=", "!=", ">", "<"):
+        if delimiter in package_name:
+            package_name = package_name.split(delimiter, 1)[0].strip()
+            break
+    return stripped, None, package_name, None
 
 
-def build_offline_pip_requirements(conda_exe, env_name, pip_freeze_path, offline_requirements_path):
+def build_offline_pip_requirements(
+    conda_exe,
+    env_name,
+    pip_freeze_path,
+    offline_requirements_path,
+    download_requirements_path,
+):
     if not resolve_pip_requirements(pip_freeze_path):
         write_text(offline_requirements_path, "")
-        return {"rewritten": []}
+        write_text(download_requirements_path, "")
+        return {"rewritten": [], "vcs_requirements": []}
+
+    pip_managed_packages = collect_pip_managed_packages(conda_exe, env_name)
+    if not pip_managed_packages:
+        write_text(offline_requirements_path, "")
+        write_text(download_requirements_path, "")
+        return {"rewritten": [], "vcs_requirements": []}
 
     pip_list = json.loads(
         run_command([conda_exe, "run", "-n", env_name, "python", "-m", "pip", "list", "--format=json"]).stdout
@@ -154,20 +187,35 @@ def build_offline_pip_requirements(conda_exe, env_name, pip_freeze_path, offline
         if item.get("editable_project_location") and item.get("name")
     }
     normalized = []
+    download_requirements = []
     rewritten = []
+    vcs_requirements = []
     for raw_line in pip_freeze_path.read_text(encoding="utf-8").splitlines():
-        normalized_line, original_line = normalize_requirement_line(
+        normalized_line, original_line, package_name, source_requirement = normalize_requirement_line(
             raw_line,
             version_map,
             editable_location_map,
         )
         if normalized_line is None:
             continue
+        if package_name is None or package_name.lower() not in pip_managed_packages:
+            continue
         normalized.append(normalized_line)
+        if source_requirement is None:
+            download_requirements.append(normalized_line)
+        else:
+            vcs_requirements.append(
+                {
+                    "package": package_name,
+                    "normalized": normalized_line,
+                    "source": source_requirement,
+                }
+            )
         if original_line is not None:
             rewritten.append({"original": original_line, "normalized": normalized_line})
     write_text(offline_requirements_path, "\n".join(normalized) + ("\n" if normalized else ""))
-    return {"rewritten": rewritten}
+    write_text(download_requirements_path, "\n".join(download_requirements) + ("\n" if download_requirements else ""))
+    return {"rewritten": rewritten, "vcs_requirements": vcs_requirements}
 
 
 def iter_explicit_urls(explicit_path):
@@ -224,33 +272,67 @@ def prepare_conda_cache(conda_exe, explicit_path, conda_pkgs_dir):
     return staged
 
 
-def prepare_pip_cache(conda_exe, env_name, requirements_path, wheelhouse_dir, pip_download_mode):
+def prepare_pip_cache(
+    conda_exe,
+    env_name,
+    requirements_path,
+    download_requirements_path,
+    wheelhouse_dir,
+    pip_download_mode,
+    vcs_requirements,
+):
     if not resolve_pip_requirements(requirements_path):
         LOG.info("No pip packages detected; skipping wheel download.")
         return {"downloaded": [], "source_distributions": []}
 
-    command = [
-        conda_exe,
-        "run",
-        "-n",
-        env_name,
-        "python",
-        "-m",
-        "pip",
-        "download",
-        "--dest",
-        str(wheelhouse_dir),
-        "-r",
-        str(requirements_path),
-    ]
-    if pip_download_mode == "prefer_binary":
-        try:
-            run_command(command[:8] + ["--only-binary=:all:"] + command[8:])
-        except RuntimeError:
-            LOG.warning("Binary-only pip download failed; retrying with source distributions allowed.")
-            run_command(command)
-    else:
-        run_command(command)
+    if resolve_pip_requirements(download_requirements_path):
+        for requirement in download_requirements_path.read_text(encoding="utf-8").splitlines():
+            requirement = requirement.strip()
+            if not requirement:
+                continue
+            command = [
+                conda_exe,
+                "run",
+                "-n",
+                env_name,
+                "python",
+                "-m",
+                "pip",
+                "download",
+                "--no-deps",
+                "--dest",
+                str(wheelhouse_dir),
+                requirement,
+            ]
+            if pip_download_mode == "prefer_binary":
+                try:
+                    run_command(command[:9] + ["--only-binary=:all:"] + command[9:])
+                except RuntimeError:
+                    LOG.warning(
+                        "Binary-only pip download failed for %s; retrying with source distributions allowed.",
+                        requirement,
+                    )
+                    run_command(command)
+            else:
+                run_command(command)
+
+    for requirement in vcs_requirements:
+        run_command(
+            [
+                conda_exe,
+                "run",
+                "-n",
+                env_name,
+                "python",
+                "-m",
+                "pip",
+                "wheel",
+                "--no-deps",
+                "--wheel-dir",
+                str(wheelhouse_dir),
+                requirement["source"],
+            ]
+        )
 
     downloaded = sorted(p.name for p in wheelhouse_dir.iterdir() if p.is_file())
     source_distributions = [
@@ -381,6 +463,7 @@ def run(
     explicit_txt = metadata_dir / "explicit.txt"
     pip_freeze_txt = metadata_dir / "pip_freeze.txt"
     pip_requirements_offline_txt = metadata_dir / "pip_requirements_offline.txt"
+    pip_requirements_download_txt = metadata_dir / "pip_requirements_download.txt"
     env_metadata_json = metadata_dir / "env_metadata.json"
     manifest_json = metadata_dir / "manifest.json"
     checksum_txt = metadata_dir / "sha256.txt"
@@ -403,15 +486,19 @@ def run(
         env_name=env_name,
         pip_freeze_path=pip_freeze_txt,
         offline_requirements_path=pip_requirements_offline_txt,
+        download_requirements_path=pip_requirements_download_txt,
     )
     metadata["pip_requirements_rewritten"] = pip_rewrite_summary["rewritten"]
+    metadata["pip_vcs_requirements"] = pip_rewrite_summary["vcs_requirements"]
     write_text(env_metadata_json, json.dumps(metadata, indent=2, ensure_ascii=False) + "\n")
     pip_cache_summary = prepare_pip_cache(
         conda_exe=conda_exe,
         env_name=env_name,
         requirements_path=pip_requirements_offline_txt,
+        download_requirements_path=pip_requirements_download_txt,
         wheelhouse_dir=wheelhouse_dir,
         pip_download_mode=pip_download_mode,
+        vcs_requirements=pip_rewrite_summary["vcs_requirements"],
     )
 
     write_install_guide(install_guide, project_name, env_name)
