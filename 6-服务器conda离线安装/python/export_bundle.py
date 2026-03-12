@@ -11,7 +11,7 @@ from datetime import datetime, timezone
 from hashlib import sha256
 from pathlib import Path
 from time import sleep
-from urllib.parse import urlparse
+from urllib.parse import unquote, urlparse
 from urllib.request import urlopen
 
 
@@ -98,7 +98,17 @@ def resolve_pip_requirements(pip_freeze_path):
     return bool(content)
 
 
-def normalize_requirement_line(line, version_map):
+def canonicalize_local_requirement_target(target):
+    parsed = urlparse(target)
+    if parsed.scheme == "file":
+        path = unquote(parsed.path)
+        if parsed.netloc and parsed.netloc != "localhost":
+            path = f"//{parsed.netloc}{path}"
+        return str(Path(path).expanduser().resolve())
+    return str(Path(target).expanduser().resolve())
+
+
+def normalize_requirement_line(line, version_map, editable_location_map):
     stripped = line.strip()
     if not stripped or stripped.startswith("#"):
         return None, None
@@ -116,6 +126,13 @@ def normalize_requirement_line(line, version_map):
             if version is None:
                 raise RuntimeError(f"Unable to resolve version for editable pip requirement: {stripped}")
             return f"{package_name}=={version}", stripped
+        package_name = editable_location_map.get(canonicalize_local_requirement_target(editable_target))
+        if package_name is None:
+            raise RuntimeError(f"Unable to resolve package name for editable pip requirement: {stripped}")
+        version = version_map.get(package_name.lower())
+        if version is None:
+            raise RuntimeError(f"Unable to resolve version for editable pip requirement: {stripped}")
+        return f"{package_name}=={version}", stripped
     return stripped, None
 
 
@@ -127,11 +144,23 @@ def build_offline_pip_requirements(conda_exe, env_name, pip_freeze_path, offline
     pip_list = json.loads(
         run_command([conda_exe, "run", "-n", env_name, "python", "-m", "pip", "list", "--format=json"]).stdout
     )
+    editable_pip_list = json.loads(
+        run_command([conda_exe, "run", "-n", env_name, "python", "-m", "pip", "list", "--editable", "--format=json"]).stdout
+    )
     version_map = {item["name"].lower(): item["version"] for item in pip_list}
+    editable_location_map = {
+        canonicalize_local_requirement_target(item["editable_project_location"]): item["name"]
+        for item in editable_pip_list
+        if item.get("editable_project_location") and item.get("name")
+    }
     normalized = []
     rewritten = []
     for raw_line in pip_freeze_path.read_text(encoding="utf-8").splitlines():
-        normalized_line, original_line = normalize_requirement_line(raw_line, version_map)
+        normalized_line, original_line = normalize_requirement_line(
+            raw_line,
+            version_map,
+            editable_location_map,
+        )
         if normalized_line is None:
             continue
         normalized.append(normalized_line)
