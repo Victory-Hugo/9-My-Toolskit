@@ -13,20 +13,20 @@
 # 基本参数                          #
 ####################################
 #TODO : 修改以下参数以适应你的环境
-unset http_proxy
-unset https_proxy
+# unset http_proxy
+# unset https_proxy
 # PROJ="鲍曼NC2025_1"
-SRA_LIST="/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/1-NCBI/conf/下载SRA.txt" # 格式：每行一个 SRA/ERR/DRR 号
+SRA_LIST="/mnt/f/onedrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/1-NCBI/conf/下载SRA.txt" # 格式：每行一个 SRA/ERR/DRR 号
 
 # prefetch 可执行文件路径
 PREFETCH="/mnt/e/Scientifc_software/sratoolkit.3.1.1-ubuntu64/bin/prefetch"
 
-OUTDIR="/mnt/d/6-HPgnomAD-Origin-data/5-NCBI/2-Sequence/"
+OUTDIR="/mnt/c/Users/Administrator/Desktop/2-Sequence/"
 
 mkdir -p "$OUTDIR" || { echo "无法创建输出目录: $OUTDIR"; exit 1; }
 
 # 下载配置
-JOBS=5               # 并行任务数（如果为 1，则切换为串行模式）
+JOBS=3               # 并行任务数（如果为 1，则切换为串行模式）
 MAX_RETRY=3          # 每个 accession 最多重试次数
 FAILED_LIST="$OUTDIR/failed.list"   # 永久失败列表
 JOBLOG="$OUTDIR/joblog.txt"         # parallel 运行日志
