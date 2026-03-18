@@ -1,6 +1,6 @@
 {
   "project": {
-    "name": "conda-env-BigLin",
+    "name": "conda-env-paml",
     "project_dir": "/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/6-服务器conda离线安装/"
   },
   "paths": {
@@ -18,7 +18,7 @@
     "tar": "tar"
   },
   "export": {
-    "env_name": "BigLin",
+    "env_name": "paml",
     "pip_download_mode": "prefer_binary",
     "healthcheck_imports": [
       "allel",
@@ -27,7 +27,7 @@
     ]
   },
   "install": {
-    "bundle_input": "/home/luolintao/0-tmp/1-软件安装包/dist/conda-env-offline-sync-BigLin.tar.gz",
-    "target_prefix": "/home/luolintao/miniconda3/envs/BigLin"
+    "bundle_input": "/home/luolintao/0-tmp/1-软件安装包/dist/conda-env-offline-sync-paml.tar.gz",
+    "target_prefix": "/home/luolintao/miniconda3/envs/paml"
   }
 }

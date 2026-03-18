@@ -53,16 +53,44 @@ def write_text(path, content):
     path.write_text(content, encoding="utf-8")
 
 
+def resolve_env_python(conda_exe, env_name):
+    conda_prefix = Path(conda_exe).resolve().parent.parent
+    env_python = conda_prefix / "envs" / env_name / "bin" / "python"
+    if env_python.exists():
+        return str(env_python)
+    return None
+
+
+def run_pip_freeze(conda_exe, env_name):
+    """
+    Prefer the env's activated python when available.
+    `conda run` can fail in environments with broken compiler wrapper links.
+    """
+    env_python = resolve_env_python(conda_exe, env_name)
+    candidates = []
+    if env_python:
+        candidates.append([env_python, "-m", "pip", "freeze"])
+    candidates.append([conda_exe, "run", "-n", env_name, "python", "-m", "pip", "freeze"])
+
+    last_error = None
+    for command in candidates:
+        try:
+            return run_command(command).stdout, None, " ".join(command)
+        except RuntimeError as exc:
+            last_error = str(exc)
+            LOG.warning("pip freeze command failed: %s", exc)
+    return "", last_error, None
+
+
 def collect_env_metadata(conda_exe, env_name):
     conda_info = json.loads(run_command([conda_exe, "info", "--json"]).stdout)
+    env_python_exe = resolve_env_python(conda_exe, env_name)
+    if env_python_exe is None:
+        raise RuntimeError(f"Unable to locate environment python for {env_name}")
     env_python = json.loads(
         run_command(
             [
-                conda_exe,
-                "run",
-                "-n",
-                env_name,
-                "python",
+                env_python_exe,
                 "-c",
                 (
                     "import json,platform,sys; "
@@ -471,14 +499,14 @@ def run(
 
     write_text(environment_yml, run_command([conda_exe, "env", "export", "-n", env_name, "--no-builds"]).stdout)
     write_text(explicit_txt, run_command([conda_exe, "list", "-n", env_name, "--explicit"]).stdout)
-    write_text(
-        pip_freeze_txt,
-        run_command([conda_exe, "run", "-n", env_name, "python", "-m", "pip", "freeze"]).stdout,
-    )
+    pip_freeze_stdout, pip_freeze_error, pip_freeze_command = run_pip_freeze(conda_exe, env_name)
+    write_text(pip_freeze_txt, pip_freeze_stdout)
 
     metadata = collect_env_metadata(conda_exe, env_name)
     metadata["project_name"] = project_name
     metadata["healthcheck_imports"] = healthcheck_imports
+    metadata["pip_freeze_command"] = pip_freeze_command
+    metadata["pip_freeze_error"] = pip_freeze_error
     staged_conda_archives = prepare_conda_cache(conda_exe, explicit_txt, conda_pkgs_dir)
     metadata["conda_archives_staged"] = staged_conda_archives
     pip_rewrite_summary = build_offline_pip_requirements(
