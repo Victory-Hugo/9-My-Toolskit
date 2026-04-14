@@ -5,19 +5,19 @@
 # 作者：Lintao Luo
 # 日期：2025年8月19日
 
-unset http_proxy
-unset https_proxy
+# unset http_proxy
+# unset https_proxy
 
 # 默认配置
 #!INFILE每行一个SRA编号，例如"ERR1012803"
-INFILE="/mnt/d/迅雷下载/鲍曼组装/conf/1.txt"
-XML_DIR="/mnt/d/迅雷下载/鲍曼组装/xml"
+INFILE="/mnt/l/21-MTB-database/2-基础信息补充/conf/ID_1.tsv"
+XML_DIR="/mnt/l/21-MTB-database/2-基础信息补充/meta/xml"
 CSV_FILE="$XML_DIR/run_biosample_map.csv"
 LOG_FILE="$XML_DIR/run_biosample_log.txt"
 DEFAULT_PARALLEL_JOBS=8  # 默认并行任务数
 
 # NCBI API配置
-NCBI_API_KEY="29b326d54e7a21fc6c8b9afe7d71f441d809" #!请自己在NCBI申请API密钥
+NCBI_API_KEY="29b326d54e7a21fc6c8b9afe7d71f441d809" #!请自己在NCBI申请API密钥 47ce008bcb9419dac6670c0b09b01eee8f09
 export NCBI_API_KEY
 
 # 并行任务数（可通过命令行参数调整）
