@@ -1,0 +1,51 @@
+# =====================================================================
+# 1-组装数据下载 — 配置文件
+# 功能：批量下载 NCBI Assembly 数据，并补充 BioSample XML 与解压整理结果
+# 所有相对路径默认相对于 project.base_dir
+# =====================================================================
+
+project:
+  base_dir: "/mnt/f/OneDrive/文档（科研）/脚本/Download/9-My-Toolskit/1-下载数据/1-NCBI"  # 项目根目录
+  assembly_id_file: "conf/MTB_Assembly.ID.txt"                                               # 输入：每行一个 Assembly accession
+
+# --------------------------------------------------------------------- #
+# 目录与脚本路径                                                         #
+# --------------------------------------------------------------------- #
+paths:
+  python_dir: "python"                                      # Python 模块目录
+  helper_dir: "script"                                      # Shell 辅助脚本目录
+  log_dir: "/mnt/d/5-NCBI-Reference/4-MTB/log"                                            # 主控日志目录
+  download_dir: "/mnt/d/5-NCBI-Reference/4-MTB/download"    # Assembly 压缩包与整理后结果目录
+  meta_dir: "/mnt/d/5-NCBI-Reference/4-MTB/meta"                 # BioSample XML 与映射表输出目录
+  download_script: "python/7-下载NCBI的Assembly.py"         # Assembly 下载模块
+  biosample_script: "script/7-2-GCA_GCF→SAMN+xml.sh"        # Assembly → BioSample 元数据模块
+  extract_script: "python/extract_and_organize.py"          # 下载结果解压与整理模块
+
+# --------------------------------------------------------------------- #
+# 工具路径：集中管理解释器、二进制和凭据                                 #
+# --------------------------------------------------------------------- #
+tools:
+  python_bin: "python3"                             # Python 解释器
+  esearch_bin: "/home/luolintao/edirect/esearch"    # EDirect esearch
+  efetch_bin: "/home/luolintao/edirect/efetch"      # EDirect efetch
+  xtract_bin: "/home/luolintao/edirect/xtract"      # EDirect xtract
+  ncbi_email: "giantlinlinlin@gmail.com"                                    # NCBI 联系邮箱；建议显式填写
+  ncbi_api_key: "29b326d54e7a21fc6c8b9afe7d71f441d809"  # NCBI API key；为空则按匿名限速运行
+
+# --------------------------------------------------------------------- #
+# 运行参数：线程数、步骤开关、覆盖策略等                                 #
+# --------------------------------------------------------------------- #
+runtime:
+  unset_proxy: false              # 是否在运行前 unset http_proxy/https_proxy
+  run_download: true              # 是否执行 Assembly 下载
+  run_biosample: true             # 是否执行 BioSample XML 下载
+  run_extract: true               # 是否执行 ZIP 解压与整理
+  download_workers: 10            # Assembly 下载并发线程数
+  download_resume: true           # 是否启用断点续跑
+  force_redownload: false         # 是否忽略已有文件重新下载
+  biosample_parallel: 12          # BioSample 查询并发数
+  extract_workers: 8              # 解压整理并发线程数
+  extract_overwrite: false        # 解压整理时是否覆盖已有结果
+  extract_backup: false           # 解压整理时是否备份已有结果
+  extract_verbose: true           # 解压整理时是否输出详细日志
+  dry_run: false                  # 是否仅打印命令而不执行

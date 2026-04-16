@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 # coding: utf-8
 """
-批量下载 NCBI Datasets 数据（已配置默认邮箱和 API Key）
-支持断点续跑、彩色输出、进度显示和清理未完成文件
+批量下载 NCBI Datasets 数据。
+支持断点续跑、彩色输出、进度显示和清理未完成文件。
 
 使用方法示例：
-  export NCBI_API_KEY="..."      # 可选：覆盖脚本内默认
-  export NCBI_EMAIL="..."        # 可选：覆盖脚本内默认
+  export NCBI_API_KEY="..."      # 可选：通过环境变量提供
+  export NCBI_EMAIL="..."        # 可选：通过环境变量提供
   python3 download_datasets.py -b /mnt/c/Users/Administrator/Desktop/ -f /path/to/下载NCBI.txt -w 5 --resume
 """
 import os
@@ -41,8 +41,8 @@ except ImportError:
     HAS_TQDM = False
 
 # -------------------- 默认配置（可通过环境变量或命令行覆盖） --------------------
-DEFAULT_NCBI_EMAIL = os.environ.get("NCBI_EMAIL", "giantlinlinlin@gmail.com")
-DEFAULT_NCBI_API_KEY = os.environ.get("NCBI_API_KEY", "29b326d54e7a21fc6c8b9afe7d71f441d809")
+DEFAULT_NCBI_EMAIL = os.environ.get("NCBI_EMAIL", "")
+DEFAULT_NCBI_API_KEY = os.environ.get("NCBI_API_KEY", "")
 # -------------------------------------------------------------------------------
 
 # 全局速率控制（会在 main 中根据是否有 key 调整 allowed_rps）
@@ -201,12 +201,12 @@ def parse_args():
     parser.add_argument(
         "--email", "-e",
         default=DEFAULT_NCBI_EMAIL,
-        help=f"联系邮箱（默认: {DEFAULT_NCBI_EMAIL}）"
+        help="联系邮箱（默认读取环境变量 NCBI_EMAIL；留空则不额外设置联系信息）"
     )
     parser.add_argument(
         "--api-key", "-k",
         default=DEFAULT_NCBI_API_KEY,
-        help=f"NCBI API Key（默认已内置）"
+        help="NCBI API Key（默认读取环境变量 NCBI_API_KEY）"
     )
     parser.add_argument(
         "--workers", "-w",
@@ -288,12 +288,11 @@ def create_session(email):
     )
     adapter = HTTPAdapter(max_retries=retry_strategy)
     session.mount("https://", adapter)
-    # 将 email 放入 User-Agent 和 From header（不少机构希望看到 contact）
-    ua = f"ncbi-datasets-downloader ({email})"
-    session.headers.update({
-        "User-Agent": ua,
-        "From": email
-    })
+    headers = {"User-Agent": "ncbi-datasets-downloader"}
+    if email:
+        headers["User-Agent"] = f"ncbi-datasets-downloader ({email})"
+        headers["From"] = email
+    session.headers.update(headers)
     return session
 
 def download_file(session, url, output_filename, api_key, accession):

@@ -25,12 +25,32 @@ while [[ $# -gt 0 ]]; do
       PARALLEL_JOBS="$2"
       shift 2
       ;;
+    --api-key|-k)
+      NCBI_API_KEY="$2"
+      shift 2
+      ;;
+    --esearch-bin)
+      ESEARCH_BIN="$2"
+      shift 2
+      ;;
+    --efetch-bin)
+      EFETCH_BIN="$2"
+      shift 2
+      ;;
+    --xtract-bin)
+      XTRACT_BIN="$2"
+      shift 2
+      ;;
     --help|-h)
       echo "用法: $0 [选项]"
       echo "选项:"
-      echo "  -i, --input-file FILE    输入的Assembly ID文件 (默认: 从Desktop/conf读取)"
+      echo "  -i, --input-file FILE    输入的Assembly ID文件（必填）"
       echo "  -o, --output-dir DIR     输出目录 (默认: 与输入文件同目录的meta文件夹)"
       echo "  -p, --parallel NUM       并行任务数 (默认: 5)"
+      echo "  -k, --api-key KEY        NCBI API Key（可选）"
+      echo "      --esearch-bin PATH   esearch 可执行文件或命令名"
+      echo "      --efetch-bin PATH    efetch 可执行文件或命令名"
+      echo "      --xtract-bin PATH    xtract 可执行文件或命令名"
       echo "  -h, --help              显示此帮助信息"
       exit 0
       ;;
@@ -48,7 +68,7 @@ while [[ $# -gt 0 ]]; do
 done
 
 # 默认配置
-INFILE=${INFILE:-"/mnt/c/Users/Administrator/Desktop/conf/NCBI-Bac-reference.ID.txt"}
+INFILE=${INFILE:-}
 # 如果未指定输出目录，则使用输入文件目录的上级目录下的meta文件夹
 if [[ -z "$XML_DIR" ]]; then
   INPUT_DIR=$(dirname "$INFILE")
@@ -59,12 +79,14 @@ CSV_FILE="$XML_DIR/assembly_biosample_map.csv"
 LOG_FILE="$XML_DIR/assembly_biosample_log.txt"
 DEFAULT_PARALLEL_JOBS=5  # 默认并行任务数（Assembly查询较重，用较少并发）
 
-# NCBI API配置
-NCBI_API_KEY="29b326d54e7a21fc6c8b9afe7d71f441d809" #!请自己在NCBI申请API密钥
+ESEARCH_BIN=${ESEARCH_BIN:-esearch}
+EFETCH_BIN=${EFETCH_BIN:-efetch}
+XTRACT_BIN=${XTRACT_BIN:-xtract}
+NCBI_API_KEY=${NCBI_API_KEY:-}
 export NCBI_API_KEY
 
 # 并行任务数（可通过命令行参数调整）
-PARALLEL_JOBS=${1:-$DEFAULT_PARALLEL_JOBS}
+PARALLEL_JOBS=${PARALLEL_JOBS:-$DEFAULT_PARALLEL_JOBS}
 
 # 验证并行任务数
 if [[ ! "$PARALLEL_JOBS" =~ ^[0-9]+$ ]] || [ "$PARALLEL_JOBS" -lt 1 ] || [ "$PARALLEL_JOBS" -gt 15 ]; then
@@ -72,6 +94,11 @@ if [[ ! "$PARALLEL_JOBS" =~ ^[0-9]+$ ]] || [ "$PARALLEL_JOBS" -lt 1 ] || [ "$PAR
     echo "使用方法: $0 [并行任务数]"
     echo "示例: $0 6  # 使用6个并行任务"
     exit 1
+fi
+
+if [[ -z "$INFILE" ]]; then
+  echo "ERROR: 必须通过 --input-file 指定 Assembly ID 文件" >&2
+  exit 1
 fi
 
 mkdir -p "$XML_DIR"
@@ -152,7 +179,7 @@ retry_esearch() {
   local result=""
   
   while (( retry_count < max_retries )); do
-    result=$(esearch -db "$db" -query "$query" 2>/dev/null)
+    result=$("$ESEARCH_BIN" -db "$db" -query "$query" 2>/dev/null)
     if [[ -n "$result" ]]; then
       echo "$result"
       return 0
@@ -181,7 +208,7 @@ safe_download_xml() {
     > "$output_file"
     
     # 使用 BioSample ID 下载 XML，而不是 Assembly ID
-    if esearch -db biosample -query "$samn_id" | efetch -format xml > "$output_file" 2>/dev/null; then
+    if "$ESEARCH_BIN" -db biosample -query "$samn_id" | "$EFETCH_BIN" -format xml > "$output_file" 2>/dev/null; then
       # 检查文件是否有实际内容（大于 50 字节）
       if [[ -s "$output_file" ]] && (( $(stat -c%s "$output_file") > 50 )); then
         return 0
@@ -225,8 +252,8 @@ process_asm() {
   # 获取标准化 Accession（带版本号）
   echo "  [$$] 正在获取标准化 Accession..."
   local full_acc
-  full_acc=$(retry_esearch "$input_id" "assembly" | efetch -format docsum 2>/dev/null | \
-             xtract -pattern DocumentSummary -element AssemblyAccession | head -n1)
+  full_acc=$(retry_esearch "$input_id" "assembly" | "$EFETCH_BIN" -format docsum 2>/dev/null | \
+             "$XTRACT_BIN" -pattern DocumentSummary -element AssemblyAccession | head -n1)
 
   if [[ -z "$full_acc" ]]; then
     echo "  [$$] ✗ 错误: 未找到标准 Accession for $input_id"
@@ -242,8 +269,8 @@ process_asm() {
   # 从 docsum 提取信息（使用正确的字段名）
   echo "  [$$] 正在获取 BioSample 信息..."
   local info
-  info=$(retry_esearch "$full_acc" "assembly" | efetch -format docsum 2>/dev/null | \
-         xtract -pattern DocumentSummary -element AssemblyAccession BioSampleAccn Organism | head -n1)
+  info=$(retry_esearch "$full_acc" "assembly" | "$EFETCH_BIN" -format docsum 2>/dev/null | \
+         "$XTRACT_BIN" -pattern DocumentSummary -element AssemblyAccession BioSampleAccn Organism | head -n1)
 
   local std_acc samn org
   std_acc=$(echo "$info" | cut -f1)
@@ -298,7 +325,7 @@ export -f is_assembly_completed
 export -f log_result
 export -f retry_esearch
 export -f safe_download_xml
-export CSV_FILE XML_DIR LOG_FILE NCBI_API_KEY
+export CSV_FILE XML_DIR LOG_FILE NCBI_API_KEY ESEARCH_BIN EFETCH_BIN XTRACT_BIN
 
 # 使用并行处理
 echo "使用 $PARALLEL_JOBS 个并行任务处理 ${#ASMS[@]} 个 Assembly ID..."
