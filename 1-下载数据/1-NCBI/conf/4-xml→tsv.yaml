@@ -12,9 +12,9 @@ project:
 # --------------------------------------------------------------------- #
 paths:
   python_dir: "python"                    # Python 模块目录（相对于 base_dir）
-  xml_dir: "meta/xml"                     # 输入：XML 文件所在目录（相对 base_dir 或绝对路径均可）
-  output_dir: "meta"                      # 输出根目录
-  output_tsv: "/mnt/d/project/meta/result.tsv"  # 输出：TSV 文件路径（支持绝对路径）
+  xml_dir: "/mnt/d/5-NCBI-Reference/4-MTB/meta/xml"                     # 输入：XML 文件所在目录（相对 base_dir 或绝对路径均可）
+  output_dir: "/mnt/d/5-NCBI-Reference/4-MTB/meta"                      # 输出根目录
+  output_tsv: "/mnt/d/5-NCBI-Reference/4-MTB/meta/result.tsv"  # 输出：TSV 文件路径（支持绝对路径）
 
 # --------------------------------------------------------------------- #
 # 工具路径                                                               #
